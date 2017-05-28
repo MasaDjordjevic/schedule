@@ -40,11 +40,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-*.swp
-*.*~
-project.lock.json
-.DS_Store
-*.pyc
-
-
