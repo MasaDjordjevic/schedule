@@ -8,6 +8,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {TestModule} from './test/test.module';
+import {LoginModule} from './login/login.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -16,13 +17,14 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     TestModule,
+    LoginModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

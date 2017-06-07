@@ -1,0 +1,9 @@
+<div class="logo"></div>
+<form (submit)="login()">
+  <input [(ngModel)]="username" name="username" autofocus />
+  <input [(ngModel)]="password" name="password" />
+  <div class="flex-spacer"></div>
+  <div class="controls">
+    <button>Login</button>
+  </div>
+</form>
