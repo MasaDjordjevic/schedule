@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {TranslateModule} from '@ngx-translate/core';
-import {MdButtonModule, MdCheckboxModule, MdInputModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdInputModule, MdSelectModule, MdMenuModule, MdIconModule} from '@angular/material';
 
 
 @NgModule({
@@ -8,7 +8,11 @@ import {MdButtonModule, MdCheckboxModule, MdInputModule} from '@angular/material
     TranslateModule,
     MdButtonModule,
     MdCheckboxModule,
-    MdInputModule
+    MdInputModule,
+    MdSelectModule,
+    MdMenuModule,
+    MdIconModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

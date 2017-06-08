@@ -18,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'ui', component: UiComponent
+  },
+  {
+    path: 'assistant', loadChildren: 'app/assistant-panel/assistant-panel.module#AssistantPanelModule'
   }
 
 ];
