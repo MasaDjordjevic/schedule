@@ -7,11 +7,10 @@ import {LoginService} from '../login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginMessage: string = "";
-  private showLoginMessage: boolean =false;
+  private loginMessage = '';
 
-  public username: string = "";
-  public password: string = "";
+  public username = '';
+  public password = '';
 
   constructor(private loginService: LoginService) { }
 
@@ -19,8 +18,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loginMessage = '';
     this.loginService.login(this.username, this.password)
-      .then(res => console.log(res));
+      .then(res => {
+        if(res.status === 'success') {
+          console.log('sucess');
+        } else {
+          this.loginMessage = res.exception;
+        }
+      });
   }
 
 }

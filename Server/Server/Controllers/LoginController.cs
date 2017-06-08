@@ -39,7 +39,7 @@ namespace Server.Controllers
         {         
             if (String.IsNullOrEmpty(loginData.username) || String.IsNullOrEmpty(loginData.password))
             {
-                return Ok(new { status = "parameter error" });
+                return Ok(new { exception = "parameter error" });
             }
 
             try

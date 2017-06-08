@@ -1,9 +1,16 @@
 <div class="logo"></div>
 <form (submit)="login()">
-  <input [(ngModel)]="username" name="username" autofocus />
-  <input [(ngModel)]="password" name="password" />
+  <md-input-container>
+    <input mdInput [(ngModel)]="username" name="username" autofocus/>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="password" name="password"/>
+  </md-input-container>
   <div class="flex-spacer"></div>
   <div class="controls">
-    <button>Login</button>
+    <button md-raised-button color="primary">Login</button>
   </div>
 </form>
+<div id="login-message" [class.shown]="loginMessage && loginMessage.length > 0">
+  <span>wrong credentials</span>
+</div>
