@@ -1,7 +1,12 @@
 <p>
   ui works!
 </p>
+<div [class.dark-theme]="isDarkTheme">
+  <button class="change-theme" (click)="changeTheme()">Change theme</button>
 <button md-button>Flat button</button>
 <button md-raised-button color="primary">Raised button</button>
+<button md-raised-button color="accent">Raised button</button>
+<button md-raised-button color="secundary">Raised button</button>
 <button md-fab><md-icon>check</md-icon></button>
 <button md-mini-fab><md-icon>check</md-icon></button>
+</div>

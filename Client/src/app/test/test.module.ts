@@ -8,14 +8,12 @@ import { EmptyComponent } from './empty/empty.component';
 import { ClassroomsComponent } from './classrooms/classrooms.component';
 import {ClassroomsService} from './classrooms/classrooms.service';
 import { UiComponent } from './ui/ui.component';
-import {UiModule} from '../ui/ui.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    UiModule,
     TestRoutingModule,
 
   ],
