@@ -30,10 +30,15 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {           
-            services.AddSingleton<LoginService, LoginService>();
-            services.AddSingleton<DepartmentsService, DepartmentsService>();
+            services.AddSingleton<AssistantService, AssistantService>();
+            services.AddSingleton<ClassroomService, ClassroomService>();
+            services.AddSingleton<CourseService, CourseService>();
+            services.AddSingleton<DepartmentService, DepartmentService>();
+            services.AddSingleton<DivisionService, DivisionService>();
             services.AddSingleton<GroupService, GroupService>();
+            services.AddSingleton<LoginService, LoginService>();
             services.AddSingleton<ScheduleService, ScheduleService>();
+            services.AddSingleton<StudentService, StudentService>();
 
 
             // Add framework services.

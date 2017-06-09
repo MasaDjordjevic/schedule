@@ -15,9 +15,9 @@ namespace Server.Controllers
     public class DepartmentsController : Controller
     {
         private readonly RasporedContext _context;
-        private DepartmentsService departmentsService;
+        private DepartmentService departmentsService;
 
-        public DepartmentsController(RasporedContext context, DepartmentsService departmentsService)
+        public DepartmentsController(RasporedContext context, DepartmentService departmentsService)
         {
             _context = context;
             this.departmentsService = departmentsService;

@@ -24,29 +24,29 @@ namespace Server.Extentions
         public static DateTime StartOfWeek(this DateTime date)
         {
             int offset = date.DayOfWeek.ToInt() - DayOfWeek.Monday.ToInt();
-            var day = date.AddDays(-offset);
-            return day.Add(-day.TimeOfDay);
+            var Day = date.AddDays(-offset);
+            return Day.Add(-Day.TimeOfDay);
         }
 
         public static DateTime EndOfWeek(this DateTime date)
         {
             int offset = date.DayOfWeek.ToInt() - DayOfWeek.Sunday.ToInt();
-            var day = date.AddDays(-offset);
-            return day.Add(-day.TimeOfDay);
+            var Day = date.AddDays(-offset);
+            return Day.Add(-Day.TimeOfDay);
         }
 
-        //ne mogu da koristim obican cast to int jer im nedelja pocinje nedeljom odnosno Sunday = 0, Monday = 1.. 
-        public static int ToInt(this DayOfWeek day)
+        //ne mogu da koristim obican cast to int jer im nedelja pocinje nedeljom odnosno SunDay = 0, MonDay = 1.. 
+        public static int ToInt(this DayOfWeek Day)
         {
-            if (day == DayOfWeek.Sunday)
+            if (Day == DayOfWeek.Sunday)
                 return 7;
             else
-                return (int)day;
+                return (int)Day;
         }
 
-        public static string ToStr(this DayOfWeek day)
+        public static string ToStr(this DayOfWeek Day)
         {
-            switch (day)
+            switch (Day)
             {
                 case DayOfWeek.Monday:
                     return "ponedeljak";

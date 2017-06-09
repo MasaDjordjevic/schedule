@@ -15,7 +15,7 @@ namespace Server.DTOs
         public bool IsClass { get; set; }
 
         //class
-        public int GroupID { get; set; }
+        public int GroupId { get; set; }
         public string ClassName { get; set; }
         public string Abbr { get; set; }
         public string Classroom { get; set; }
@@ -23,12 +23,12 @@ namespace Server.DTOs
         public string Type { get; set; }
         public List<NotificationDTO> Notifications { get; set; }
 
-        //activity
-        public int ActivityID { get; set; }
+        //Activity
+        public int ActivityId { get; set; }
         public string ActivityTitle { get; set; }
         public string ActivityContent { get; set; }
 
-        //global activity
+        //global Activity
         public string Place { get; set; }
     }
 }

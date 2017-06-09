@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Server.Services
 {
-    public class DepartmentsService
+    public class DepartmentService
     {
         private readonly RasporedContext _context;
         private GroupService groupsService;
         private ScheduleService scheduleService;
 
-        public DepartmentsService(RasporedContext context, GroupService groupsService, ScheduleService scheduleService)
+        public DepartmentService(RasporedContext context, GroupService groupsService, ScheduleService scheduleService)
         {
             _context = context;
             this.groupsService = groupsService;
@@ -71,7 +71,7 @@ namespace Server.Services
                         Active = groupsService.IsActive(a.GroupId, tsNow),
                         Color = scheduleService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
-                        GroupID = a.GroupId
+                        GroupId = a.GroupId
                     }).ToList();
 
             return scheduleService.Convert(returnValue);
