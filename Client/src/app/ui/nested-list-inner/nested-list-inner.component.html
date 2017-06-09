@@ -1,0 +1,7 @@
+<div class="list-title" (click)="toggle()">
+  <div>{{title}}</div>
+  <div class="carat" [class.rotate]="visible">▼</div>
+</div>
+<div class="list-content" [style.display]="visible ? 'block' : 'none'">
+  <ng-content></ng-content>
+</div>

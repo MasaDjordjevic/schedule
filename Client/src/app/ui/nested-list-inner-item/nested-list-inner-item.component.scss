@@ -1,0 +1,18 @@
+@import "../../ljubenovic-toolkit";
+@import "../../palette";
+@import "../../app-colors";
+
+:host {
+  display: block;
+  padding: 1ex 1em;
+  cursor: pointer;
+
+  &.selected {
+    font-weight: bold;
+    color: mat-color($default-accent, A700);
+  }
+
+  &:hover {
+    background-color: rgba(black, .1);
+  }
+}

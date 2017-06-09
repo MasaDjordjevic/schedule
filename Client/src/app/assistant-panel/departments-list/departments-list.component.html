@@ -1,0 +1,15 @@
+<app-nested-list [title]="'Departments'"
+                 [primaryColor]="primaryColor"
+                 [secondaryColor]="secondaryColor">
+  <app-nested-list-inner *ngFor="let yearDepartment of yearDepartments"
+                         [title]="'year ' + yearDepartment.year">
+    <app-nested-list-inner-item *ngFor="let department of yearDepartment.departments"
+                                [val]="department.departmentId"
+                                (click)="onSelect(department.departmentId)"
+                                [class.selected]="department.departmentId === selectedDepartmentId">
+      {{department.departmentName}}
+    </app-nested-list-inner-item>
+
+  </app-nested-list-inner>
+
+</app-nested-list>

@@ -1,0 +1,40 @@
+@import "../../palette";
+@import "../../themes";
+@import "../../ljubenovic-toolkit";
+@import "../../app-colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h2 {
+    padding: .6em .8em;
+    display: block;
+    text-align: center;
+    color: rgba(white, .9);
+    background-color: mat-color($default-accent, A700); // default, za svaki slucaj
+    @include z-depth(.5);
+  }
+
+  .selected {
+    font-weight: bold;
+
+  }
+
+  //region Themes
+  @each $var, $string in $theme-all-var-string {
+    &.#{$string} {
+
+      h2 {
+        background-color: $var;
+      }
+
+      .selected {
+        color: $var;
+      }
+    }
+  }
+  //endregion
+
+}
