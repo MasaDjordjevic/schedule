@@ -1,4 +1,5 @@
-﻿using Server.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Server.Models;
 using Server.Services;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Server.Services
         public UniMembers UserLogin(string username, string password)
         {
             var query = _context.UniMembers
+                .Include(a => a.Student)
                 .Where(a => a.Username == username && a.Password == password);
             if (query.Any())
             {

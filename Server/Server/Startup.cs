@@ -31,6 +31,9 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {           
             services.AddSingleton<LoginService, LoginService>();
+            services.AddSingleton<DepartmentsService, DepartmentsService>();
+            services.AddSingleton<GroupService, GroupService>();
+            services.AddSingleton<ScheduleService, ScheduleService>();
 
 
             // Add framework services.
@@ -56,6 +59,12 @@ namespace Server
             loggerFactory.AddDebug();
 
             app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
 
         }
     }

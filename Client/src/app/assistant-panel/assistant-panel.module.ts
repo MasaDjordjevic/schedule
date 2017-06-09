@@ -7,6 +7,7 @@ import {HeaderModule} from '../header/header.module';
 import {SharedModule} from '../shared/shared.module';
 import { DepartmentsListComponent } from './departments-list/departments-list.component';
 import {UiModule} from '../ui/ui.module';
+import {DepartmentsService} from './services/departments.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {UiModule} from '../ui/ui.module';
     UiModule,
     AssistantPanelRoutingModule
   ],
-  declarations: [AssistantPanelComponent, DepartmentsListComponent]
+  declarations: [AssistantPanelComponent, DepartmentsListComponent],
+  providers: [DepartmentsService]
 })
 export class AssistantPanelModule { }
