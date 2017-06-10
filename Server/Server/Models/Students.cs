@@ -11,7 +11,6 @@ namespace Server.Models
             GroupsStudents = new HashSet<GroupsStudents>();
             StudentsActivities = new HashSet<StudentsActivities>();
             StudentsCourses = new HashSet<StudentsCourses>();
-            UniMembers = new HashSet<UniMembers>();
         }
 
         public int StudentId { get; set; }
@@ -22,7 +21,7 @@ namespace Server.Models
         public virtual ICollection<GroupsStudents> GroupsStudents { get; set; }
         public virtual ICollection<StudentsActivities> StudentsActivities { get; set; }
         public virtual ICollection<StudentsCourses> StudentsCourses { get; set; }
-        public virtual ICollection<UniMembers> UniMembers { get; set; }
+        public virtual UniMembers UniMembers { get; set; }
         public virtual Departments Department { get; set; }
     }
 }
