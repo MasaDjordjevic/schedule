@@ -28,8 +28,11 @@ namespace Server.Models
         public virtual DbSet<UniMembers> UniMembers { get; set; }
         public virtual DbSet<UniMembersRoles> UniMembersRoles { get; set; }
 
-        public RasporedContext(DbContextOptions<RasporedContext> options) : base(options)
-        { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=Masa;Database=Raspored;Trusted_Connection=True;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -545,6 +548,10 @@ namespace Server.Models
                 entity.HasKey(e => e.UniMemberId)
                     .HasName("PK_ClanFakulteta_1");
 
+                entity.HasIndex(e => e.StudentId)
+                    .HasName("idx_yourcolumn_notnull")
+                    .IsUnique();
+
                 entity.HasIndex(e => e.Username)
                     .HasName("indexUnique")
                     .IsUnique();
@@ -574,7 +581,9 @@ namespace Server.Models
                     .HasColumnName("password")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.StudentId).HasColumnName("studentID");
+                entity.Property(e => e.StudentId)
+                    .IsRequired()
+                    .HasColumnName("studentID");
 
                 entity.Property(e => e.Surname)
                     .IsRequired()
@@ -587,9 +596,8 @@ namespace Server.Models
                     .HasMaxLength(50);
 
                 entity.HasOne(d => d.Student)
-                    .WithMany(p => p.UniMembers)
-                    .HasForeignKey(d => d.StudentId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .WithOne(p => p.UniMembers)
+                    .HasForeignKey<UniMembers>(d => d.StudentId)
                     .HasConstraintName("FK_ClanFakulteta_Student");
             });
 
