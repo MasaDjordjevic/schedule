@@ -34,20 +34,10 @@ namespace Server.Controllers
         }
 
         // GET: api/Divisions/5
-        [Route("GetDivision/{id}")]
-        public async Task<IActionResult> GetDivision([FromRoute] int id)
+        [Route("GetDivisions/{id}")]
+        public async Task<IActionResult> GetDivisions([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var divisions = await _context.Divisions.SingleOrDefaultAsync(m => m.DivisionId == id);
-
-            if (divisions == null)
-            {
-                return NotFound();
-            }
+            var divisions = divisionService.GetDivison(id);
 
             return Ok(divisions);
         }
@@ -95,12 +85,21 @@ namespace Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            var divisions = divisionService.GetDivisionsOfDepartment(id);
+            var divisions = divisionService.GetDivisionsOfDeparmentByType(id);
 
             if (divisions == null)
             {
                 return NotFound();
             }
+
+            var ret = JsonConvert.SerializeObject(divisions, Formatting.Indented,
+                                    new JsonSerializerSettings
+                                    {
+                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                    });
+
+            return Ok(ret);
+
             return Ok(JsonConvert.SerializeObject(divisions, Formatting.Indented,
                                     new JsonSerializerSettings
                                     {

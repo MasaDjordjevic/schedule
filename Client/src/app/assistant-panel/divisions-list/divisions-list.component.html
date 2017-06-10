@@ -1,0 +1,14 @@
+<app-nested-list [title]="'Divisions'"
+               [primaryColor]="primaryColor"
+               [secondaryColor]="secondaryColor">
+  <app-nested-list-inner *ngFor="let typeDivision of typeDivisions" [title]="typeDivision.Type">
+    <app-nested-list-inner-item
+      *ngFor="let division of typeDivision.Divisions"
+      [val]="division.DivisionId"
+      (click)="onSelect(division.DivisionId)"
+      [class.selected]="division.DivisionId === selectedDivisionId"
+    >
+      {{division.Name || division.Course}}
+    </app-nested-list-inner-item>
+  </app-nested-list-inner>
+</app-nested-list>

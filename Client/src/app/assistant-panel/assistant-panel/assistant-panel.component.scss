@@ -1,0 +1,19 @@
+@import "../../palette";
+@import "../../ljubenovic-toolkit";
+
+:host {
+  display: flex;
+  height: calc(100vh);
+  margin: 0;
+  padding: 0;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+main {
+  height: 100%;
+  min-height: 0; // FireFox u tebe gledam
+  display: flex;
+  justify-content: flex-start;
+}
+

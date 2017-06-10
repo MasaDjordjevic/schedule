@@ -29,7 +29,7 @@ namespace Server
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {           
+        {
             services.AddSingleton<AssistantService, AssistantService>();
             services.AddSingleton<ClassroomService, ClassroomService>();
             services.AddSingleton<CourseService, CourseService>();
@@ -42,8 +42,11 @@ namespace Server
 
 
             // Add framework services.
-            services.AddMvcCore().AddJsonFormatters();
             services.AddCors();
+
+            services.AddMvc()
+                .AddJsonOptions(
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
