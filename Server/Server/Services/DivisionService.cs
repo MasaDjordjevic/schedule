@@ -61,7 +61,7 @@ namespace Server.Services
                                             StudentId = m.StudentId,
                                             DepartmentId = m.DepartmentId,
                                             IndexNumber = m.IndexNumber,
-                                            UniMembers = (from d in _context.UniMembers where d.StudentId == m.StudentId select d).ToList()
+                                            UniMembers = (from d in _context.UniMembers where d.StudentId == m.StudentId select d).First()
                                         }).First()
                                     }).ToList();
             }
@@ -109,8 +109,8 @@ namespace Server.Services
                     {
                         StudentId = s.StudentId,
                         IndexNumber = s.IndexNumber,
-                        Name = s.UniMembers.Select(u => u.Name).First(),
-                        Surname = s.UniMembers.Select(u => u.Surname).First()
+                        Name = s.UniMembers.Name,
+                        Surname = s.UniMembers.Surname
                     }).ToList();
         }
 

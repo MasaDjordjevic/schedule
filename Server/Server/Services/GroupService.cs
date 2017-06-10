@@ -166,7 +166,7 @@ namespace Server.Services
         {
             var alreAdyInGroup = _context.GroupsStudents
                 .Where(a => a.GroupId == groupId && students.Contains(a.StudentId))
-                .Select(a => a.Student.UniMembers.Select(s => s.Name) + " " + a.Student.UniMembers.Select(s => s.Surname)).ToList();
+                .Select(a => a.Student.UniMembers.Name + " " + a.Student.UniMembers.Surname).ToList();
             if (alreAdyInGroup.Any())
             {
                 string exp = alreAdyInGroup.Count() > 1
@@ -198,7 +198,7 @@ namespace Server.Services
             {
                 var inconsistants = _context.Students
                     .Where(stud => students.Contains(stud.StudentId) && studs.Contains(stud.StudentId))
-                    .Select(a => a.UniMembers.Select(u => u.Name) + " " + a.UniMembers.Select(u => u.Surname) + " pripAda grupi " + StudentsGroups.First(sg => sg.Student == a.StudentId).grupa)
+                    .Select(a => a.UniMembers.Name + " " + a.UniMembers.Surname + " pripAda grupi " + StudentsGroups.First(sg => sg.Student == a.StudentId).grupa)
                     .ToList();
                 string exp = inconsistants.Count() > 1 ? "Studenti pripAdaju drugim grupama raspodele. " : "Student pripAda drugoj grupi raspodele. ";
                 exp += String.Join("\n", inconsistants);

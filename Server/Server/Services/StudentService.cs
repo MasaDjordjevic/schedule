@@ -54,7 +54,7 @@ namespace Server.Services
         public string GetStudentName(int StudentId)
         {
             return _context.Students.Where(a => a.StudentId == StudentId)
-                .Select(a => a.UniMembers.Select(u => u.Name) + " " + a.UniMembers.Select(u => u.Surname)).First();
+                .Select(a => a.UniMembers.Name + " " + a.UniMembers.Surname).First();
         }
 
         public IEnumerable GetStudentsOfGroup(int GroupId)
@@ -254,7 +254,7 @@ namespace Server.Services
 
             var unaveliable = _context.Students
                 .Where(a => Students.Contains(a.StudentId) && !studentService.CheckIfAvailable(a.StudentId, ts, GroupId))
-                 .Select(a => a.UniMembers.Select(u => u.Name) + " " + a.UniMembers.Select(u => u.Name)).ToList();
+                 .Select(a => a.UniMembers.Name + " " + a.UniMembers.Surname).ToList();
 
             if (unaveliable.Any())
             {

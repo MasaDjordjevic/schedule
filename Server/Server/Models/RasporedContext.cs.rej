@@ -1,0 +1,10 @@
+diff a/Server/Server/Models/RasporedContext.cs b/Server/Server/Models/RasporedContext.cs	(rejected hunks)
+@@ -28,8 +28,6 @@
+         public virtual DbSet<UniMembers> UniMembers { get; set; }
+         public virtual DbSet<UniMembersRoles> UniMembersRoles { get; set; }
+ 
+-        public RasporedContext(DbContextOptions<RasporedContext> options) : base(options)
+-        { }
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         {
+             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.

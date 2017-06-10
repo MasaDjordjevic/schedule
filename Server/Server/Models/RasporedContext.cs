@@ -28,11 +28,9 @@ namespace Server.Models
         public virtual DbSet<UniMembers> UniMembers { get; set; }
         public virtual DbSet<UniMembersRoles> UniMembersRoles { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=Masa;Database=Raspored;Trusted_Connection=True;");
-        }
+        public RasporedContext(DbContextOptions<RasporedContext> options) : base(options)
+        { }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
