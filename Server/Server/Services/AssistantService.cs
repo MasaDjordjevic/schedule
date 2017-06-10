@@ -80,7 +80,7 @@ namespace Server.Services
                         Assistant = groupService.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
                         Active = groupService.IsActive(a.GroupId, tsNow),
-                        Color = scheduleService.GetNextColor(a.Division.Course.Name),
+                        Color = groupService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                         GroupId = a.GroupId,
                         Notifications = groupService.GetNotifications(a.GroupId, tsNow)
@@ -97,7 +97,7 @@ namespace Server.Services
                                                     StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
                                                     DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
                                                     Active = true,
-                                                    Color = scheduleService.GetNextColor(a.Title),
+                                                    Color = groupService.GetNextColor(a.Title),
                                                     ActivityTitle = a.Title,
                                                     ActivityContent = a.ActivityContent,
                                                     IsClass = false,

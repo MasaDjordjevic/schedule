@@ -13,14 +13,11 @@ namespace Server.Services
         private readonly RasporedContext _context;
         private GroupService groupsService;
         private StudentService studentService;
-        private DivisionService divisionService;
-
-        public DivisionService(RasporedContext context, GroupService groupsService, StudentService studentService, DivisionService divisionService)
+        public DivisionService(RasporedContext context, GroupService groupsService, StudentService studentService)
         {
             _context = context;
             this.groupsService = groupsService;
             this.studentService = studentService;
-            this.divisionService = divisionService;
         }
 
         public List<Divisions> GetDivisionsOfDepartment(int DepartmentId)
@@ -71,7 +68,7 @@ namespace Server.Services
 
         public IEnumerable GetDivisionsOfDeparmentByType(int DepartmentId)
         {
-            List<Divisions> allDivisions = divisionService.GetDivisionsOfDepartment(DepartmentId);
+            List<Divisions> allDivisions = this.GetDivisionsOfDepartment(DepartmentId);
 
             var Divisions = (from div in allDivisions
                              select new

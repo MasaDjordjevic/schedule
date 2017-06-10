@@ -152,22 +152,22 @@ namespace Server.Controllers
 
         }
 
-        //[HttpPost]
-        //[Route("CreateInitialDivision")]
-        //public IActionResult CreateInitialDivision([FromBody] DivisionsController.CreateInitialDivisionParameterBinding obj)
-        //{
-        //    //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+        [HttpPost]
+        [Route("CreateInitialDivision")]
+        public IActionResult CreateInitialDivision([FromBody] DivisionsController.CreateInitialDivisionParameterBinding obj)
+        {
+            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
 
-        //    try
-        //    {
-        //        Data.Division.CreateInitialDivision(HttpContext.Session.GetAssistantID(), obj.name, obj.departmentID, obj.courseID, obj.divisionTypeID, obj.beginning, obj.ending, obj.groups.ToList());
-        //        return Ok(new { status = "uspelo" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Ok(new { status = "neuspelo", message = ex.Message });
-        //    }            
-        //}
+            try
+            {
+                divisionService.CreateInitialDivision(HttpContext.Session.GetAssistantId(), obj.name, obj.departmentID, obj.courseID, obj.divisionTypeID, obj.beginning, obj.ending, obj.groups.ToList());
+                return Ok(new { status = "uspelo" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { status = "neuspelo", message = ex.Message });
+            }
+        }
 
 
 

@@ -57,7 +57,7 @@ namespace Server.Services
                         Assistant = groupsService.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
                         Active = groupsService.IsActive(a.GroupId, tsNow),
-                        Color = scheduleService.GetNextColor(a.Division.Course.Name),
+                        Color = groupsService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                     }).ToList();
 
@@ -71,7 +71,7 @@ namespace Server.Services
                         StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
                         DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
                         Active = true,
-                        Color = scheduleService.GetNextColor(a.Title),
+                        Color = groupsService.GetNextColor(a.Title),
                         ActivityTitle = a.Title,
                         ActivityContent = a.ActivityContent,
                         IsClass = false,

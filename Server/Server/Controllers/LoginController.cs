@@ -23,11 +23,14 @@ namespace Server.Controllers
     {
         private readonly RasporedContext _context;
         private LoginService loginService;
-
-        public LoginController (RasporedContext context, LoginService loginService)
+        private StudentService studentService;
+        private AssistantService assistantService;
+        public LoginController (RasporedContext context, LoginService loginService, StudentService studentService, AssistantService assistantService)
         {
             _context = context;
             this.loginService = loginService;
+            this.studentService = studentService;
+            this.assistantService = assistantService;
         }
 
         [HttpGet]
@@ -88,6 +91,77 @@ namespace Server.Controllers
             catch(Exception ex)
             {
                 return Ok(new { exception = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetUser()
+        {
+            //mora ovako ruzno jer se tako ocekuje na frontu
+            if (HttpContext.Session.IsStudent())
+            {
+                var student = studentService.GetStudent(HttpContext.Session.GetStudentId());
+                return Ok(JsonConvert.SerializeObject(student, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }));
+            }
+
+            if (HttpContext.Session.IsAssistant())
+            {
+                var assistnat = assistantService.GetAssistant(HttpContext.Session.GetAssistantId());
+
+                return Ok(JsonConvert.SerializeObject(assistnat, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }));
+            }
+
+            return Unauthorized();
+        }
+
+        [HttpGet]
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            try
+            {
+                HttpContext.Session.SetUser(null);
+                return Ok(new { status = "uspelo" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { status = "nije uspelo", message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("IsAllowedStudent")]
+        public IActionResult IsAllowedStudent()
+        {
+            if (HttpContext.Session.IsStudent())
+            {
+                return Ok(new { status = "uspelo" });
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [Route("IsAllowedAssistant")]
+        public IActionResult IsAllowedAssistant()
+        {
+            if (HttpContext.Session.IsAssistant())
+            {
+                return Ok(new { status = "uspelo" });
+            }
+            else
+            {
+                return Unauthorized();
             }
         }
     }

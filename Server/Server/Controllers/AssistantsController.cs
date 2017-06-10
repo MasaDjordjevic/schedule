@@ -13,12 +13,12 @@ namespace Server.Controllers
 {
     [Produces("application/json")]
     [Route("api/Assistant")]
-    public class AssistantController : Controller
+    public class AssistantsController : Controller
     {
         private readonly RasporedContext _context;
         private AssistantService assistantService;
 
-        public AssistantController(RasporedContext context, AssistantService assistantService)
+        public AssistantsController(RasporedContext context, AssistantService assistantService)
         {
             _context = context;
             this.assistantService = assistantService;

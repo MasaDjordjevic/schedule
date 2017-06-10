@@ -69,7 +69,7 @@ namespace Server.Services
                         Assistant = groupsService.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
                         Active = groupsService.IsActive(a.GroupId, tsNow),
-                        Color = scheduleService.GetNextColor(a.Division.Course.Name),
+                        Color = groupsService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                         GroupId = a.GroupId
                     }).ToList();

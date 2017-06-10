@@ -17,14 +17,12 @@ namespace Server.Services
         private readonly RasporedContext _context;
         private GroupService groupService;
         private ScheduleService scheduleService;
-        private StudentService studentService;
 
-        public StudentService(RasporedContext context, GroupService GroupsService, ScheduleService scheduleService, StudentService studentService)
+        public StudentService(RasporedContext context, GroupService GroupsService, ScheduleService scheduleService)
         {
             _context = context;
             this.groupService = GroupsService;
             this.scheduleService = scheduleService;
-            this.studentService = studentService;
         }
 
         public IEnumerable GetAllStudents()
@@ -107,7 +105,7 @@ namespace Server.Services
                         Assistant = groupService.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
                         Active = groupService.IsActive(a.GroupId, tsNow),
-                        Color = scheduleService.GetNextColor(a.Division.Course.Name),
+                        Color = groupService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                         GroupId = a.GroupId,
                         Notifications = GetClassNotification(StudentId, a.GroupId, tsNow)
@@ -127,7 +125,7 @@ namespace Server.Services
                                                     StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
                                                     DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
                                                     Active = true,
-                                                    Color = scheduleService.GetNextColor(a.Title),
+                                                    Color = groupService.GetNextColor(a.Title),
                                                     ActivityTitle = a.Title,
                                                     ActivityContent = a.ActivityContent,
                                                     IsClass = false,
@@ -243,7 +241,7 @@ namespace Server.Services
             List<TimeSpans> schedule = GroupsSchedule.Concat(activitiesSchedule).ToList();
 
             return schedule.All(TimeSpan => !Server.Services.TimeSpan.Overlap(TimeSpan, ts));
-            
+
         }
 
 
@@ -253,7 +251,7 @@ namespace Server.Services
                 return true;
 
             var unaveliable = _context.Students
-                .Where(a => Students.Contains(a.StudentId) && !studentService.CheckIfAvailable(a.StudentId, ts, GroupId))
+                .Where(a => Students.Contains(a.StudentId) && !CheckIfAvailable(a.StudentId, ts, GroupId))
                  .Select(a => a.UniMembers.Name + " " + a.UniMembers.Surname).ToList();
 
             if (unaveliable.Any())
@@ -290,7 +288,7 @@ namespace Server.Services
 
             //provera da li je Student slobodan u vreme kada ta grupa ima cas
             TimeSpans GroupTs = _context.Groups.Where(a => a.GroupId == GroupId).Select(a => a.TimeSpan).First();
-            if (GroupTs != null && !studentService.CheckIfAvailable(StudentId, GroupTs))
+            if (GroupTs != null && !CheckIfAvailable(StudentId, GroupTs))
             {
                 string Name = GetStudentName(StudentId);
                 string message = "Student (" + Name + ") nije slobodan u vreme kada grupa ima cas";
@@ -359,33 +357,33 @@ namespace Server.Services
 
         public bool RemoveFromGroup(int StudentId, int GroupId)
         {
-                var query = _context.GroupsStudents.Where(a => a.StudentId == StudentId && a.GroupId == GroupId);
-                if (query.Any())
-                {
-                    _context.GroupsStudents.Remove(query.First());
-                    _context.SaveChanges();
-                    return true;
-                }
-                else
-                    return false;
+            var query = _context.GroupsStudents.Where(a => a.StudentId == StudentId && a.GroupId == GroupId);
+            if (query.Any())
+            {
+                _context.GroupsStudents.Remove(query.First());
+                _context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
         }
 
 
         public void HideClass(int StudentId, int GroupId)
         {
-                GroupsStudents gs = _context.GroupsStudents.First(a => a.StudentId == StudentId && a.GroupId == GroupId);
-                if (gs.Ignore == true)
-                    throw new Exception("vec je u sakriven");
+            GroupsStudents gs = _context.GroupsStudents.First(a => a.StudentId == StudentId && a.GroupId == GroupId);
+            if (gs.Ignore == true)
+                throw new Exception("vec je u sakriven");
 
-                if (gs.FalseMember == true)
-                {
-                    _context.GroupsStudents.Remove(gs);
-                }
-                else
-                {
-                    gs.Ignore = true;
-                }
-                _context.SaveChanges();
+            if (gs.FalseMember == true)
+            {
+                _context.GroupsStudents.Remove(gs);
+            }
+            else
+            {
+                gs.Ignore = true;
+            }
+            _context.SaveChanges();
         }
 
         // dodaje u licni raspored
@@ -475,6 +473,138 @@ namespace Server.Services
                 throw new Exception("vec je Alertovan");
             sa.Alert = true;
             _context.SaveChanges();
+        }
+
+        //vraca oglase koji odgovaraju Studentu iz grupe GroupId(sa kojima bi mogo da se menja)
+        public List<BulletinBoardChoiceDTO> GetPossibleBulletinBoardChoices(int GroupId)
+        {
+            return _context.Periods.Where(a => a.GroupId == GroupId).Select(a => new BulletinBoardChoiceDTO
+            {
+                AdId = a.AdId,
+                Time = TimeSpan.ToString(a.Ad.Group.TimeSpan),
+                Classroom = a.Ad.Group.Classroom.Number,
+                StudentName = this.GetStudentName(a.Ad.StudentId)
+            }).OrderBy(a => a.Time).ToList();
+
+        }
+
+
+        //proverava da li su Studenti slobodni u vreme kAda grupa ima cas
+        public bool CheckIfStudentsAreAveilable(int GroupId, List<int> Students)
+        {
+
+            var groupTs = _context.Groups.First(a => a.GroupId == GroupId).TimeSpan;
+            if (groupTs == null)
+                return true;
+
+            return this.CheckIfAvailable(groupTs, Students, GroupId);
+        }
+
+        public void Update(int GroupId, string name, int? ClassroomId, TimeSpans TimeSpan)
+        {
+
+            //provera da li je ucionica slobodna u to vreme, bacice exeption ako nije
+            if (ClassroomId != null && TimeSpan != null)
+            {
+                groupService.CheckIfClassroomIsAvailable(ClassroomId.Value, TimeSpan, GroupId);
+            }
+
+            //provera da li su svi Studenti slobodni u to vreme, bacice exeption ako nisu
+            var studs = _context.GroupsStudents.Where(a => a.GroupId == GroupId).Select(a => a.StudentId).ToList();
+            this.CheckIfAvailable(TimeSpan, studs, GroupId);
+
+            Groups g = _context.Groups.First(a => a.GroupId == GroupId);
+            if (name != null)
+                g.Name = name;
+            if (ClassroomId != null)
+                g.ClassroomId = ClassroomId;
+            if (TimeSpan != null)
+            {
+                g.TimeSpan = TimeSpan;
+            }
+
+            _context.SaveChanges();
+
+
+        }
+
+        // groupa GroupId ima novu listu studenata newStudents
+        public void ChangeStudents(int GroupId, List<int> newStudents)
+        {
+            // izbaci sve Studente iz grupe
+            RemoveAllStudents(GroupId);
+            // ubaci Studente iz liste, njih prethodno izbaci iz svih ostalih grupa raspodele
+            MoveStudents(GroupId, newStudents);
+        }
+
+
+        public void RemoveAllStudents(int groupId)
+        {
+            var gs = _context.GroupsStudents.Where(a => a.GroupId == groupId);
+            foreach (GroupsStudents g in gs)
+            {
+                _context.GroupsStudents.Remove(g);
+            }
+            _context.SaveChanges();
+        }
+
+        // prebacuje studente u grupu
+        // brise studente iz ostalih grupa raspodele i ubacuje u tu
+        public void MoveStudents(int groupID, List<int> students)
+        {
+            foreach (int stud in students)
+            {
+                this.MoveToGroup(stud, groupID);
+            }
+            _context.SaveChanges();
+        }
+
+        //prebaceno je ovde zbog circular dependancy
+        public void UpdateGroup(int GroupId, string name, int? ClassroomId, TimeSpans TimeSpan)
+        {
+
+            //provera da li je ucionica slobodna u to vreme, bacice exeption ako nije
+            if (ClassroomId != null && TimeSpan != null)
+            {
+                groupService.CheckIfClassroomIsAvailable(ClassroomId.Value, TimeSpan, GroupId);
+            }
+
+            //provera da li su svi Studenti slobodni u to vreme, bacice exeption ako nisu
+            var studs = _context.GroupsStudents.Where(a => a.GroupId == GroupId).Select(a => a.StudentId).ToList();
+            this.CheckIfAvailable(TimeSpan, studs, GroupId);
+
+            Groups g = _context.Groups.First(a => a.GroupId == GroupId);
+            if (name != null)
+                g.Name = name;
+            if (ClassroomId != null)
+                g.ClassroomId = ClassroomId;
+            if (TimeSpan != null)
+            {
+                g.TimeSpan = TimeSpan;
+            }
+
+            _context.SaveChanges();
+        }
+
+
+        // menja Studenta sa onim koji je postavio oglas koji mu odgovara
+        public void ExchangeStudents(int StudentId, int GroupId, int AdId)
+        {
+            var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                Ads Ad = _context.Ads.First(a => a.AdId == AdId);
+                this.MoveToGroup(StudentId, Ad.GroupId);
+                this.MoveToGroup(Ad.StudentId, GroupId);
+                groupService.RemoveAd(Ad.AdId);
+                _context.SaveChanges();
+                transaction.Commit();
+            }
+            catch (InconsistentDivisionException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
         }
     }
 }

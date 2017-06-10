@@ -1,4 +1,5 @@
-﻿using Server.Extentions;
+﻿using Server.Controllers;
+using Server.Extentions;
 using Server.Models;
 using System;
 using System.Collections.Generic;
@@ -59,35 +60,35 @@ namespace Server.Services
             return a.StartDate == b.StartDate && a.EndDate == b.EndDate;
         }
 
-        // pretvara iz timespana ili formata [dayOfWeek, Period, timeStart, timeEnd] u timespan
-        //public static TimeSpans getTimeSpan(GroupsController.TimeSpanBinding bind)
-        //{
-        //    if (bind == null)
-        //        return null;
+        //pretvara iz timespana ili formata[dayOfWeek, Period, timeStart, timeEnd] u timespan
+        public static TimeSpans getTimeSpan(GroupsController.TimeSpanBinding bind)
+        {
+            if (bind == null)
+                return null;
 
-        //    TimeSpans ts = new TimeSpans();
-        //    if (bind.Period == 0)
-        //    {
-        //        ts.Period = bind.Period;
-        //        ts.StartDate = bind.StartDate.Value;
-        //        ts.EndDate = bind.EndDate.Value;
-        //        return ts;
-        //    }
-        //    else
-        //    {
-        //        //nedelja je 0
-        //        if (bind.Period == 0)
-        //            bind.Period = 7;
+            TimeSpans ts = new TimeSpans();
+            if (bind.Period == 0)
+            {
+                ts.Period = bind.Period;
+                ts.StartDate = bind.StartDate.Value;
+                ts.EndDate = bind.EndDate.Value;
+                return ts;
+            }
+            else
+            {
+                //nedelja je 0
+                if (bind.Period == 0)
+                    bind.Period = 7;
 
-        //        DateTime mon = DateTime.Now.StartOfWeek();
-        //        ts.StartDate = mon.AddDays(bind.dayOfWeek.Value - 1);
-        //        ts.EndDate = ts.StartDate;
-        //        ts.StartDate = ts.StartDate.Add(convertHM(bind.timeStart));
-        //        ts.EndDate = ts.EndDate.Add(convertHM(bind.timeEnd));
-        //        ts.Period = bind.Period;
-        //    }
-        //    return ts;
-        //}
+                DateTime mon = DateTime.Now.StartOfWeek();
+                ts.StartDate = mon.AddDays(bind.DayOfWeek.Value - 1);
+                ts.EndDate = ts.StartDate;
+                ts.StartDate = ts.StartDate.Add(convertHM(bind.TimeStart));
+                ts.EndDate = ts.EndDate.Add(convertHM(bind.TimeEnd));
+                ts.Period = bind.Period;
+            }
+            return ts;
+        }
 
         // konvertuje HH:MM u TimeSpan
         public static System.TimeSpan convertHM(string s)

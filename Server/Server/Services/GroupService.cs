@@ -113,16 +113,7 @@ namespace Server.Services
         }
 
 
-        // prebacuje Studente u grupu
-        // brise Studente iz ostalih grupa raspodele i ubacuje u tu
-        //public void MoveStudents(int GroupId, List<int> Students)
-        //{
-        //    foreach (int stud in Students)
-        //    {
-        //        Student.MoveToGroup(stud, GroupId, _context);
-        //    }
-        //    _context.SaveChanges();
-        //}
+        
 
         //public bool AddStudnets(int GroupId, List<int> Students)
         //{
@@ -149,16 +140,7 @@ namespace Server.Services
         //    return true;
         //}
 
-        //proverava da li su Studenti slobodni u vreme kAda grupa ima cas
-        //public bool CheckIfStudentsAreAveilable(int GroupId, List<int> Students)
-        //{
-
-        //    var groupTs = _context.Groups.First(a => a.GroupId == GroupId).TimeSpan;
-        //    if (groupTs == null)
-        //        return true;
-
-        //    return Student.CheckIfAvailable(groupTs, Students, GroupId);
-        //}
+       
 
 
         //proverava da li je neko od studenata iz Students vec clan grupe GroupId
@@ -223,78 +205,33 @@ namespace Server.Services
             _context.SaveChanges();
         }
 
-        public void RemoveAllStudents(int groupId)
+        
+
+        public Groups Create(int DivisionId, string name, int? ClassroomId, TimeSpans TimeSpan)
         {
-            var gs = _context.GroupsStudents.Where(a => a.GroupId == groupId);
-            foreach (GroupsStudents g in gs)
+
+
+            //provera da li je ucionica slobodna u to vreme
+            if (ClassroomId != null)
             {
-                _context.GroupsStudents.Remove(g);
+                this.CheckIfClassroomIsAvailable(ClassroomId.Value, TimeSpan);
             }
+
+            _context.TimeSpans.Add(TimeSpan);
             _context.SaveChanges();
+            Groups g = new Groups
+            {
+                DivisionId = DivisionId,
+                Name = name,
+                ClassroomId = ClassroomId,
+                TimeSpanId = TimeSpan.TimeSpanId
+            };
+            _context.Groups.Add(g);
+            _context.SaveChanges();
+
+            return g;
+
         }
-
-        // groupa GroupId ima novu listu studenata newStudents
-        //public void ChangeStudents(int GroupId, List<int> newStudents)
-        //{
-        //    // izbaci sve Studente iz grupe
-        //    RemoveAllStudents(GroupId);
-        //    // ubaci Studente iz liste, njih prethodno izbaci iz svih ostalih grupa raspodele
-        //    MoveStudents(GroupId, newStudents);
-        //}
-
-        //public void Update(int GroupId, string name, int? ClassroomId, TimeSpans TimeSpan)
-        //{
-
-        //    //provera da li je ucionica slobodna u to vreme, bacice exeption ako nije
-        //    if (ClassroomId != null && TimeSpan != null)
-        //    {
-        //        Classroom.CheckIfAvailable(ClassroomId.Value, TimeSpan, GroupId);
-        //    }
-
-        //    //provera da li su svi Studenti slobodni u to vreme, bacice exeption ako nisu
-        //    var studs = _context.GroupsStudents.Where(a => a.GroupId == GroupId).Select(a => a.StudentId).ToList();
-        //    Student.CheckIfAvailable(TimeSpan, studs, GroupId);
-
-        //    Groups g = _context.Groups.First(a => a.GroupId == GroupId);
-        //    if (name != null)
-        //        g.name = name;
-        //    if (ClassroomId != null)
-        //        g.ClassroomId = ClassroomId;
-        //    if (TimeSpan != null)
-        //    {
-        //        g.TimeSpan = TimeSpan;
-        //    }
-
-        //    _context.SaveChanges();
-
-
-        //}
-
-        //public Groups Create(int DivisionId, string name, int? ClassroomId, TimeSpans TimeSpan)
-        //{
-
-
-        //    //provera da li je ucionica slobodna u to vreme
-        //    if (ClassroomId != null)
-        //    {
-        //        Classroom.CheckIfAvailable(ClassroomId.Value, TimeSpan);
-        //    }
-
-        //    _context.TimeSpans.Add(TimeSpan);
-        //    _context.SaveChanges();
-        //    Groups g = new Groups
-        //    {
-        //        DivisionId = DivisionId,
-        //        name = name,
-        //        ClassroomId = ClassroomId,
-        //        TimeSpanId = TimeSpan.TimeSpanId
-        //    };
-        //    _context.Groups.Add(g);
-        //    _context.SaveChanges();
-
-        //    return g;
-
-        //}
 
         public void AddActivity(int assistantId, int? groupId, int? classroomId, TimeSpans timeSpan, string place,
             string title, string content)
@@ -377,7 +314,7 @@ namespace Server.Services
         }
 
         // vraca termine ostalih grupa raspodele
-        public List<BulletinBoardChoiceDTO> GetAllBulletinBoardChoiceDTOs(int groupId, int? studentId = null)
+        public List<BulletinBoardChoiceDTO> GetAllBulletinBoardChoices(int groupId, int? studentId = null)
         {
             return _context.Groups.Where(a => a.GroupId != groupId &&
                                             a.DivisionId == _context.Groups.First(g => g.GroupId == groupId).DivisionId)
@@ -396,38 +333,10 @@ namespace Server.Services
             return _context.Periods.Any(a => a.GroupId == GroupId && a.Ad.StudentId == StudentId);
         }
 
-        // vraca oglase koji odgovaraju Studentu iz grupe GroupId (sa kojima bi mogo da se menja)
-        //public List<BulletinBoardChoiceDTO> GetPossibleBulletinBoardChoiceDTOs(int GroupId)
-        //{
-        //    return _context.Periods.Where(a => a.GroupId == GroupId).Select(a => new BulletinBoardChoiceDTO
-        //    {
-        //        AdId = a.AdId,
-        //        Time = TimeSpan.ToString(a.Ad.Group.TimeSpan),
-        //        Classroom = a.Ad.Group.Classroom.Number,
-        //        StudentName = Student.GetStudentName(a.Ad.StudentId)
-        //    }).OrderBy(a => a.time).ToList();
 
-        //}
 
-        // menja Studenta sa onim koji je postavio oglas koji mu odgovara
-        //public void ExchangeStudents(int StudentId, int GroupId, int AdId)
-        //{
-        //    var transaction = _context.Database.BeginTransaction();
-        //    try
-        //    {
-        //        Ads Ad = _context.Ads.First(a => a.AdId == AdId);
-        //        Student.MoveToGroup(StudentId, Ad.GroupId, _context);
-        //        Student.MoveToGroup(Ad.StudentId, GroupId, _context);
-        //        RemoveAd(Ad.AdId, _context);
-        //        _context.SaveChanges();
-        //        transaction.Commit();
-        //    }
-        //    catch (InconsistentDivisionException ex)
-        //    {
-        //        transaction.Rollback();
-        //        throw ex;
-        //    }
-        //}
+       
+
 
         public void RemoveAd(int AdId)
         {
@@ -524,52 +433,184 @@ namespace Server.Services
         public IEnumerable GetCombinedSchedule(int GroupId, int weeksFromNow = 0)
         {
             DateTime now = DateTime.Now.AddDays(7 * weeksFromNow);
-                TimeSpans tsNow = new TimeSpans
-                {
-                    StartDate = now.StartOfWeek(),
-                    EndDate = now.EndOfWeek()
-                };
-                List<int> Students = _context.GroupsStudents.Where(a => a.GroupId == GroupId).Select(a => a.StudentId).ToList();
-                List<int> groups = _context.GroupsStudents
-                    .Where(a => Students.Contains(a.StudentId) &&
-                                TimeSpan.DatesOverlap(a.Group.Division.Beginning, a.Group.Division.Ending, tsNow.StartDate, tsNow.EndDate)) //provera da li raspodela kojoj grupa pripAda i dalje vazi
-                                .Select(a => a.GroupId).ToList();
+            TimeSpans tsNow = new TimeSpans
+            {
+                StartDate = now.StartOfWeek(),
+                EndDate = now.EndOfWeek()
+            };
+            List<int> Students = _context.GroupsStudents.Where(a => a.GroupId == GroupId).Select(a => a.StudentId).ToList();
+            List<int> groups = _context.GroupsStudents
+                .Where(a => Students.Contains(a.StudentId) &&
+                            TimeSpan.DatesOverlap(a.Group.Division.Beginning, a.Group.Division.Ending, tsNow.StartDate, tsNow.EndDate)) //provera da li raspodela kojoj grupa pripAda i dalje vazi
+                            .Select(a => a.GroupId).ToList();
 
-                List<ScheduleDTO> groupsSchedule = _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
+            List<ScheduleDTO> groupsSchedule = _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
+                .Select(a => new ScheduleDTO
+                {
+                    Day = a.TimeSpan.StartDate.DayOfWeek,
+                    StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
+                    DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                    ClassName = a.Division.Course.Name,
+                    Abbr = a.Division.Course.Alias,
+                    Classroom = a.Classroom.Number,
+                    Assistant = GetAssistant(a.GroupId),
+                    Type = a.Division.DivisionType.Type,
+                    Active = IsActive(a.GroupId, tsNow),
+                    Color = this.GetNextColor(a.Division.Course.Name),
+                    IsClass = true,
+                }).ToList();
+
+            List<ScheduleDTO> activitiesSchedule =
+                _context.Activities.Where(a => a.Cancelling != true && a.GroupId != null && groups.Contains(a.GroupId.Value) && !IsStudentActivity(a.ActivityId)
+                                                && TimeSpan.Overlap(a.TimeSpan, tsNow))
+                .Select(a => new ScheduleDTO
+                {
+                    Day = a.TimeSpan.StartDate.DayOfWeek,
+                    StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
+                    DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                    Active = true,
+                    Color = this.GetNextColor(a.Title),
+                    ActivityTitle = a.Title,
+                    ActivityContent = a.ActivityContent,
+                    IsClass = false,
+                }).ToList();
+
+            List<ScheduleDTO> returnValue = groupsSchedule.Concat(activitiesSchedule).ToList();
+
+
+            return scheduleService.Convert(returnValue);
+        }
+
+        private static int colorCounter = -1;
+
+        public string GetNextColor(string name)
+        {
+            string[] boje = new string[] {
+                "MaterialRed",
+                "MaterialPurple",
+                "MaterialPink",
+                "MaterialDeep-purple",
+                "MaterialLight-green",
+                "MaterialOrange",
+                "MaterialBlue",
+                "MaterialLight-blue",
+                "MaterialLime",
+                "MaterialGreen",
+                "MaterialTeal",
+                "MaterialBrown"
+            };
+
+            colorCounter++;
+            if (colorCounter == boje.Length)
+                colorCounter = 0;
+            int num = 7;
+            foreach (char c in name)
+            {
+                /*num = num*11 + Math.Abs(
+                    (c+1) * (c-1) +
+                    (int)Math.Round( (double) ( (double)c / 17.00) )
+                );*/
+                num = (num * 33) + c * 12;
+            }
+            num *= num;
+            num = Math.Abs(num);
+            num = (num % 101) % boje.Length;
+
+            if (name.StartsWith("Mik"))
+            {
+                num = 0;
+            }
+
+            return boje[num];
+
+        }
+
+
+        //classroom Service
+
+        public IEnumerable GetClassrooms()
+        {
+            return (from a in _context.Classrooms select a).OrderBy(a => a.Number).ToList();
+        }
+
+        public IEnumerable GetSchedule(int ClassroomId, int weeksFromNow = 0)
+        {
+            DateTime now = DateTime.Now.AddDays(7 * weeksFromNow);
+            TimeSpans tsNow = new TimeSpans
+            {
+                StartDate = now.StartOfWeek(),
+                EndDate = now.EndOfWeek()
+            };
+
+            List<int> groups = _context.Groups
+                .Where(a => a.ClassroomId == ClassroomId &&
+                            TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, tsNow.StartDate,
+                                tsNow.EndDate)) //provera da li raspodela kojoj grupa pripada i dalje vazi
+                .Select(a => a.GroupId).ToList();
+
+            List<ScheduleDTO> groupsSchedule =
+                _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
                         Day = a.TimeSpan.StartDate.DayOfWeek,
                         StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
                         DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
-                        ClassName = a.Division.Course.Name,
-                        Abbr = a.Division.Course.Alias,
+                        ClassName = a.Division.Course.Name + " " + a.Name,
+                        Abbr = a.Name + " " + a.Division.Course.Alias,
                         Classroom = a.Classroom.Number,
-                        Assistant = GetAssistant(a.GroupId),
+                        Assistant = this.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
-                        Active = IsActive(a.GroupId, tsNow),
-                        Color = scheduleService.GetNextColor(a.Division.Course.Name),
+                        Active = this.IsActive(a.GroupId, tsNow),
+                        Color = this.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                     }).ToList();
 
-                List<ScheduleDTO> activitiesSchedule =
-                    _context.Activities.Where(a => a.Cancelling != true && a.GroupId != null && groups.Contains(a.GroupId.Value) && !IsStudentActivity(a.ActivityId)
-                                                    && TimeSpan.Overlap(a.TimeSpan, tsNow))
+            List<ScheduleDTO> activitiesSchedule =
+                _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
+                    !this.IsStudentActivity(a.ActivityId) && // ne uzima studentove aktivnosti
+                    TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
                         Day = a.TimeSpan.StartDate.DayOfWeek,
                         StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
                         DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
                         Active = true,
-                        Color = scheduleService.GetNextColor(a.Title),
+                        Color = this.GetNextColor(a.Title),
                         ActivityTitle = a.Title,
                         ActivityContent = a.ActivityContent,
                         IsClass = false,
                     }).ToList();
 
-                List<ScheduleDTO> returnValue = groupsSchedule.Concat(activitiesSchedule).ToList();
+            List<ScheduleDTO> returnValue = groupsSchedule.Concat(activitiesSchedule).ToList();
 
 
-                return scheduleService.Convert(returnValue);
+            return scheduleService.Convert(returnValue);
+        }
+
+        //GroupId je grupa ciji cas treba zanemariti (grupa koja menja ucionicu
+        public bool CheckIfClassroomIsAvailable(int ClassroomId, TimeSpans ts, int? GroupId = null)
+        {
+            List<TimeSpans> groupsSchedule = _context.Groups
+                .Where(a => a.ClassroomId == ClassroomId &&
+                            (GroupId == null || a.GroupId != GroupId) && // da ne uzme u obzir trenutni ts grupe, posto se ionako menja
+                            TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, ts.StartDate, ts.EndDate)
+                                 && this.IsActive(a.GroupId, ts)) //provera da li raspodela kojoj grupa pripada i dalje vazi_
+                    .Select(a => a.TimeSpan).ToList();
+
+            List<TimeSpans> activitiesSchedule =
+                _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
+                    !this.IsStudentActivity(a.ActivityId))
+                    .Select(a => a.TimeSpan).ToList();
+
+            List<TimeSpans> schedule = groupsSchedule.Concat(activitiesSchedule).ToList();
+
+            if (schedule.Any(TimeSpan => Services.TimeSpan.Overlap(TimeSpan, ts)))
+            {
+                string ClassroomNumber = _context.Classrooms.First(a => a.ClassroomId == ClassroomId).Number;
+                throw new InconsistentDivisionException("Ucionica (" + ClassroomNumber + ") nije slobodna u to vreme (" + TimeSpan.ToString(ts) + ").");
+            };
+
+            return true;
         }
     }
 
