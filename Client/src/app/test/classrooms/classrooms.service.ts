@@ -10,7 +10,7 @@ export class ClassroomsService {
 
 
   getClassrooms(): Promise<any[]> {
-    return this.http.get(this.classroomsUrl)
+    return this.http.get(this.classroomsUrl + '/GetClassrooms')
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

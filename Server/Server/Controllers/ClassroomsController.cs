@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server.Models;
 using Microsoft.AspNetCore.Cors;
+using Server.Services;
 
 namespace Server.Controllers
 {
@@ -15,21 +16,25 @@ namespace Server.Controllers
     public class ClassroomsController : Controller
     {
         private readonly RasporedContext _context;
+        private ClassroomService classroomsService;
 
-        public ClassroomsController(RasporedContext context)
+        public ClassroomsController(RasporedContext context, ClassroomService classroomsService)
         {
             _context = context;
+            this.classroomsService = classroomsService; 
         }
 
         // GET: api/Classrooms
         [HttpGet]
+        [Route("GetClassrooms")]
         public IEnumerable<Classrooms> GetClassrooms()
         {
             return _context.Classrooms;
         }
 
         // GET: api/Classrooms/5
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetClassrooms/{id}")]
         public async Task<IActionResult> GetClassrooms([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -45,6 +50,25 @@ namespace Server.Controllers
             }
 
             return Ok(classrooms);
+        }
+
+        [HttpGet]
+        [Route("GetSchedule")]
+        public IActionResult GetSchedule(int classroomID, int weeksFromNow)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var schedule = classroomsService.GetSchedule(classroomID, weeksFromNow);
+
+            if (schedule == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(schedule);
         }
 
         // PUT: api/Classrooms/5

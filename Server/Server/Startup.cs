@@ -45,6 +45,15 @@ namespace Server
             services.AddMvcCore().AddJsonFormatters();
             services.AddCors();
 
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.CookieName = ".AdventureWorks.Session";
+                options.IdleTimeout = System.TimeSpan.FromSeconds(10);
+            });
+
 
             var connection = @"Server=MASA;Database=Raspored;Trusted_Connection=True;";
             services.AddDbContext<RasporedContext>(options => options.UseSqlServer(connection));
@@ -53,6 +62,8 @@ namespace Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseSession();
+
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyHeader()

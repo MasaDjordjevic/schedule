@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LoginService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private loginUrl = "http://localhost:55281/api/Login";
+  private loginUrl = 'http://localhost:55281/api/Login/Login';
   private classroomsUrl = 'http://localhost:55281/api/Classrooms';  // URL to web api
 
   constructor(private http: Http) { }
@@ -13,14 +13,14 @@ export class LoginService {
 
   login(username: string, password: string): Promise<any> {
 
-    let body = JSON.stringify({
-      "username": username,
-      "password": password
+    const body = JSON.stringify({
+      'username': username,
+      'password': password
     });
 
-    let body2 = JSON.stringify({
-      "ClassroomId": 15,
-      "Number": 322
+    const body2 = JSON.stringify({
+      'ClassroomId': 15,
+      'Number': 322
     });
     return this.http
       .post(this.loginUrl, body, {headers: this.headers})
