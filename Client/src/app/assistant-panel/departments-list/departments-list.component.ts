@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Router } from '@angular/router';
 import {DepartmentsService} from '../services/departments.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class DepartmentsListComponent implements OnInit {
 
   constructor(
     private departmentsService: DepartmentsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class DepartmentsListComponent implements OnInit {
   }
   onSelect(departmentId: number) {
     this.selectedDepartmentId = departmentId;
+    this.router.navigate(['/assistant', { departmentId: departmentId}]);
     console.log(departmentId);
   }
 
