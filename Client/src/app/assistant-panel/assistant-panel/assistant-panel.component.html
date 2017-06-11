@@ -6,5 +6,5 @@
 
 <main>
   <app-departments-list></app-departments-list>
-  <app-divisions-list></app-divisions-list>
+  <app-divisions-list *ngIf="selectedDepartmentId"></app-divisions-list>
 </main>
