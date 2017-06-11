@@ -12,4 +12,8 @@ $dark-accent: mat-palette($mat-teal, A700, A100, A400);
 $dark-warn: mat-palette($mat-deep-orange);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-
+// Define an alternate dark theme.
+$ice-primary: mat-palette($mat-light-blue);
+$ice-accent: mat-palette($mat-orange, A700, A100, A400);
+$ice-warn: mat-palette($mat-grey);
+$ice-theme: mat-dark-theme($ice-primary, $ice-accent, $ice-warn);

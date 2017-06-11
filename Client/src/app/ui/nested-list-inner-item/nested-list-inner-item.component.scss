@@ -1,6 +1,7 @@
 @import "../../ljubenovic-toolkit";
 @import "../../palette";
 @import "../../app-colors";
+@import "../../themes";
 
 :host {
   display: block;
@@ -8,11 +9,19 @@
   cursor: pointer;
 
   &.selected {
-    font-weight: bold;
-    color: mat-color($default-accent, A700);
-  }
+      font-weight: bold;
+      color: mat-color($default-accent, A700);
+    }
 
   &:hover {
     background-color: rgba(black, .1);
   }
+
+  //region Themes
+  @each $var, $string in $theme-all-var-string {
+    &.selected.#{$string} {
+      color: $var;
+    }
+  }
+  //endregion
 }

@@ -4,7 +4,8 @@
   <app-nested-list-inner-item *ngFor="let student of students"
                               [val]="student.StudentId"
                               (click)="onSelect(student.StudentId)"
-                              [class.selected]="student.StudentId === selectedStudentId">
+                              [class.selected]="student.StudentId === selectedStudentId"
+                              [primaryColor]="primaryColor">
     <pre>{{student.UniMembers.Name + " " + student.UniMembers.Surname}}</pre>
     <span>{{student.IndexNumber}}</span>
   </app-nested-list-inner-item>

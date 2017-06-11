@@ -6,7 +6,9 @@
     <app-nested-list-inner-item *ngFor="let department of yearDepartment.departments"
                                 [val]="department.departmentId"
                                 (click)="onSelect(department.departmentId)"
-                                [class.selected]="department.departmentId === selectedDepartmentId">
+                                [class.selected]="department.departmentId === selectedDepartmentId"
+                                [primaryColor]="primaryColor"
+    >
       {{department.departmentName}}
     </app-nested-list-inner-item>
 

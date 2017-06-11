@@ -21,13 +21,8 @@
   //region Themes
   @each $var, $string in $theme-all-var-string {
     &.#{$string} {
-
       h2 {
         background-color: $var;
-      }
-
-      .selected {
-        color: $var;
       }
     }
   }

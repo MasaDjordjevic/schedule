@@ -26,7 +26,6 @@ export class DepartmentsListComponent implements OnInit {
 
   ngOnInit() {
     this.getDepartmentsByYear();
-
     this.route.params
       .subscribe((params: Params) => {
         this.selectedDepartmentId = +params['departmentId'];
@@ -46,7 +45,6 @@ export class DepartmentsListComponent implements OnInit {
   }
 
   onSelect(departmentId: number) {
-    this.selectedDepartmentId = departmentId;
     this.router.navigate(['/assistant', {departmentId: departmentId}]);
     console.log(departmentId);
   }

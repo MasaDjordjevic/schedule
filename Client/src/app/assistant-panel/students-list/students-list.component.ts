@@ -30,12 +30,18 @@ export class StudentsListComponent implements OnInit {
         this.selectedDivisionId = +params['divisionId'];
         this.selectedDepartmentId = +params['departmentId'];
         this.selectedGroupId = +params['groupId'];
-        this.selectedStudentId = +params['studentId'];
-        this.getStudents();
+        const newStudentId = +params['studentId'];
+        if (newStudentId !== this.selectedStudentId) {
+          this.selectedStudentId = newStudentId;
+          this.getStudents();
+        }
       });
   }
 
   getStudents() {
+    if (!this.selectedGroupId) {
+      return;
+    }
     this.studentService.getStudents(this.selectedGroupId)
       .then(
         studs => this.students = studs,

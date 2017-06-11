@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-nested-list-inner-item',
@@ -7,7 +7,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class NestedListInnerItemComponent implements OnInit {
   @Input() val: string;
+  @HostBinding('class')  @Input() primaryColor = 'MaterialBlue';
+
   @Output() select: EventEmitter<any> = new EventEmitter();
+
 
   public onClick() {
     this.select.emit({

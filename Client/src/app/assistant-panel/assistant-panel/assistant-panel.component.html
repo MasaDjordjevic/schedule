@@ -5,8 +5,14 @@
 ></app-header>
 
 <main>
-  <app-departments-list></app-departments-list>
-  <app-divisions-list *ngIf="selectedDepartmentId"></app-divisions-list>
-  <app-groups-list *ngIf="selectedDivisionId"></app-groups-list>
-  <app-students-list *ngIf="selectedGroupId"></app-students-list>
+  <app-departments-list [primaryColor]="theme('department')"></app-departments-list>
+  <app-divisions-list *ngIf="selectedDepartmentId" [primaryColor]="theme('division')"></app-divisions-list>
+  <app-groups-list *ngIf="selectedDivisionId" [primaryColor]="theme('group')"></app-groups-list>
+  <app-students-list *ngIf="selectedGroupId" [primaryColor]="theme('student')"></app-students-list>
 </main>
+
+<div [class.ice-theme]="isIceTheme">
+  <button md-raised-button color="primary">Raised button</button>
+  <button md-raised-button color="accent">Raised button</button>
+  <button md-raised-button color="warn">Raised button</button>
+</div>

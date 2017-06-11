@@ -1,4 +1,5 @@
 @import "palette";
+@import 'app-themes';
 
 // Material
 $theme-material-red: palette($red);
@@ -14,11 +15,16 @@ $theme-sunset-red: #fd2f24;
 $theme-sunset-orange: #ff6f01;
 $theme-sunset-yellow: #fed800;
 
-// Ice
-$theme-ice-darkest: #012e40;
-$theme-ice-darker: #025e73;
-$theme-ice-melted: #037f8c;
-$theme-ice-green: #038c8c;
+//// Ice
+//$theme-ice-darkest: #012e40;
+//$theme-ice-darker: #025e73;
+//$theme-ice-melted: #037f8c;
+//$theme-ice-green: #038c8c;
+
+$theme-ice-darkest: mat-color($ice-primary);
+$theme-ice-darker: mat-color($ice-accent);
+$theme-ice-melted: mat-color($ice-warn, A700);
+$theme-ice-green: mat-color($ice-accent, A200);
 
 // Neon
 $theme-neon-empty: #0E0B16;
@@ -33,14 +39,14 @@ $theme-all-var-string: (
         $theme-material-orange: "orange",
         $theme-material-green: "green",
         $theme-material-purple: "purple",
-        $theme-sunset-purple: "sunset-purple",
-        $theme-sunset-red: "sunset-red",
-        $theme-sunset-orange: "sunset-orange",
-        $theme-sunset-yellow: "sunset-yellow",
-        $theme-ice-darkest: "ice-darkest",
-        $theme-ice-darker: "ice-darker",
-        $theme-ice-melted: "ice-melted",
-        $theme-ice-green: "ice-green",
+        $theme-sunset-purple: "sunset-primary",
+        $theme-sunset-red: "sunset-accent",
+        $theme-sunset-orange: "sunset-warn",
+        $theme-sunset-yellow: "sunset-accent",
+        $theme-ice-darkest: "ice-primary",
+        $theme-ice-darker: "ice-accent",
+        $theme-ice-melted: "ice-warn",
+        $theme-ice-green: "ice-accent2",
         $theme-neon-empty: "neon-empty",
         $theme-neon-diamond: "neon-diamond",
         $theme-neon-gemstone: "neon-gemstone",

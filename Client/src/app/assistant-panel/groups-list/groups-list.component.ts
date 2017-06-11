@@ -29,8 +29,11 @@ export class GroupsListComponent implements OnInit {
       .subscribe((params: Params) => {
         this.selectedDivisionId = +params['divisionId'];
         this.selectedDepartmentId = +params['departmentId'];
-        this.selectedGroupId = +params['groupId'];
-        this.getGroups();
+        const newGroupId = +params['groupId'];
+        if (newGroupId !== this.selectedGroupId) {
+          this.selectedGroupId = newGroupId;
+          this.getGroups();
+        }
       });
   }
 

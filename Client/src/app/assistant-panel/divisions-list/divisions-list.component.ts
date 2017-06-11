@@ -28,14 +28,17 @@ export class DivisionsListComponent implements OnInit {
     this.route.params
       .subscribe((params: Params) => {
         this.selectedDepartmentId = +params['departmentId'];
-        this.selectedDivisionId = +params['divisionId'];
-        this.getDivisionsByType();
+        const newDivisionId = +params['divisionId'];
+        if (newDivisionId !== this.selectedDivisionId) {
+          this.selectedDivisionId = newDivisionId;
+          this.getDivisionsByType();
+        }
       });
   }
 
   onSelect(divisionId: number) {
     this.selectedDivisionId = divisionId;
-    this.router.navigate(['/assistant', { departmentId: this.selectedDepartmentId, divisionId: divisionId}]);
+    this.router.navigate(['/assistant', {departmentId: this.selectedDepartmentId, divisionId: divisionId}]);
   }
 
 
