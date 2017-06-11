@@ -1,28 +1,28 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GroupsService} from '../services/groups.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {StudentsService} from '../services/students.service';
 
 @Component({
-  selector: 'app-groups-list',
-  templateUrl: './groups-list.component.html',
-  styleUrls: ['./groups-list.component.scss']
+  selector: 'app-students-list',
+  templateUrl: './students-list.component.html',
+  styleUrls: ['./students-list.component.scss']
 })
-export class GroupsListComponent implements OnInit {
+export class StudentsListComponent implements OnInit {
   @Input() primaryColor = 'MaterialBlue';
   @Input() secondaryColor = 'MaterialOrange';
 
-  private groups: any[];
+  private students: any[];
   private errorMessage: string;
 
-  // departmentId is there for setting route parameters later
+  // departmentId and divisionId are there for setting route parameters later
   private selectedDepartmentId: number;
   private selectedDivisionId: number;
   private selectedGroupId: number;
-
+  private selectedStudentId: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private groupsService: GroupsService) { }
+              private studentService: StudentsService) { }
 
   ngOnInit() {
     this.route.params
@@ -30,27 +30,25 @@ export class GroupsListComponent implements OnInit {
         this.selectedDivisionId = +params['divisionId'];
         this.selectedDepartmentId = +params['departmentId'];
         this.selectedGroupId = +params['groupId'];
-        this.getGroups();
+        this.selectedStudentId = +params['studentId'];
+        this.getStudents();
       });
   }
 
-  onSelect(groupId: number) {
-    this.selectedGroupId = groupId;
-    this.router.navigate(['/assistant', {
-      departmentId: this.selectedDepartmentId,
-      divisionId: this.selectedDivisionId,
-      groupId: this.selectedGroupId
-    }]);
-  }
-
-  getGroups() {
-    if (!this.selectedDivisionId) {
-      return;
-    }
-    this.groupsService.getGroups(this.selectedDivisionId)
+  getStudents() {
+    this.studentService.getStudents(this.selectedGroupId)
       .then(
-        groups => this.groups = groups,
+        studs => this.students = studs,
         error => this.errorMessage = <any>error);
   }
 
+  onSelect(studentId: number) {
+    this.selectedStudentId = studentId;
+    this.router.navigate(['/assistant', {
+      departmentId: this.selectedDepartmentId,
+      divisionId: this.selectedDivisionId,
+      groupId: this.selectedGroupId,
+      studentId: this.selectedStudentId
+    }]);
+  }
 }

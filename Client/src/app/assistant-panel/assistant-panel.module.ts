@@ -12,6 +12,8 @@ import { DivisionsListComponent } from './divisions-list/divisions-list.componen
 import {DivisionsService} from './services/divisions.service';
 import { GroupsListComponent } from './groups-list/groups-list.component';
 import {GroupsService} from './services/groups.service';
+import { StudentsListComponent } from './students-list/students-list.component';
+import {StudentsService} from './services/students.service';
 
 @NgModule({
   imports: [
@@ -21,7 +23,7 @@ import {GroupsService} from './services/groups.service';
     UiModule,
     AssistantPanelRoutingModule
   ],
-  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent, GroupsListComponent],
-  providers: [DepartmentsService, DivisionsService, GroupsService]
+  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent, GroupsListComponent, StudentsListComponent],
+  providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService]
 })
 export class AssistantPanelModule { }
