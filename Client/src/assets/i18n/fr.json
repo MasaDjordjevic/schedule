@@ -1,5 +1,8 @@
 {
   "classrooms": "FRA Classrooms",
   "title" : "FRA title",
-  "test": "FRA Test"
+  "test": "FRA Test",
+  "departments": "Départements",
+  "year": "Année",
+  "divisions": "Les divisions"
 }

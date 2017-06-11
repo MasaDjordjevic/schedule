@@ -1,4 +1,4 @@
-<app-nested-list [title]="'Divisions'"
+<app-nested-list [title]="'divisions' | translate"
                [primaryColor]="primaryColor"
                [secondaryColor]="secondaryColor">
   <app-nested-list-inner *ngFor="let typeDivision of typeDivisions" [title]="typeDivision.Type">

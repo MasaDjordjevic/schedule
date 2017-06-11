@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +13,18 @@ export class HeaderComponent implements OnInit {
   @Input() email: string;
   @Input() avatarUrl: string;
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+    translate.addLangs(['en', 'fr', 'sr']);
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 
   ngOnInit() {
+  }
+
+  changeLang(lang: string) {
+    console.log(lang);
+    this.translate.use(lang);
   }
 
 }

@@ -23,45 +23,28 @@ namespace Server.Services
         public List<Divisions> GetDivisionsOfDepartment(int DepartmentId)
         {
             return (from div in _context.Divisions
-                //.Include(p => p.Creator)
-                //.Include(p => p.DivisionType)
-                //.Include(p => p.Department)
-                //.Include(p => p.Course)
+                .Include(p => p.Creator)
+                .Include(p => p.DivisionType)
+                .Include(p => p.Department)
+                .Include(p => p.Course)
                     where div.DepartmentId == DepartmentId
-                    select new Divisions
-                    {
-                        DivisionId = div.DivisionId,
-                        CreatorId = div.CreatorId,
-                        Creator = div.Creator,
-                        DivisionType = div.DivisionType,
-                        Department = div.Department,
-                        Course = div.Course
-                    }
+                    select div
                     ).ToList();
         }
 
         public Object GetDivison(int DivisionId)
         {
             var pom = (from a in _context.Divisions
-                           //.Include(p => p.Creator)
-                           //.Include(p => p.DivisionType)
-                           //.Include(p => p.Department)
-                           //.Include(p => p.Course)
-                           //.Include(p => p.Groups)
-                           //.ThenInclude(a=>a.GroupsStudents)//.ThenInclude(a=>a.Student).ThenInclude(a=>a.UniMembers)
-                           //.Include(p => p.Groups).ThenInclude(a => a.Classroom)
-                           //.Include(p => p.Groups).ThenInclude(a => a.TimeSpan)
+                           .Include(p => p.Creator)
+                           .Include(p => p.DivisionType)
+                           .Include(p => p.Department)
+                           .Include(p => p.Course)
+                           .Include(p => p.Groups)
+                           //.ThenInclude(a => a.GroupsStudents)//.ThenInclude(a=>a.Student).ThenInclude(a=>a.UniMembers)
+                           .Include(p => p.Groups).ThenInclude(a => a.Classroom)
+                           .Include(p => p.Groups).ThenInclude(a => a.TimeSpan)
                        where a.DivisionId == DivisionId
-                       select new Divisions
-                       {
-                           DivisionId = a.DivisionId,
-                           Name = a.Name,                           
-                           Creator = a.Creator,
-                           DivisionType = a.DivisionType,
-                           Department = a.Department,
-                           Course = a.Course,
-                           Groups = a.Groups
-                       }).First();
+                       select a).First();
 
                         
 

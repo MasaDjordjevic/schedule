@@ -1,5 +1,8 @@
 {
   "classrooms": "EN Classrooms",
   "title" : "EN title",
-  "test": "EN Test"
+  "test": "EN Test",
+  "departments": "Departments",
+  "year": "Year",
+  "divisions": "Divisions"
 }

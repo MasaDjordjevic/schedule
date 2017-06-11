@@ -39,14 +39,18 @@ namespace Server.Controllers
         {
             var divisions = divisionService.GetDivison(id);
 
-            return Ok(divisions);
+            return Ok(JsonConvert.SerializeObject(divisions, Formatting.Indented,
+                                    new JsonSerializerSettings
+                                    {
+                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                    }));
         }
 
         [HttpGet]
         [Route("DivideWithX")]
         public IActionResult DivideWithX(int courseID, int x, int sortOrder)
         {
-            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+           // if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             var groups = divisionService.DivideWithX(courseID, x, sortOrder);
 
@@ -62,7 +66,7 @@ namespace Server.Controllers
         [Route("DivideOnX")]
         public IActionResult DivideOnX(int courseID, int x, int sortOrder)
         {
-            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+           // if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             var groups = divisionService.DivideOnX(courseID, x, sortOrder);
 
@@ -78,7 +82,7 @@ namespace Server.Controllers
         [Route("GetDivisionsOfDepartment/{id}")]
         public IActionResult GetDivisionsOfDepartment(int id)
         {
-            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             if (!ModelState.IsValid)
             {
@@ -90,15 +94,7 @@ namespace Server.Controllers
             if (divisions == null)
             {
                 return NotFound();
-            }
-
-            var ret = JsonConvert.SerializeObject(divisions, Formatting.Indented,
-                                    new JsonSerializerSettings
-                                    {
-                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                    });
-
-            return Ok(ret);
+            }         
 
             return Ok(JsonConvert.SerializeObject(divisions, Formatting.Indented,
                                     new JsonSerializerSettings
@@ -132,7 +128,7 @@ namespace Server.Controllers
         [Route("CopyDivision")]
         public IActionResult CopyDivision(int divisionID)
         {
-            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             if (!ModelState.IsValid)
             {
@@ -155,7 +151,7 @@ namespace Server.Controllers
         [Route("CreateInitialDivision")]
         public IActionResult CreateInitialDivision([FromBody] DivisionsController.CreateInitialDivisionParameterBinding obj)
         {
-            //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             try
             {
