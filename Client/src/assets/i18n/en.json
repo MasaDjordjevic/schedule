@@ -4,5 +4,6 @@
   "test": "EN Test",
   "departments": "Departments",
   "year": "Year",
-  "divisions": "Divisions"
+  "divisions": "Divisions",
+  "groups": "Groups"
 }

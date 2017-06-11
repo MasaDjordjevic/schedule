@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Router } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {DepartmentsService} from '../services/departments.service';
 
 @Component({
@@ -20,13 +20,18 @@ export class DepartmentsListComponent implements OnInit {
 
   private _nestedListData = null;
 
-  constructor(
-    private departmentsService: DepartmentsService,
-    private router: Router,
-  ) { }
+  constructor(private departmentsService: DepartmentsService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getDepartmentsByYear();
+
+    this.route.params
+      .subscribe((params: Params) => {
+        this.selectedDepartmentId = +params['departmentId'];
+      });
+
   }
 
   set nestedListData(data) {
@@ -39,9 +44,10 @@ export class DepartmentsListComponent implements OnInit {
         deps => this.yearDepartments = deps,
         error => this.errorMessage = <any>error);
   }
+
   onSelect(departmentId: number) {
     this.selectedDepartmentId = departmentId;
-    this.router.navigate(['/assistant', { departmentId: departmentId}]);
+    this.router.navigate(['/assistant', {departmentId: departmentId}]);
     console.log(departmentId);
   }
 

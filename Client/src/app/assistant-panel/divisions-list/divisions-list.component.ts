@@ -28,6 +28,7 @@ export class DivisionsListComponent implements OnInit {
     this.route.params
       .subscribe((params: Params) => {
         this.selectedDepartmentId = +params['departmentId'];
+        this.selectedDivisionId = +params['divisionId'];
         this.getDivisionsByType();
       });
   }

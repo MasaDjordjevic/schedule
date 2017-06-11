@@ -4,5 +4,6 @@
   "test": "FRA Test",
   "departments": "Départements",
   "year": "Année",
-  "divisions": "Les divisions"
+  "divisions": "Les divisions",
+  "groups": "Les groupes"
 }

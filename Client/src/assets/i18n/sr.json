@@ -4,5 +4,6 @@
   "test": "SR Test",
   "departments": "Moduli",
   "year": "Godina",
-  "divisions": "Raspodele"
+  "divisions": "Raspodele",
+  "groups": "Grupe"
 }

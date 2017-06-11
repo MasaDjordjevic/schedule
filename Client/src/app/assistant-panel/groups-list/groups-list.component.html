@@ -1,0 +1,11 @@
+<app-nested-list [title]="'groups' | translate"
+                 [primaryColor]="primaryColor"
+                 [secondaryColor]="secondaryColor">
+  <app-nested-list-inner-item *ngFor="let group of groups"
+                         [val]="group.GroupId"
+                         (click)="onSelect(group.GroupId)"
+                         [class.selected]="group.GroupId === selectedGroupId">
+    <span>{{group.Name}}</span>
+    <span>{{group?.Classroom?.Number}}</span>
+  </app-nested-list-inner-item>
+</app-nested-list>

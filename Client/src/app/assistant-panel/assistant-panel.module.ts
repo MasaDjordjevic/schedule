@@ -10,6 +10,8 @@ import {UiModule} from '../ui/ui.module';
 import {DepartmentsService} from './services/departments.service';
 import { DivisionsListComponent } from './divisions-list/divisions-list.component';
 import {DivisionsService} from './services/divisions.service';
+import { GroupsListComponent } from './groups-list/groups-list.component';
+import {GroupsService} from './services/groups.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import {DivisionsService} from './services/divisions.service';
     UiModule,
     AssistantPanelRoutingModule
   ],
-  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent],
-  providers: [DepartmentsService, DivisionsService]
+  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent, GroupsListComponent],
+  providers: [DepartmentsService, DivisionsService, GroupsService]
 })
 export class AssistantPanelModule { }
