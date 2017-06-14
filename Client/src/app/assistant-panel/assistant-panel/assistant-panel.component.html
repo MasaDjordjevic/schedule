@@ -9,10 +9,17 @@
   <app-divisions-list *ngIf="selectedDepartmentId" [primaryColor]="theme('division')"></app-divisions-list>
   <app-groups-list *ngIf="selectedDivisionId" [primaryColor]="theme('group')"></app-groups-list>
   <app-students-list *ngIf="selectedGroupId" [primaryColor]="theme('student')"></app-students-list>
+
+  <app-panel-options *ngIf="!isSomethingSelected"></app-panel-options>
+  <app-department-options *ngIf="selectedDepartmentId && !selectedDivisionId"></app-department-options>
+  <app-division-options *ngIf="selectedDivisionId && !selectedGroupId"></app-division-options>
+  <app-group-options *ngIf="selectedGroupId && !selectedStudentId"></app-group-options>
+  <app-student-options *ngIf="selectedStudentId"></app-student-options>
 </main>
 
 <div [class.ice-theme]="isIceTheme">
   <button md-raised-button color="primary">Raised button</button>
   <button md-raised-button color="accent">Raised button</button>
   <button md-raised-button color="warn">Raised button</button>
+  <button md-raised-button>Raised button</button>
 </div>

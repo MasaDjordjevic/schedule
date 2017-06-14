@@ -15,8 +15,13 @@ export class AssistantPanelComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router) { }
 
+  get isSomethingSelected() {
+    return this.selectedDivisionId || this.selectedStudentId || this.selectedGroupId || this.selectedDepartmentId;
+  }
+
   t = 'ice'; //'ice'
   isIceTheme = this.t === 'ice';
+
   theme(type: string): string {
     switch (type) {
       case 'department':
@@ -36,7 +41,7 @@ export class AssistantPanelComponent implements OnInit {
         this.selectedDepartmentId = +params['departmentId'];
         this.selectedDivisionId = +params['divisionId'];
         this.selectedGroupId = +params['groupId'];
-        this.selectedStudentId = +params['studnetId'];
+        this.selectedStudentId = +params['studentId'];
         // console.log(this.selectedDepartmentId);
         // console.log(this.selectedDivisionId);
         // console.log(this.selectedGroupId);
