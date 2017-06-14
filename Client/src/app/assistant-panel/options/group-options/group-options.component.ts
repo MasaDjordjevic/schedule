@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../../services/groups.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import * as moment from 'moment';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-group-options',
@@ -14,7 +15,8 @@ export class GroupOptionsComponent implements OnInit {
   errorMessage: string;
 
   constructor(private groupsService: GroupsService,
-              private route: ActivatedRoute, ) { }
+              private route: ActivatedRoute,
+              private translate: TranslateService) { }
 
   ngOnInit() {
     this.route.params
@@ -35,9 +37,8 @@ export class GroupOptionsComponent implements OnInit {
   }
 
   get descriptiveString() {
-    debugger;
     if (!this.group.TimeSpan) {
-      return 'Nije dodeljeno vreme trajanja.';
+      return this.translate.instant('duration_not_set');
     }
 
     const period = +this.group.TimeSpan.Period;
@@ -56,25 +57,25 @@ export class GroupOptionsComponent implements OnInit {
       // tražimo dan
       const day = start.day(); // 0 nedelja, 1 ponedeljak, ..., 6 subota
       const modifier = period === 1 ? '' :
-        period === 2 ? 'second__acc' :
-          'fourth__acc';
+        period === 2 ? this.translate.instant('second__acc') :
+          this.translate.instant('fourth__acc');
 
       const dayName =
-        day === 0 ? 'sunday' :
-          day === 1 ? 'monday__acc' :
-            day === 2 ? 'tuesday__acc' :
-              day === 3 ? 'wednesday__acc' :
-                day === 4 ? 'thursday__acc' :
-                  day === 5 ? 'friday__acc' :
-                    'saturday__acc';
+        day === 0 ? this.translate.instant('sunday') :
+          day === 1 ? this.translate.instant('monday') :
+            day === 2 ? this.translate.instant('tuesday') :
+              day === 3 ? this.translate.instant('wednesday') :
+                day === 4 ? this.translate.instant('thursday') :
+                  day === 5 ? this.translate.instant('friday') :
+                    this.translate.instant('saturday');
 
-      return 'duration_descriptive_string__1' +
+      return this.translate.instant('duration_descriptive_string__1') +
         modifier +
-        'duration_descriptive_string__2' +
+        this.translate.instant('duration_descriptive_string__2') +
         dayName +
-        'duration_descriptive_string__3' +
+        this.translate.instant('duration_descriptive_string__3') +
         start.format('HH:mm') +
-        'duration_descriptive_string__4' +
+        this.translate.instant('duration_descriptive_string__4') +
         end.format('HH:mm');
     }
 

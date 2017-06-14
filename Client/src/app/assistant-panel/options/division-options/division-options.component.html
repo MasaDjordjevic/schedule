@@ -4,21 +4,22 @@
   <h2>({{division.DivisionType.Type}} za {{division.Course.Alias}})</h2>
 
   <dl app-dl>
-    <dt>ID</dt>
+    <dt>{{'id' | translate}}</dt>
     <dd>{{division.DivisionId}}</dd>
-    <dt>{{'subject'}}</dt>
+
+    <dt>{{'subject' | translate}}</dt>
     <dd>{{division.Course.Name}} (<code>{{division.Course.Code}}</code>)</dd>
 
-    <dt>{{'duration'}}</dt>
+    <dt>{{'duration' | translate}}</dt>
     <dd>{{division.Beginning.slice(0, 10)}} — {{division.Ending.slice(0, 10)}}</dd>
 
-    <dt>{{'number_of_groups'}}</dt>
+    <dt>{{'number_of_groups' | translate}}</dt>
     <dd>{{division.Groups.length}}</dd>
 
-    <dt>{{'number_of_students'}}</dt>
+    <dt>{{'number_of_students' | translate}}</dt>
     <dd>{{totalNumberOfStudents()}}</dd>
 
-    <dt>{{'group_creator'}}</dt>
+    <dt>{{'group_creator' | translate}}</dt>
     <dd>
       {{division.Creator.Name}} {{division.Creator.Surname}}
       <a [href]="'mailto:' + division.Creator.Email"><i class="fa fa-envelope"></i></a>
@@ -33,40 +34,39 @@
 
     <button md-button color="accent" #debuggingButton
              (click)="debuggingDialog.open()">
-
-     JSON
+     {{'JSON' | translate }}
     </button>
 
     <div class="flex-spacer"></div>
 
     <button md-raised-button color="accent" #editDivisionButton
             (click)="editDivisionDialog.open()">
-            division_edit
+            {{'division_edit' | translate }}
     </button>
 
     <button md-raised-button color="accent" #newGroupButton
             (click)="newGroupDialog.open()">
-            new_group
+            {{'new_group' | translate }}
     </button>
 
     <button md-raised-button color="accent"
             (click)="copyDivision()">
-            copy_division
+            {{'copy_division' | translate }}
     </button>
 
     <button md-raised-button color="accent" #groupsButton
             (click)="groupsDialog.open()">
-            groups
+            {{'groups' | translate }}
     </button>
 
     <button md-raised-button color="accent" #exportDivisionButton
             (click)="generateCSV(); exportDivisionDialog.open()">
-            export_division
+            {{'export_division' | translate }}
     </button>
 
     <button md-raised-button color="accent" #removeDivisionButton
             (click)="removeDivisionDialog.open()">
-            delete_division
+            {{'delete_division' | translate }}
     </button>
   </div>
 </div>

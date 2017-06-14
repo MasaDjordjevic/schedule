@@ -6,5 +6,53 @@
   "year": "Year",
   "divisions": "Divisions",
   "groups": "Groups",
-  "students": "Students"
+  "students": "Students",
+
+  "json": "JSON",
+  "JSON": "JSON",
+  "id": "ID",
+
+  "name": "Name",
+  "year": "Year",
+  "new_division": "New division",
+  "students": "Students",
+  "global_timetable": "Global timetable",
+
+  "subject": "Subject",
+  "duration": "Duration",
+  "number_of_groups": "Number of groups",
+  "number_of_students": "Number of students",
+  "group_creator": "Group creator",
+  "division_edit": "Edit division",
+  "new_group": "New group",
+  "copy_division": "Copy division",
+  "groups": "Groups",
+  "export_division": "Export division",
+  "delete_division": "Delete division",
+
+  "group_edit": "Edit group",
+  "cancel_class": "Cancel class",
+  "combined_timetable": "Combined timetable",
+  "add_announcement": "Add announcement",
+  "delete_group": "Delete group",
+  "duration_not_set": "Duration is not set",
+  "second__acc": "second",
+  "fourth__acc": "third",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "duration_descriptive_string__1": "Every",
+  "duration_descriptive_string__2": " week on ",
+  "duration_descriptive_string__3": " from ",
+  "duration_descriptive_string__4": " to ",
+
+  "index_number": "Index number",
+  "move_to_group": "Move to group",
+  "kick_student": "Kick student"
+
+
 }

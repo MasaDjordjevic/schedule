@@ -2,7 +2,7 @@
                  [primaryColor]="primaryColor"
                  [secondaryColor]="secondaryColor">
   <app-nested-list-inner *ngFor="let yearDepartment of yearDepartments"
-                         [title]="('year' | translate) + ' ' + yearDepartment.year">
+                         [title]="('year' | translate) + ' ' + (yearDepartment.year | roman)">
     <app-nested-list-inner-item *ngFor="let department of yearDepartment.departments"
                                 [val]="department.departmentId"
                                 (click)="onSelect(department.departmentId)"

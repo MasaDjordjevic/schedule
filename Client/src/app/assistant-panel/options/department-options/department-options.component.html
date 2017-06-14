@@ -3,11 +3,11 @@
   <h1>{{department.departmentName}} ({{department.year | roman}})</h1>
 
   <dl app-dl>
-    <dt>{{'id'}}</dt>
+    <dt>{{'id' | translate}}</dt>
     <dd>{{department.departmentId}}</dd>
-    <dt>{{'name'}}</dt>
+    <dt>{{'name' | translate}}</dt>
     <dd>{{department.departmentName}}</dd>
-    <dt>{{'year'}}</dt>
+    <dt>{{'year' | translate}}</dt>
     <dd>{{department.year}}</dd>
   </dl>
 
@@ -19,28 +19,28 @@
   <div class="footer-buttons">
 
     <button md-button color="primary" #debuggingButton
-            (click)="debuggingDialog.open()"
-    >JSON
+            (click)="debuggingDialog.open()">
+      {{'JSON' | translate }}
     </button>
 
     <div class="flex-spacer"></div>
 
     <button md-raised-button color="primary" #newDivisionButton
-            (click)="newDivisionDialog.open()"
-    >new_division
+            (click)="newDivisionDialog.open()">
+      {{'new_division' | translate }}
     </button>
 
 
     <button md-raised-button color="primary" #allStudentsButton
 
-            (click)="allStudentsDialog.open()"
-    >students
+            (click)="allStudentsDialog.open()">
+      {{'students' | translate }}
     </button>
 
 
     <button md-raised-button color="primary" #globalScheduleButton
-            (click)="globalScheduleDialog.open()"
-    >global_timetable
+            (click)="globalScheduleDialog.open()">
+      {{'global_timetable' | translate }}
     </button>
   </div>
 </div>

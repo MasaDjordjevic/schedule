@@ -3,9 +3,9 @@
   <h1>{{student.UniMembers.Name}} {{student.UniMembers.Surname}}</h1>
 
   <dl app-dl>
-    <dt>{{'id'}}</dt>
+    <dt>{{'id' | translate}}</dt>
     <dd>{{student.StudentId}}</dd>
-    <dt>{{'index_number'}}</dt>
+    <dt>{{'index_number' | translate}}</dt>
     <dd>{{student.IndexNumber}}</dd>
   </dl>
 
@@ -16,23 +16,21 @@
   <div class="footer-buttons ice-accent2">
 
     <button md-button color="accent" class="flat" #debuggingButton
-           (click)="debuggingDialog.open()">
-      JSON
+            (click)="debuggingDialog.open()">
+      {{'JSON' | translate }}
     </button>
 
     <div class="flex-spacer"></div>
 
     <button md-raised-button color="accent" #moveToGroupButton
-            (click)="moveToGroupDialog.open()"
-        >
-      {{'move_to_group'}}
+            (click)="moveToGroupDialog.open()">
+      {{'move_to_group' | translate }}
     </button>
 
     <button md-raised-button color="accent" #removeFromGroupButton
 
-            (click)="removeFromGroupDialog.open()"
-           >
-      {{'kick_student'}}
+            (click)="removeFromGroupDialog.open()">
+      {{'kick_student' | translate }}
     </button>
   </div>
 </div>

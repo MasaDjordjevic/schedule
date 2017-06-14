@@ -6,5 +6,53 @@
   "year": "Godina",
   "divisions": "Raspodele",
   "groups": "Grupe",
-  "students": "Studenti"
+  "students": "Studenti",
+
+
+  "json": "JSON",
+  "JSON": "JSON",
+  "id": "ID",
+
+  "name": "Ime",
+  "year": "Godina",
+  "new_division": "Nova raspodela",
+  "students": "Studenti",
+  "global_timetable": "Globalni raspored",
+
+  "subject": "Predmet",
+  "duration": "Trajanje",
+  "number_of_groups": "Broj grupa",
+  "number_of_students": "Broj studenata",
+  "group_creator": "Osnivač grupe",
+  "division_edit": "Izmeni raspodelu",
+  "new_group": "Nova grupa",
+  "copy_division": "Kopiraj raspodelu",
+  "groups": "Grupe",
+  "export_division": "Izvezi raspodelu",
+  "delete_division": "Obriši raspodelu",
+
+  "group_edit": "Izmeni grupu",
+  "cancel_class": "Otkaži čas",
+  "combined_timetable": "Kombinovani raspored",
+  "add_announcement": "Dodaj obaveštenje",
+  "delete_group": "Obriši grupu",
+  "duration_not_set": "Nije dodeljeno vreme trajanja",
+  "second__acc": "druge",
+  "fourth__acc": "treće",
+  "monday": "Ponedeljak",
+  "tuesday": "Utorak",
+  "wednesday": "Sreda",
+  "thursday": "Cetvrtak",
+  "friday": "Petak",
+  "saturday": "Subota",
+  "sunday": "Nedelja",
+  "duration_descriptive_string__1": "Svake",
+  "duration_descriptive_string__2": " nedelje u ",
+  "duration_descriptive_string__3": " od ",
+  "duration_descriptive_string__4": " do ",
+
+  "index_number": "Broj indeksa",
+  "move_to_group": "Pomeri u drugu grupu",
+  "kick_student": "Izbaci iz grupe"
+
 }
