@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {StudentsService} from '../../services/students.service';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-student-options',
@@ -17,7 +18,8 @@ export class StudentOptionsComponent implements OnInit {
   errorMessage: string;
 
   constructor(private route: ActivatedRoute,
-              private studentsService: StudentsService) {
+              private studentsService: StudentsService,
+              private themeService: ThemeService) {
   }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class StudentOptionsComponent implements OnInit {
       student => this.student = student,
       error => this.errorMessage = <any>error
     );
+  }
+
+  get themeClass() {
+    return this.themeService.getTheme() + '-accent2';
   }
 
 }

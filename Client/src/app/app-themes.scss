@@ -19,7 +19,22 @@
   @include angular-material-theme($dark-theme);
 }
 
+.material-theme {
+  @include angular-material-theme($material-theme);
+}
+
 .ice-theme {
   @include angular-material-theme($ice-theme);
 }
 
+.sunset-theme {
+  @include angular-material-theme($sunset-theme);
+}
+
+.autumn-theme {
+  @include angular-material-theme($autumn-theme);
+}
+
+.earth-theme {
+  @include angular-material-theme($earth-theme);
+}

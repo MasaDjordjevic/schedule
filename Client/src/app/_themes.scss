@@ -1,55 +1,25 @@
-@import "palette";
 @import 'app-themes';
 
-// Material
-$theme-material-red: palette($red);
-$theme-material-yellow: palette($yellow);
-$theme-material-blue: palette($blue);
-$theme-material-orange: palette($orange);
-$theme-material-green: palette($green);
-$theme-material-purple: palette($purple);
-
-// Sunset
-$theme-sunset-purple: #811d5e;
-$theme-sunset-red: #fd2f24;
-$theme-sunset-orange: #ff6f01;
-$theme-sunset-yellow: #fed800;
-
-//// Ice
-//$theme-ice-darkest: #012e40;
-//$theme-ice-darker: #025e73;
-//$theme-ice-melted: #037f8c;
-//$theme-ice-green: #038c8c;
-
-$theme-ice-darkest: mat-color($ice-primary);
-$theme-ice-darker: mat-color($ice-accent);
-$theme-ice-melted: mat-color($ice-warn, A700);
-$theme-ice-green: mat-color($ice-accent, A200);
-
-// Neon
-$theme-neon-empty: #0E0B16;
-$theme-neon-diamond: #A239CA;
-$theme-neon-gemstone: #4717F6;
-$theme-neon-poison: #18DD00;
-
 $theme-all-var-string: (
-        $theme-material-red: "red",
-        $theme-material-yellow: "yellow",
-        $theme-material-blue: "blue",
-        $theme-material-orange: "orange",
-        $theme-material-green: "green",
-        $theme-material-purple: "purple",
-        $theme-sunset-purple: "sunset-primary",
-        $theme-sunset-red: "sunset-accent",
-        $theme-sunset-orange: "sunset-warn",
-        $theme-sunset-yellow: "sunset-accent",
-        $theme-ice-darkest: "ice-primary",
-        $theme-ice-darker: "ice-accent",
-        $theme-ice-melted: "ice-warn",
-        $theme-ice-green: "ice-accent2",
-        $theme-neon-empty: "neon-empty",
-        $theme-neon-diamond: "neon-diamond",
-        $theme-neon-gemstone: "neon-gemstone",
-        $theme-neon-poison: "neon-poison"
+  "material-primary": mat-color($material-primary),
+  "material-accent": mat-color($material-accent),
+  "material-warn": mat-color($material-warn),
+  "material-accent2": mat-color($material-accent2),
+  "sunset-primary":  mat-color($sunset-primary),
+  "sunset-accent":  mat-color($sunset-accent),
+  "sunset-warn":  mat-color($sunset-warn),
+  "sunset-accent2":  mat-color($sunset-accent2),
+  "ice-primary":  mat-color($ice-primary),
+  "ice-accent":  mat-color($ice-accent),
+  "ice-warn":  mat-color($ice-warn),
+  "ice-accent2":  mat-color($ice-accent2),
+  "autumn-primary": mat-color($autumn-primary),
+  "autumn-accent": mat-color($autumn-accent),
+  "autumn-warn": mat-color($autumn-warn),
+  "autumn-accent2": mat-color($autumn-accent2),
+  "earth-primary": mat-color($earth-primary),
+  "earth-accent": mat-color($earth-accent),
+  "earth-warn": mat-color($earth-warn),
+  "earth-accent2": mat-color($earth-accent2)
 );
 

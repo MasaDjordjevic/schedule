@@ -49,6 +49,61 @@
       </button>
     </md-menu>
 
+    <button md-icon-button [mdMenuTriggerFor]="theme">
+      <md-icon>palette</md-icon>
+    </button>
+    <md-menu #theme="mdMenu" class="dropdown theme-dropdown">
+      <button md-menu-item (click)="changeTheme('material')">
+        <div class="theme-preview">
+          <span class="theme-name">Material</span>
+          <div class="material-primary"></div>
+          <div class="material-accent"></div>
+          <div class="material-warn"></div>
+          <div class="material-accent2"></div>
+        </div>
+      </button>
+
+      <button md-menu-item (click)="changeTheme('ice')">
+        <div class="theme-preview">
+          <span class="theme-name">Ice</span>
+          <div class="ice-primary"></div>
+          <div class="ice-accent"></div>
+          <div class="ice-warn"></div>
+          <div class="ice-accent2"></div>
+        </div>
+      </button>
+
+      <button md-menu-item (click)="changeTheme('sunset')">
+        <div class="theme-preview">
+          <span class="theme-name">Sunset</span>
+          <div class="sunset-primary"></div>
+          <div class="sunset-accent"></div>
+          <div class="sunset-warn"></div>
+          <div class="sunset-accent2"></div>
+        </div>
+      </button>
+
+      <button md-menu-item (click)="changeTheme('autumn')">
+        <div class="theme-preview">
+          <span class="theme-name">Autumn</span>
+          <div class="autumn-primary"></div>
+          <div class="autumn-accent"></div>
+          <div class="autumn-warn"></div>
+          <div class="autumn-accent2"></div>
+        </div>
+      </button>
+
+      <button md-menu-item (click)="changeTheme('earth')">
+        <div class="theme-preview">
+          <span class="theme-name">Earth</span>
+          <div class="earth-primary"></div>
+          <div class="earth-accent"></div>
+          <div class="earth-warn"></div>
+          <div class="earth-accent2"></div>
+        </div>
+      </button>
+    </md-menu>
+
 
   </div>
 

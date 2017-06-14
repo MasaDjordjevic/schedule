@@ -4,7 +4,7 @@
 @import "../../../app-colors";
 
 //region Themes
-@each $var, $string in $theme-all-var-string {
+@each $string, $var  in $theme-all-var-string {
   .#{$string} {
     button {
       background-color: $var;

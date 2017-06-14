@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ThemeService} from '../services/theme.service';
 
 @Component({
   selector: 'app-assistant-panel',
@@ -13,25 +14,27 @@ export class AssistantPanelComponent implements OnInit {
   selectedStudentId: number;
 
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private themeService: ThemeService) { }
 
   get isSomethingSelected() {
     return this.selectedDivisionId || this.selectedStudentId || this.selectedGroupId || this.selectedDepartmentId;
   }
 
-  t = 'ice'; //'ice'
-  isIceTheme = this.t === 'ice';
+  get theme() {
+    return this.themeService.getTheme() + '-theme';
+  }
 
-  theme(type: string): string {
+  getThemeClass(type: string): string {
     switch (type) {
       case 'department':
-        return this.t + '-primary';
+        return this.themeService.getTheme() + '-primary';
       case 'division':
-        return this.t + '-accent';
+        return this.themeService.getTheme() + '-accent';
       case 'group':
-        return this.t + '-warn';
+        return this.themeService.getTheme() + '-warn';
       case 'student':
-        return this.t + '-accent2';
+        return this.themeService.getTheme() + '-accent2';
     }
   }
 

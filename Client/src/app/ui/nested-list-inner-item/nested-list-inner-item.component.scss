@@ -18,7 +18,7 @@
   }
 
   //region Themes
-  @each $var, $string in $theme-all-var-string {
+  @each $string, $var in $theme-all-var-string {
     &.selected.#{$string} {
       color: $var;
     }

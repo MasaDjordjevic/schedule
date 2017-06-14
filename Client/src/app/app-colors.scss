@@ -12,8 +12,37 @@ $dark-accent: mat-palette($mat-teal, A700, A100, A400);
 $dark-warn: mat-palette($mat-deep-orange);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-// Define an alternate dark theme.
-$ice-primary: mat-palette($mat-light-blue);
-$ice-accent: mat-palette($mat-orange, A700, A100, A400);
-$ice-warn: mat-palette($mat-grey);
+// Material theme
+$material-primary: mat-palette($mat-light-blue);
+$material-accent: mat-palette($mat-orange, 600, A100, A400);
+$material-warn: mat-palette($mat-grey);
+$material-accent2: mat-palette($mat-yellow, 600);
+$material-theme: mat-dark-theme($material-primary, $material-accent, $material-warn);
+
+// Ice theme
+$ice-primary: mat-palette($mat-cyan, 900);
+$ice-accent: mat-palette($mat-cyan, 800, A100, A400);
+$ice-warn: mat-palette($mat-cyan, 700);
+$ice-accent2: mat-palette($mat-cyan, 600);
 $ice-theme: mat-dark-theme($ice-primary, $ice-accent, $ice-warn);
+
+// Sunset theme
+$sunset-primary: mat-palette($mat-pink, 900);
+$sunset-accent: mat-palette($mat-red, 600, A100, A400);
+$sunset-warn: mat-palette($mat-orange, 500);
+$sunset-accent2: mat-palette($mat-amber, 300);
+$sunset-theme: mat-dark-theme($sunset-primary, $sunset-accent, $sunset-warn);
+
+// Autumn theme
+$autumn-primary: mat-palette($mat-light-blue, 600);
+$autumn-accent: mat-palette($mat-light-blue, 900, A100, A400);
+$autumn-warn: mat-palette($mat-blue-grey, 700);
+$autumn-accent2: mat-palette($mat-red, 800);
+$autumn-theme: mat-dark-theme($autumn-primary, $autumn-accent, $autumn-warn);
+
+// Earth theme
+$earth-primary: mat-palette($mat-cyan, 500);
+$earth-accent: mat-palette($mat-blue-grey, 500, A100, A400);
+$earth-warn: mat-palette($mat-light-green, 500);
+$earth-accent2: mat-palette($mat-green, 700);
+$earth-theme: mat-dark-theme($earth-primary, $earth-accent, $earth-warn);

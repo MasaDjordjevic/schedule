@@ -16,7 +16,7 @@ header {
   box-sizing: border-box;
 
   button {
-    width:  3em;
+    width: 3em;
     height: 3em;
     outline: none;
     border: none;
@@ -51,7 +51,7 @@ header {
     position: relative;
 
     & > div {
-      width:  100%;
+      width: 100%;
       height: 100%;
       background-position: center center;
       background-repeat: no-repeat;
@@ -159,7 +159,6 @@ header {
 
 }
 
-
 .dropdown-item {
   display: flex;
   flex-direction: row;
@@ -181,3 +180,29 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.theme-name {
+  display: block;
+  width: 100px;
+}
+
+.theme-preview {
+  display: flex;
+
+  & > div {
+    width: 1.2em;
+    height: 1.2em;
+    //box-shadow: 0 0 0 1px rgba(black, .3);
+    margin: .2em;
+    border-radius: 50%;
+    align-self: center;
+
+    @each $string, $var in $theme-all-var-string {
+      &.#{$string} {
+        background-color: $var;
+      }
+    }
+  }
+
+}
+

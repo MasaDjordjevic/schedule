@@ -4,11 +4,11 @@
             [email]="'masadjordjevic@gmail.com'"
 ></app-header>
 
-<main [class.ice-theme]="isIceTheme">
-  <app-departments-list [primaryColor]="theme('department')"></app-departments-list>
-  <app-divisions-list *ngIf="selectedDepartmentId" [primaryColor]="theme('division')"></app-divisions-list>
-  <app-groups-list *ngIf="selectedDivisionId" [primaryColor]="theme('group')"></app-groups-list>
-  <app-students-list *ngIf="selectedGroupId" [primaryColor]="theme('student')"></app-students-list>
+<main ngClass="{{theme}}">
+  <app-departments-list [primaryColor]="getThemeClass('department')"></app-departments-list>
+  <app-divisions-list *ngIf="selectedDepartmentId" [primaryColor]="getThemeClass('division')"></app-divisions-list>
+  <app-groups-list *ngIf="selectedDivisionId" [primaryColor]="getThemeClass('group')"></app-groups-list>
+  <app-students-list *ngIf="selectedGroupId" [primaryColor]="getThemeClass('student')"></app-students-list>
 
 
   <app-panel-options *ngIf="!isSomethingSelected"></app-panel-options>
