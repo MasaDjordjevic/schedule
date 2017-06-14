@@ -19,3 +19,44 @@
   }
 }
 
+%options {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap-reverse;
+
+    button {
+      margin: .5em;
+    }
+  }
+
+  .json-debugging {
+
+    pre {
+      min-width: 800px;
+      max-height: calc(80vh - #{2 * 3em});
+      overflow-y: auto;
+      padding: 3em;
+      font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+      span.key {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.department-options,
+.division-options,
+.group-options,
+.student-options {
+  @extend %options;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}

@@ -12,7 +12,7 @@ export class DivisionsService {
   constructor(private http: Http) { }
 
   public getDivision(id: number): Promise<Division> {
-    return this.http.get(this.divisionsUrl + '/GetDivision/' + id)
+    return this.http.get(this.divisionsUrl + '/GetDivisions/' + id)
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);

@@ -1,0 +1,20 @@
+@import "../../../palette";
+@import "../../../themes";
+@import "../../../ljubenovic-toolkit";
+@import "../../../app-colors";
+
+//region Themes
+@each $var, $string in $theme-all-var-string {
+  .#{$string} {
+    button {
+      background-color: $var;
+      &.flat {
+        background-color: transparent;
+        color: $var;
+      }
+    }
+
+  }
+}
+//endregion
+

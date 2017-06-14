@@ -19,6 +19,7 @@ import { DepartmentOptionsComponent } from './options/department-options/departm
 import { DivisionOptionsComponent } from './options/division-options/division-options.component';
 import { GroupOptionsComponent } from './options/group-options/group-options.component';
 import { StudentOptionsComponent } from './options/student-options/student-options.component';
+import { RomanNumeralsPipe } from './pipes/roman-numerals.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { StudentOptionsComponent } from './options/student-options/student-optio
     UiModule,
     AssistantPanelRoutingModule
   ],
-  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent, GroupsListComponent, StudentsListComponent, PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent, GroupOptionsComponent, StudentOptionsComponent],
+  declarations: [AssistantPanelComponent, DepartmentsListComponent, DivisionsListComponent, GroupsListComponent, StudentsListComponent, PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent, GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe],
   providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService]
 })
 export class AssistantPanelModule { }

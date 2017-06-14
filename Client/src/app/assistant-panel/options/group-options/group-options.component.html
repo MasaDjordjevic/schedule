@@ -1,3 +1,59 @@
-<p>
-  group-options works!
-</p>
+<div class="group-options" *ngIf="group">
+
+  <h1>{{group.Name}}</h1>
+
+  <dl app-dl>
+    <dt>{{'id'}}</dt>
+    <dd>{{group.GroupId}}</dd>
+    <div *ngIf="false">
+      <dt>{{'duration'}}</dt>
+      <dd>{{group.TimeSpan?.StartDate}} — {{group.TimeSpan?.EndDate}}</dd>
+
+      <dt>{{'period'}}</dt>
+      <dd>{{group.TimeSpan?.Period}}</dd>
+    </div>
+    <dt>{{'duration'}}</dt>
+    <dd>{{descriptiveString}}</dd>
+  </dl>
+
+  <p>{{errorMessage}}</p>
+
+  <div class="flex-spacer"></div>
+
+  <div class="footer-buttons">
+
+    <button md-button #debuggingButton
+            (click)="debuggingDialog.open()">
+      JSON
+    </button>
+
+    <div class="flex-spacer"></div>
+
+    <button md-raised-button color="warn" #editGroupButton
+            (click)="editGroupDialog.open()">
+      {{'group_edit'}}
+    </button>
+
+    <button *ngIf="group.timeSpanID"
+            md-raised-button color="warn" #cancelClassButton
+            (click)="cancelClassDialog.open()">
+      {{'cancel_class'}}
+    </button>
+
+    <button md-raised-button color="warn" #combinedScheduleButton
+            (click)="combinedScheduleDialog.open()">
+      {{'combined_timetable'}}
+    </button>
+
+    <button md-raised-button color="warn" #addNotificationButton
+            (click)="addNotificationDialog.open()">
+      {{'add_announcement'}}
+    </button>
+
+    <button md-raised-button color="warn" #removeGroupButton
+            (click)="removeGroupDialog.open()">
+      {{'delete_group'}}
+    </button>
+
+  </div>
+</div>

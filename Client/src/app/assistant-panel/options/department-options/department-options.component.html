@@ -1,3 +1,46 @@
-<p>
-  department-options works!
-</p>
+<div class="department-options" *ngIf="department">
+
+  <h1>{{department.departmentName}} ({{department.year | roman}})</h1>
+
+  <dl app-dl>
+    <dt>{{'id'}}</dt>
+    <dd>{{department.departmentId}}</dd>
+    <dt>{{'name'}}</dt>
+    <dd>{{department.departmentName}}</dd>
+    <dt>{{'year'}}</dt>
+    <dd>{{department.year}}</dd>
+  </dl>
+
+  <p>{{errorMessage}}</p>
+
+  <div class="flex-spacer"></div>
+
+
+  <div class="footer-buttons">
+
+    <button md-button color="primary" #debuggingButton
+            (click)="debuggingDialog.open()"
+    >JSON
+    </button>
+
+    <div class="flex-spacer"></div>
+
+    <button md-raised-button color="primary" #newDivisionButton
+            (click)="newDivisionDialog.open()"
+    >new_division
+    </button>
+
+
+    <button md-raised-button color="primary" #allStudentsButton
+
+            (click)="allStudentsDialog.open()"
+    >students
+    </button>
+
+
+    <button md-raised-button color="primary" #globalScheduleButton
+            (click)="globalScheduleDialog.open()"
+    >global_timetable
+    </button>
+  </div>
+</div>
