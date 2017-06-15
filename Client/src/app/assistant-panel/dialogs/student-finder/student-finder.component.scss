@@ -1,0 +1,49 @@
+:host {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: .5em;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.multiple-selector-item {
+  display: flex;
+  flex-direction: column;
+  width: 13em;
+  margin-left: .66em;
+  margin-right: .25em;
+
+  .primary {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .secondary {
+    display: inline-block;
+    font-size: 0.75em;
+    color: rgba(black, .72);
+
+    .index-number {
+      display: inline-block;
+    }
+
+    .e-mail {
+      display: inline-block;
+      margin-left: 1em;
+    }
+
+    i {
+      display: inline-block;
+      margin-right: .5em;
+      color: rgba(black, .36);
+    }
+  }
+}
+

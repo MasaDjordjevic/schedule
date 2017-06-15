@@ -4,6 +4,8 @@ import {Student} from '../../../models/Student';
 import {StudentsService} from '../../services/students.service';
 import {DepartmentsService} from '../../services/departments.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {MdDialog} from '@angular/material';
+import {StudentFinderComponent} from '../../dialogs/student-finder/student-finder.component';
 
 @Component({
   selector: 'app-department-options',
@@ -16,6 +18,8 @@ export class DepartmentOptionsComponent implements OnInit {
   department: Department;
   errorMessage: string;
 
+
+
   // Studenti koji se prikazuju klikom na "STUDENTI"
   students: Student[];
 
@@ -24,7 +28,13 @@ export class DepartmentOptionsComponent implements OnInit {
 
   constructor(private departmentService: DepartmentsService,
               private studentsService: StudentsService,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute,
+              public dialog: MdDialog) { }
+
+
+  openAllStudentsDialog() {
+    this.dialog.open(StudentFinderComponent, {data: {students: this.students}});
+  }
 
   getDepartment(): void {
     if (!this.departmentId) {
