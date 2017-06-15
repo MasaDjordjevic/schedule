@@ -6,7 +6,7 @@
       *ngFor="let division of typeDivision.Divisions"
       [val]="division.DivisionId"
       (click)="onSelect(division.DivisionId)"
-      [class.selected]="division.DivisionId === selectedDivisionId"
+      [selected]="division.DivisionId === selectedDivisionId"
       [primaryColor]="primaryColor"
     >
       {{division.Name || division.Course}}

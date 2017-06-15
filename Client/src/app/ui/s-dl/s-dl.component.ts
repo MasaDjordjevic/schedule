@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './s-dl.component.html',
   styleUrls: ['./s-dl.component.scss']
 })
-export class SDlComponent{
+export class SDlComponent {
 }

@@ -7,20 +7,14 @@ import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angu
 })
 export class NestedListInnerItemComponent implements OnInit {
   @Input() val: string;
-  @HostBinding('class')  @Input() primaryColor = 'MaterialBlue';
-
-  @Output() select: EventEmitter<any> = new EventEmitter();
-
-
-  public onClick() {
-    this.select.emit({
-      val: this.val,
-    });
-  }
+  @Input() selected = false;
+  @Input() primaryColor = 'MaterialBlue';
+  @HostBinding('class') classString;
 
   constructor() { }
 
   ngOnInit() {
+    this.classString = this.primaryColor + (this.selected ? ' selected' : '');
   }
 
 }

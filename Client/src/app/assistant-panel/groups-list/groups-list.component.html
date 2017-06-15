@@ -4,7 +4,7 @@
   <app-nested-list-inner-item *ngFor="let group of groups"
                               [val]="group.GroupId"
                               (click)="onSelect(group.GroupId)"
-                              [class.selected]="group.GroupId === selectedGroupId"
+                              [selected]="group.GroupId === selectedGroupId"
                               [primaryColor]="primaryColor">
     <span>{{group.Name}}</span>
     <span>{{group?.Classroom?.Number}}</span>
