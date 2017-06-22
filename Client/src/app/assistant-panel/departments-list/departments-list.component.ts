@@ -15,10 +15,6 @@ export class DepartmentsListComponent implements OnInit {
   selectedDepartmentId: number = -1;
   private errorMessage: string;
 
-  // Nema @Input() jer se uvek prikazuju svi smerovi, ne zavisi ni od kakvog klika.
-  @Output() selectDepartment: EventEmitter<any> = new EventEmitter();
-
-  private _nestedListData = null;
 
   constructor(private departmentsService: DepartmentsService,
               private router: Router,
@@ -31,10 +27,6 @@ export class DepartmentsListComponent implements OnInit {
         this.selectedDepartmentId = +params['departmentId'];
       });
 
-  }
-
-  set nestedListData(data) {
-    this._nestedListData = data;
   }
 
   getDepartmentsByYear() {
