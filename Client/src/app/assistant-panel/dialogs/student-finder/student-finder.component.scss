@@ -1,16 +1,31 @@
+@import "../../../themes";
+
 :host {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-}
-
-.content {
   padding: .5em;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
-  box-sizing: border-box;
+  input {
+    width: 100%;
+  }
+
+
+  //region Themes
+  @each $string, $var in $theme-all-var-string {
+    &.#{$string} {
+      mark {
+        background-color: $var  !important;
+      }
+    }
+  }
+  //endregion
+}
+
+.query {
+  width: 100%;
 }
 
 .multiple-selector-item {

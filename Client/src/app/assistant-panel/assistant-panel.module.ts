@@ -22,6 +22,8 @@ import {StudentOptionsComponent} from './options/student-options/student-options
 import {RomanNumeralsPipe} from './pipes/roman-numerals.pipe';
 import {ThemeService} from './services/theme.service';
 import { StudentFinderComponent } from './dialogs/student-finder/student-finder.component';
+import {FormsModule} from '@angular/forms';
+import { HighlightPipe } from './pipes/highlight.pipe';
 
 @NgModule({
   imports: [
@@ -29,13 +31,14 @@ import { StudentFinderComponent } from './dialogs/student-finder/student-finder.
     SharedModule,
     HeaderModule,
     UiModule,
+    FormsModule,
     AssistantPanelRoutingModule
   ],
   entryComponents: [StudentFinderComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
-    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent],
+    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent, HighlightPipe],
   providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService]
 })
 export class AssistantPanelModule {

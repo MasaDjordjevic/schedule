@@ -1,10 +1,15 @@
-<div class="content">
-  <div class="multiple-selector-item" *ngFor="let student of students">
-    <span class="primary">{{student.UniMembers?.Name}} {{student.UniMembers?.Surname}}</span>
-    <span class="secondary">
-                    <span class="index-number"><i class="fa fa-book"></i><span>{{student.IndexNumber}}</span></span>
-                    <span class="e-mail"><i class="fa fa-envelope"></i><span>{{student.UniMembers?.Email}}</span></span>
+<div class="multiple-selector-item" *ngFor="let student of filteredStudents">
+  <span class="primary" [innerHTML]="(student.UniMembers?.Name | highlight:query) + ' ' + (student.UniMembers?.Surname | highlight:query)"></span>
+  <span class="secondary">
+                    <span class="index-number"><i class="fa fa-book"></i>
+                      <span [innerHTML]="student.IndexNumber.toString() | highlight:query"></span></span>
+                    <span class="e-mail"><i class="fa fa-envelope"></i>
+                      <span [innerHTML]="student.UniMembers?.Email | highlight:query"></span></span>
                 </span>
-  </div>
 </div>
+<md-input-container class="query">
+  <input mdInput [(ngModel)]="query" name="query" autofocus type="search" (keyup)="filterStudents()"/>
+</md-input-container>
+
+
 
