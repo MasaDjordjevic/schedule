@@ -5,9 +5,9 @@ import {EmptyComponent} from './empty/empty.component';
 import {ClassroomsComponent} from './classrooms/classrooms.component';
 
 const routes: Routes = [
-  {
-    path: '', component: EmptyComponent
-  },
+  // {
+  //   path: '', component: EmptyComponent
+  // },
   {
     path: 'simpleTest', component: TestComponent
   },

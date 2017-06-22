@@ -8,7 +8,7 @@ import {UiComponent} from './test/ui/ui.component';
 
 const routes: Routes = [
   {
-    path: '', component: UiComponent
+    path: '', redirectTo: '/assistant', pathMatch: 'full'
   },
   {
     path: 'test', loadChildren: 'app/test/test.module#TestModule'
