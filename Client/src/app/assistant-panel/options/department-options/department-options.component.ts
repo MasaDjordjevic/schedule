@@ -6,6 +6,7 @@ import {DepartmentsService} from '../../services/departments.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {StudentFinderComponent} from '../../dialogs/student-finder/student-finder.component';
+import {DivisionCreatorComponent} from '../../dialogs/division-creator/division-creator.component';
 
 @Component({
   selector: 'app-department-options',
@@ -34,6 +35,10 @@ export class DepartmentOptionsComponent implements OnInit {
 
   openAllStudentsDialog() {
     this.dialog.open(StudentFinderComponent, {data: {students: this.students}});
+  }
+
+  openNewDivisionDialog() {
+    this.dialog.open(DivisionCreatorComponent, {data: {departmentId: this.departmentId}});
   }
 
   getDepartment(): void {

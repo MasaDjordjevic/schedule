@@ -1,0 +1,189 @@
+<app-stepper (onSubmit)="createInitialDivision()">
+
+  <app-step [stepTitle]="'basic_info'">
+    <div class="osnovni-podaci">
+
+      <div class="top">
+        <md-input-container>
+          <input mdInput [(ngModel)]="newDivisionName"
+                 placeholder="('division_name')">
+        </md-input-container>
+      </div>
+
+      <div class="left">
+        <md-input-container>
+          <input mdInput placeholder="subject" [mdAutocomplete]="coursesAutocomplete">
+        </md-input-container>
+        <md-autocomplete #coursesAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let course of courses"
+                     (onSelectionChange)="newDivisionCourseId = course.CourseId"
+                     [value]="course.Name">
+            {{course.Name}}
+          </md-option>
+        </md-autocomplete>
+
+        <md-input-container>
+          <input mdInput placeholder="division type" [mdAutocomplete]="divisionTypesAutocomplete">
+        </md-input-container>
+        <md-autocomplete #divisionTypesAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let dType of divisionTypes"
+                     (onSelectionChange)="newDivisionTypeId = dType.divisionTypeId"
+                     [value]="dType.type">
+            {{dType.type}}
+          </md-option>
+        </md-autocomplete>
+      </div>
+
+      <div class="right">
+        <md-input-container>
+          <input mdInput placeholder="start" [mdDatepicker]="startPicker"
+                 [(ngModel)]="newDivisionBeginningDate">
+          <button mdSuffix [mdDatepickerToggle]="startPicker"></button>
+        </md-input-container>
+        <md-datepicker #startPicker></md-datepicker>
+
+        <md-input-container>
+          <input mdInput placeholder="end" [mdDatepicker]="endPicker"
+                 [(ngModel)]="newDivisionEndingDate">
+          <button mdSuffix [mdDatepickerToggle]="endPicker"></button>
+        </md-input-container>
+        <md-datepicker #endPicker></md-datepicker>
+      </div>
+    </div>
+  </app-step>
+
+  <app-step [stepTitle]="'creation_way'" [valid]="isValid(2)">
+    <div class="nacin-kreiranja">
+      <div class="top">
+
+        <div class="input-wrap">
+          <md-input-container>
+            <input mdInput placeholder="creation way" [mdAutocomplete]="creationWayAutocomplete">
+          </md-input-container>
+          <md-autocomplete #creationWayAutocomplete="mdAutocomplete">
+            <md-option (onSelectionChange)="newDivisionCreationWay = 'on_x'" [value]="'by_number_of_groups'">
+              {{'by_number_of_groups'}}
+            </md-option>
+            <md-option (onSelectionChange)="newDivisionCreationWay = 'with_x'" [value]="'by_number_of_students'">
+              {{'by_number_of_groups'}}
+            </md-option>
+            <md-option (onSelectionChange)="newDivisionCreationWay = 'manual'" [value]="'manual'">{{'manual'}}
+            </md-option>
+          </md-autocomplete>
+        </div>
+
+        <div class="input-wrap">
+          <md-input-container>
+            <input mdInput
+                   *ngIf="newDivisionCreationWay !== 'manual'"
+                   [placeholder]="newDivisionCreationWay === 'on_x' ? 'number_of_goups' : 'number_of_students'"
+                   [(ngModel)]="newDivisionCreationNumberX">
+          </md-input-container>
+        </div>
+
+        <div class="input-wrap">
+          <md-input-container>
+            <input mdInput
+                   *ngIf="newDivisionCreationWay !== 'manual'"
+                   placeholder="sort style"
+                   [mdAutocomplete]="orderAutocomplete">
+            <md-autocomplete #orderAutocomplete="mdAutocomplete">
+              <md-option (onSelectionChange)="newDivisionCreationOrderIsRandom = '0'" [value]="'by_index_number'">
+                {{'by_index_number'}}
+              </md-option>
+              <md-option (onSelectionChange)="newDivisionCreationOrderIsRandom = '1'" [value]="'random'">{{'random'}}
+              </md-option>
+            </md-autocomplete>
+          </md-input-container>
+        </div>
+
+        <button md-raised-button color="primary"
+                (click)="preview()">
+          {{'preview'}}
+        </button>
+
+      </div>
+
+
+      <div class="clearfix"></div>
+
+      <div class="info" *ngIf="createdGroups">
+        {{("division_creator_preview_info__1")}}
+        {{numberOfStudents()}}
+        {{("division_creator_preview_info__2")}}
+        {{createdGroups.length}}
+        {{("division_creator_preview_info__3")}}
+        {{averageNumberOfStudents().toFixed(2)}}
+        {{("division_creator_preview_info__4")}}
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="preview-list-of-students" *ngIf="createdGroups">
+        <table>
+          <thead>
+          <tr>
+            <th>{{('name')}}</th>
+            <th>#</th>
+            <th>{{('students')}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let group of createdGroups; let i = index" [mdTooltip]="wholeGroupPreview(i)">
+            <td>{{('group')}}&nbsp;{{i + 1}}</td>
+            <td>{{group.length}}</td>
+            <td>{{groupPreview(i, 4)}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div>
+  </app-step>
+
+  <app-step [stepTitle]="'confirm'">
+    <div class="potvrda" *ngIf="createdGroups">
+
+      <div class="top">
+        <dl app-dl>
+          <dt>{{("name")}}</dt>
+          <dd>{{newDivisionName}}</dd>
+          <dt>{{("division_type")}}</dt>
+          <dd>{{newDivisionTypeName()}}</dd>
+          <dt>{{("for_subject")}}</dt>
+          <dd>{{newDivisionClassName()}}</dd>
+          <dt>{{("validity")}}</dt>
+          <dd>{{newDivisionBeginningDateToDate().toISOString().slice(0, 10)}} — {{newDivisionEndingDateToDate().toISOString().slice(0, 10)}}</dd>
+        </dl>
+
+        <dl app-dl>
+          <dt>{{("total_students")}}</dt>
+          <dd>{{numberOfStudents()}}</dd>
+          <dt>{{("total_groups")}}</dt>
+          <dd>{{createdGroups.length}}</dd>
+          <dt>{{("average_students_per_group")}}</dt>
+          <dd>{{averageNumberOfStudents().toFixed(2)}}</dd>
+          <dt>{{("sort_style")}}</dt>
+          <dd>{{newDivisionCreationOrderName()}}</dd>
+        </dl>
+      </div>
+
+      <div class="bottom">
+        <div class="group-list" *ngFor="let group of createdGroups; let i = index">
+          <div class="group-name">{{("group")}}&nbsp;{{i}}</div>
+          <div class="students">
+            <div class="student" *ngFor="let student of group">
+              <span>{{student.indexNumber}}</span>
+              <span>{{student.name}} {{student.surname}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </app-step>
+
+
+</app-stepper>

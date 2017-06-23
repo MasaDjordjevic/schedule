@@ -1,5 +1,5 @@
 ﻿export class Course {
-    courseID: number;
+    courseId: number;
     code: string;
     alias: string;
     name: string;

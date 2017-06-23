@@ -1,0 +1,38 @@
+@import "../../../palette";
+@import "../../../themes";
+@import "../../../_themes";
+@import "../../../ljubenovic-toolkit";
+
+:host {
+  width: 1392px;
+  height: 860px;
+  max-width: calc(75vw - 20px);
+  max-height: calc(90vh - 20px);
+  //overflow: hidden;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+
+:host .app-steps-container {
+  flex: 1 1 auto;
+  max-width: calc(75vw - 20px);
+  max-height: calc(80vh - 20px);
+  //background-color: rgba(black, .05);
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+:host .app-stepper-footer {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+

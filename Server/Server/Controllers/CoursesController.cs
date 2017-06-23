@@ -32,6 +32,8 @@ namespace Server.Controllers
             return _context.Courses;
         }
 
+        [HttpGet]
+        [Route("GetCoursesOfDepartment/{id}")]
         public IActionResult GetCoursesOfDepartment([FromRoute] int id)
         {
             if (!ModelState.IsValid)

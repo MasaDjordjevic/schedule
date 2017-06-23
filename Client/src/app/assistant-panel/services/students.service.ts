@@ -32,7 +32,7 @@ export class StudentsService {
   }
 
   /**
-   * GET: api/Students/GetStudentsOfDepartment/{departmentID}
+   * GET: api/Students/GetStudentsOfDepartment/{departmentId}
    * Uzmi studente koji pripadaju smeru (department) sa prosleðenim ID-jem.
    */
   getStudentsOfDepartment(departmentID: number): Promise<Student[]> {

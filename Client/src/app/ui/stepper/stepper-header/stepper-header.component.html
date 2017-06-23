@@ -1,0 +1,12 @@
+<div *ngFor="let step of stepTitles; let i = index"
+     [class.done] = "markAsDone(i)"
+     [class.error] = "markAsError(i)"
+     [class.finished] = "isPast(i)"
+     [class.current] = "isCurrent(i)"
+>
+  <div class="app-stepper-step-circle">
+    <ng-template [ngIf]="!isPast(i)">{{i + 1}}</ng-template>
+    <ng-template [ngIf]="isPast(i) && markAsDone(i)"><i class="fa fa-check"></i></ng-template>
+  </div>
+  <div class="app-stepper-step-title">{{step}}</div>
+</div>

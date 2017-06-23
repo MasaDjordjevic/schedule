@@ -24,6 +24,8 @@ import {ThemeService} from './services/theme.service';
 import { StudentFinderComponent } from './dialogs/student-finder/student-finder.component';
 import {FormsModule} from '@angular/forms';
 import { HighlightPipe } from './pipes/highlight.pipe';
+import { DivisionCreatorComponent } from './dialogs/division-creator/division-creator.component';
+import {CoursesService} from './services/courses.service';
 
 @NgModule({
   imports: [
@@ -34,12 +36,12 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     FormsModule,
     AssistantPanelRoutingModule
   ],
-  entryComponents: [StudentFinderComponent],
+  entryComponents: [StudentFinderComponent, DivisionCreatorComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
-    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent, HighlightPipe],
-  providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService]
+    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent, HighlightPipe, DivisionCreatorComponent],
+  providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService, CoursesService]
 })
 export class AssistantPanelModule {
 }

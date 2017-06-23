@@ -1,6 +1,5 @@
 import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
-import {Student} from '../../../models/Student';
+import {MD_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-student-finder',
