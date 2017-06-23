@@ -20,11 +20,12 @@ namespace Server.Services
         public UniMembers UserLogin(string username, string password)
         {
             var query = _context.UniMembers
-                .Include(a => a.Student)
                 .Where(a => a.Username == username && a.Password == password);
             if (query.Any())
             {
-                return query.First();
+                var ret = query.First();
+                var s = ret.Student;
+                return ret;
             }
             else
             {

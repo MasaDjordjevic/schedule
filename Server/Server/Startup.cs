@@ -11,6 +11,18 @@ using Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Server.Services;
 
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using CSAuthorAngular2InASPNetCore.Auth;
+
 namespace Server
 {
     public class Startup
@@ -40,42 +52,78 @@ namespace Server
             services.AddTransient<ScheduleService, ScheduleService>();
             services.AddTransient<StudentService, StudentService>();
 
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
+
 
             // Add framework services.
             services.AddCors();
 
             services.AddMvc()
                 .AddJsonOptions(
-                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            // Adds a default in-memory implementation of IDistributedCache.
-            services.AddDistributedMemoryCache();
-
-            services.AddSession(options =>
-            {
-                options.CookieName = ".AdventureWorks.Session";
-                options.IdleTimeout = System.TimeSpan.FromSeconds(10);
-            });
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);         
 
 
             var connection = @"Server=MASA;Database=Raspored;Trusted_Connection=True;";
             services.AddDbContext<RasporedContext>(options => options.UseSqlServer(connection));
+
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.CookieName = ".Schedule.Session";
+                options.IdleTimeout = System.TimeSpan.FromMinutes(120);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseSession();
+            app.UseApplicationInsightsRequestTelemetry();
+
+            app.UseApplicationInsightsExceptionTelemetry();
+
+            #region static files
+            app.UseStaticFiles();
+            #endregion
+
+            #region UseJwtBearerAuthentication
+            app.UseJwtBearerAuthentication(new JwtBearerOptions()
+            {
+                TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = TokenAuthOption.Key,
+                    ValidAudience = TokenAuthOption.Audience,
+                    ValidIssuer = TokenAuthOption.Issuer,
+                    // When receiving a token, check that we've signed it.
+                    ValidateIssuerSigningKey = true,
+                    // When receiving a token, check that it is still valid.
+                    ValidateLifetime = true,
+                    // This defines the maximum allowable clock skew - i.e. provides a tolerance on the token expiry time 
+                    // when validating the lifetime. As we're creating the tokens locally and validating them on the same 
+                    // machines which should have synchronised time, this can be set to zero. Where external tokens are
+                    // used, some leeway here could be useful.
+                    ClockSkew = System.TimeSpan.FromMinutes(10)
+                }
+            });
+            #endregion
 
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials()
-        );
+                .AllowAnyHeader()
+                 .AllowAnyHeader()
+                 .AllowAnyMethod()
+                  .AllowCredentials());
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseSession();
 
             app.UseMvc();
             app.UseMvc(routes =>
@@ -85,6 +133,9 @@ namespace Server
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            
         }
+
     }
+
 }

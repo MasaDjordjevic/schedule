@@ -9,6 +9,7 @@ using Server.Models;
 using Server.Services;
 using Newtonsoft.Json;
 using Server.Extentions;
+using System.Security.Claims;
 
 namespace Server.Controllers
 {
@@ -147,6 +148,21 @@ namespace Server.Controllers
 
         }
 
+        [HttpGet]
+        [Route("proba")]
+        public IActionResult proba()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+
+            return Ok(new
+            {
+                id = HttpContext.User.GetId(),
+                role = User.GetRole(),
+                user = claimsIdentity
+            });
+
+        }
+
         [HttpPost]
         [Route("CreateInitialDivision")]
         public IActionResult CreateInitialDivision([FromBody] DivisionsController.CreateInitialDivisionParameterBinding obj)
@@ -155,7 +171,7 @@ namespace Server.Controllers
 
             try
             {
-                divisionService.CreateInitialDivision(HttpContext.Session.GetAssistantId(), obj.name, obj.departmentID, obj.courseID, obj.divisionTypeID, obj.beginning, obj.ending, obj.groups.ToList());
+                divisionService.CreateInitialDivision(HttpContext.User.GetId(), obj.name, obj.departmentID, obj.courseID, obj.divisionTypeID, obj.beginning, obj.ending, obj.groups.ToList());
                 return Ok(new { status = "uspelo" });
             }
             catch (Exception ex)

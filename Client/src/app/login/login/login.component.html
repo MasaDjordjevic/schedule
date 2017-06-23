@@ -11,6 +11,8 @@
     <button md-raised-button color="primary">Login</button>
   </div>
 </form>
+<button md-raised-button color="primary" (click)="check()">Check</button>
+
 <div id="login-message" [class.shown]="loginMessage && loginMessage.length > 0">
   <span>wrong credentials</span>
 </div>

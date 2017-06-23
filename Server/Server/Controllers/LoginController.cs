@@ -8,6 +8,11 @@ using Server.Models;
 using Server.Services;
 using Server.Extentions;
 using Newtonsoft.Json;
+using CSAuthorAngular2InASPNetCore.Auth;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Server.Controllers
 {
@@ -25,7 +30,7 @@ namespace Server.Controllers
         private LoginService loginService;
         private StudentService studentService;
         private AssistantService assistantService;
-        public LoginController (RasporedContext context, LoginService loginService, StudentService studentService, AssistantService assistantService)
+        public LoginController(RasporedContext context, LoginService loginService, StudentService studentService, AssistantService assistantService)
         {
             _context = context;
             this.loginService = loginService;
@@ -62,15 +67,44 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Classrooms> GetClassrooms()
+        [Route("proba")]
+        public IActionResult proba()
         {
-            return _context.Classrooms;
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+
+            return Ok(new { id = HttpContext.User.GetId(),
+                role = User.GetRole(),
+                user = claimsIdentity });
+
+        }
+
+
+        private string GenerateToken(UniMembers user, DateTime expires)
+        {
+            var handler = new JwtSecurityTokenHandler();
+
+            ClaimsIdentity identity = new ClaimsIdentity(
+                new GenericIdentity(user.UniMemberId.ToString(), "TokenAuth"),
+                new[] {
+                    new Claim("role", user.StudentId == null ? "assistant" : "student", "role")
+                }
+            );
+
+            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
+            {
+                Issuer = TokenAuthOption.Issuer,
+                Audience = TokenAuthOption.Audience,
+                SigningCredentials = TokenAuthOption.SigningCredentials,
+                Subject = identity,
+                Expires = expires
+            });
+            return handler.WriteToken(securityToken);
         }
 
         [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody] LoginBinding loginData)
-        {         
+        {
             if (String.IsNullOrEmpty(loginData.username) || String.IsNullOrEmpty(loginData.password))
             {
                 return Ok(new { exception = "parameter error" });
@@ -85,10 +119,22 @@ namespace Server.Controllers
                                     {
                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                     }))));
-                return Ok(new { status = "success" });
+
+                var requestAt = DateTime.Now;
+                var expiresIn = requestAt + TokenAuthOption.ExpiresSpan;
+                var token = GenerateToken(usr, expiresIn);
+
+
+                var data = new {
+                    requertAt = requestAt,
+                    expiresIn = TokenAuthOption.ExpiresSpan.TotalSeconds,
+                    tokeyType = TokenAuthOption.TokenType,
+                    accessToken = token
+                };
+                return Ok(new { status = "success", data = data });
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Ok(new { exception = ex.Message });
             }

@@ -21,12 +21,19 @@ export class LoginComponent implements OnInit {
     this.loginMessage = '';
     this.loginService.login(this.username, this.password)
       .then(res => {
-        if(res.status === 'success') {
-          console.log('sucess');
-        } else {
-          this.loginMessage = res.exception;
-        }
+        console.log(res);
+        // if (res.status === 'success') {
+        //   console.log('sucess');
+        //   console.log(res.data);
+        // } else {
+        //   this.loginMessage = res.exception;
+        // }
       });
+  }
+
+  check() {
+    this.loginService.getUserInfo();
+    this.loginService.getUserInfo2();
   }
 
 }
