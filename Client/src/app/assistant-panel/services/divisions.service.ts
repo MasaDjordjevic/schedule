@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {Division} from '../../models/Division';
 import {TypeDivisions} from '../../models/TypeDivisions';
+import {AuthService} from '../../login/auth.service';
 
 
 @Injectable()
@@ -9,13 +10,11 @@ export class DivisionsService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private divisionsUrl = 'http://localhost:55281/api/Divisions';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private authService: AuthService) { }
 
   public getDivision(id: number): Promise<Division> {
-    return this.http.get(this.divisionsUrl + '/GetDivisions/' + id)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.divisionsUrl + '/GetDivisions/' + id);
   }
 
   public updateDivision(divisionId, name, beginning, ending, divisionTypeID, courseID) {
@@ -28,7 +27,7 @@ export class DivisionsService {
       'courseID': courseID,
     });
     console.log(body);
-    const options = new RequestOptions({ headers: this.headers });
+    const options = new RequestOptions({headers: this.headers});
     return this.http.post(this.divisionsUrl + '/UpdateDivision', body, options)
       .toPromise()
       .then(res => res.json())
@@ -97,11 +96,7 @@ export class DivisionsService {
     });
     /*debugger;*/
     console.log(body);
-    const options = new RequestOptions({ headers: this.headers });
-    return this.http.post(this.divisionsUrl + '/CreateInitialDivision', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.divisionsUrl + '/CreateInitialDivision', body);
   }
 
   private handleError(error: any): Promise<any> {

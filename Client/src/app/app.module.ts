@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {TestModule} from './test/test.module';
 import {LoginModule} from './login/login.module';
+import {AuthService} from './login/auth.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -38,7 +39,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

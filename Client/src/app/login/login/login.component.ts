@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   check() {
     this.loginService.getUserInfo();
     this.loginService.getUserInfo2();
+    this.loginService.probaPost();
   }
 
 }

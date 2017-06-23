@@ -34,10 +34,42 @@ namespace Server.Controllers
             return _context.Divisions;
         }
 
+        [HttpGet]
+        [Route("proba")]
+        public IActionResult proba()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+
+            return Ok(new
+            {
+                id = HttpContext.User.GetId(),
+                role = User.GetRole(),
+                user = claimsIdentity
+            });
+
+        }
+
+        [HttpPost]
+        [Route("probaPost")]
+        public IActionResult probaPost([FromBody] DivisionsController.CreateInitialDivisionParameterBinding obj)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var c = obj;
+            return Ok(new
+            {
+                id = HttpContext.User.GetId(),
+                role = User.GetRole(),
+                user = claimsIdentity
+            });
+
+        }
+
         // GET: api/Divisions/5
         [Route("GetDivisions/{id}")]
         public async Task<IActionResult> GetDivisions([FromRoute] int id)
         {
+            this.proba();
+
             var divisions = divisionService.GetDivison(id);
 
             return Ok(JsonConvert.SerializeObject(divisions, Formatting.Indented,
@@ -148,20 +180,7 @@ namespace Server.Controllers
 
         }
 
-        [HttpGet]
-        [Route("proba")]
-        public IActionResult proba()
-        {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-
-            return Ok(new
-            {
-                id = HttpContext.User.GetId(),
-                role = User.GetRole(),
-                user = claimsIdentity
-            });
-
-        }
+     
 
         [HttpPost]
         [Route("CreateInitialDivision")]

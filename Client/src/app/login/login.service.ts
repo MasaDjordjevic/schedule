@@ -1,52 +1,43 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class LoginService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private loginUrl = 'http://localhost:55281/api/Login/Login';
   private classroomsUrl = 'http://localhost:55281/api/Classrooms';  // URL to web api
-  private tokenKey = 'token';
-  private token: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+  private authService: AuthService) { }
 
 
   login(username: string, password: string): Promise<any> {
-    const body = JSON.stringify({
-      'username': username,
-      'password': password
-    });
-
-    return this.http
-      .post(this.loginUrl, body, {headers: this.headers})
-      .toPromise()
-      .then(res => res.json())
-      .then(res => {
-        let a = res.data;
-        sessionStorage.setItem(this.tokenKey, res.data.accessToken);
-      })
-      .catch(this.handleError);
+     return this.authService.login(username, password);
   }
 
   getUserInfo(): Promise<any> {
-    return this.authGet('http://localhost:55281/api/Login/proba');
+    return this.authService.authGet('http://localhost:55281/api/Login/proba')
+      .then(res => console.log(res));
   }
 
   getUserInfo2(): Promise<any> {
-    return this.authGet('http://localhost:55281/api/Divisions/proba');
+    return this.authService.authGet('http://localhost:55281/api/Divisions/proba')
+      .then(res => console.log(res));
   }
 
-  authGet(url): Promise<any> {
-    const headers = this.initAuthHeaders();
-    console.log(headers);
-    return this.http.get(url, { headers: headers }).toPromise()
-      .then(response => response.json() as any)
-      .then(res =>  {
-        console.log(res);
-      })
-      .catch(this.handleError);
+  probaPost(): Promise<any> {
+    const body = JSON.stringify({
+      'divisionID': -5,
+      'name': 'testtestsetse',
+      'beginning': new Date(),
+      'ending': new Date(),
+      'divisionTypeID': 1,
+      'courseID': 10,
+    });
+    return this.authService.authPost('http://localhost:55281/api/Divisions/probaPost', body)
+      .then(res => console.log(res));
+
   }
 
   private handleError(error: any): Promise<any> {
@@ -54,20 +45,5 @@ export class LoginService {
     return Promise.reject(error.message || error);
   }
 
-  private getLocalToken(): string {
-    if (!this.token) {
-      this.token = sessionStorage.getItem(this.tokenKey);
-    }
-    return this.token;
-  }
 
-  public initAuthHeaders(): Headers {
-    const token = this.getLocalToken();
-    if (token == null) throw new Error('No token');
-
-    const headers = new Headers();
-    headers.append('Authorization', 'Bearer ' + token);
-
-    return headers;
-  }
 }
