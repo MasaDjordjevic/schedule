@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./stepper-header.component.scss']
 })
 export class StepperHeaderComponent implements OnInit {
-
+  @Input() theme: string;
   @Input() stepValids: Array<boolean>;
   @Input() stepTitles: Array<string>;
   @Input() currentStep = 1;

@@ -1,4 +1,5 @@
 @import "../../../palette";
+@import "../../../themes";
 @import "../../../ljubenovic-toolkit";
 
 :host {
@@ -29,8 +30,6 @@
     align-items: center;
   }
 
-
-
   .app-stepper-step-title {
     padding-left: 12px;
     padding-right: 12px;
@@ -39,11 +38,14 @@
     padding-bottom: .4ex; // da se malo bolje gadja sa linijom ispod koraka
   }
 
-
   .current {
 
     .app-stepper-step-circle {
-      background-color: palette($blue); // default
+      @each $string, $var in $theme-all-var-string {
+        &.#{$string} {
+          background-color: $var;
+        }
+      }
 
       // Ripple effect
       &::after {
@@ -57,15 +59,17 @@
     }
   }
 
-  .finished  {
+  .finished {
 
     .app-stepper-step-circle {
-      background-color: palette($blue); // default
-
+      @each $string, $var in $theme-all-var-string {
+        &.#{$string} {
+          background-color: $var;
+        }
+      }
     }
   }
 }
-
 
 .app-stepper-step-circle {
   background-color: desaturate(palette($blue), 100%); // default
@@ -103,10 +107,13 @@
     background-color: transparent;
     width: 90%;
     height: 90%;
-    top:  5%;
+    top: 5%;
     left: 5%;
     z-index: 3;
     border-radius: 50%;
     box-shadow: 0 0 0 0px rgba(desaturate(palette($blue), 100%), 0.5); // default
   }
 }
+
+
+

@@ -9,7 +9,6 @@ import {DepartmentsService} from '../services/departments.service';
 })
 export class DepartmentsListComponent implements OnInit {
   @Input() primaryColor = 'MaterialBlue';
-  @Input() secondaryColor = 'MaterialOrange';
 
   private yearDepartments: any[];
   selectedDepartmentId: number = -1;

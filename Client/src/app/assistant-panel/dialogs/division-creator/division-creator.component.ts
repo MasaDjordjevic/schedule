@@ -6,6 +6,8 @@ import {DivisionsService} from '../../services/divisions.service';
 import {CoursesService} from '../../services/courses.service';
 import {MD_DIALOG_DATA} from '@angular/material';
 import preventExtensions = Reflect.preventExtensions;
+import {TranslateService} from '@ngx-translate/core';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-division-creator',
@@ -13,6 +15,8 @@ import preventExtensions = Reflect.preventExtensions;
   styleUrls: ['./division-creator.component.scss']
 })
 export class DivisionCreatorComponent implements AfterViewInit {
+
+
 
   // region Podaci o novoj raspodeli koja se kreira
   public newDivisionName: string;
@@ -32,7 +36,7 @@ export class DivisionCreatorComponent implements AfterViewInit {
   public newDivisionTypeName = (id = this.newDivisionTypeId) =>
     (<any>this.divisionTypes).filter(i => i.divisionTypeId === id)[0].type;
   public newDivisionCreationOrderName = (i = this.newDivisionCreationOrderIsRandom) =>
-    i === '0' ? 'by_index_number' : 'random';
+    i === '0' ? this.translate.instant('by_index_number') : this.translate.instant('random');
 
 
   // endregion
@@ -136,8 +140,15 @@ export class DivisionCreatorComponent implements AfterViewInit {
     return this._departmentId;
   }
 
+
+  get theme() {
+    return this.themeService.getTheme()
+  }
+
   constructor(private coursesService: CoursesService,
               private divisionsService: DivisionsService,
+              private translate: TranslateService,
+              private themeService: ThemeService,
               @Inject(MD_DIALOG_DATA) public data: any) {
     this.departmentId = data.departmentId;
     this.resetAll();

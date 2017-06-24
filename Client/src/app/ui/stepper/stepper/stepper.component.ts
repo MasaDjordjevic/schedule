@@ -1,4 +1,7 @@
-import {AfterContentInit, Component, ContentChildren, EventEmitter, OnInit, Output, QueryList} from '@angular/core';
+import {
+  AfterContentInit, Component, ContentChildren, EventEmitter, Input, OnInit, Output,
+  QueryList
+} from '@angular/core';
 import {StepComponent} from '../step/step.component';
 
 @Component({
@@ -7,6 +10,7 @@ import {StepComponent} from '../step/step.component';
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit, AfterContentInit {
+  @Input() theme: string;
   private _currentStep = 1;
   @Output() onSubmit = new EventEmitter();
   @ContentChildren(StepComponent) _steps: QueryList<StepComponent>;

@@ -1,23 +1,28 @@
 <!-- Header -->
-<app-stepper-header [stepTitles]="stepTitles" [stepValids]="stepValids" [currentStep]="currentStep"></app-stepper-header>
+<app-stepper-header [stepTitles]="stepTitles"
+                    [stepValids]="stepValids"
+                    [currentStep]="currentStep"
+                    [theme]="theme"></app-stepper-header>
 <!-- Steps -->
 <div class="app-steps-container">
   <ng-content></ng-content>
 </div>
 <!-- Prev/Next buttons -->
-<div class="app-stepper-footer">
+<div [class]="'app-stepper-footer ' + theme + '-theme'">
 
   <button md-button (click)="goToPrev()"
-          [disabled]="currentIsFirst()" color="primary">{{'back | translate'}}</button>
+          [disabled]="currentIsFirst()" color="primary">{{'back' | translate}}
+  </button>
   <ng-template [ngIf]="!currentIsLast()">
     <button md-raised-button
             (click)="goToNext()" [disabled]="currentIsLast() || !currentIsValid()"
-            color="primary" >{{'next | translate'}}</button>
+            color="primary">{{'next' | translate}}
+    </button>
   </ng-template>
   <ng-template [ngIf]="currentIsLast()">
     <button md-raised-button (click)="submit()"
             [disabled]="!currentIsLast() || !allAreValid()" color="primary">
-      {{'create_division | translate'}}
+      {{'create_division' | translate}}
     </button>
   </ng-template>
 </div>
