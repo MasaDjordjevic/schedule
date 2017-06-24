@@ -91,7 +91,7 @@
             <md-input-container class="full-width">
               <input mdInput
                      *ngIf="newDivisionCreationWay !== 'manual'"
-                     [placeholder]="(newDivisionCreationWay === 'on_x' ? 'number_of_goups' : 'number_of_students') | translate"
+                     [placeholder]="newDivisionCreationWay === 'on_x' ? ('number_of_groups' | translate) : ('number_of_students') | translate"
                      [(ngModel)]="newDivisionCreationNumberX">
             </md-input-container>
           </div>
@@ -161,7 +161,7 @@
       </div>
     </app-step>
 
-    <app-step [stepTitle]="'confirm'">
+    <app-step [stepTitle]="'confirm' | translate">
       <div class="potvrda" *ngIf="createdGroups">
 
         <div class="top">

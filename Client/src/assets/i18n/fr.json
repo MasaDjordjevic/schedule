@@ -52,5 +52,34 @@
 
   "index_number": "Numéro d'index",
   "move_to_group": "Déplacer vers un groupe",
-  "kick_student": "Retirer l'élève"
+  "kick_student": "Retirer l'élève",
+
+
+  "by_index_number": "Par numéro d'index",
+  "random": "Au hasard",
+  "basic_info": "Information basique",
+  "division_name": "Nom de la division",
+  "division_type": "Type de division",
+  "start_date": "Début",
+  "end_date": "Fin",
+  "creation_way": "Mode de création",
+  "by_number_of_groups": "Par nombre de groupes",
+  "by_number_of_students": "Par nombre d'étudiants",
+  "manual": "Manuel",
+  "sort_style": "Style de tri",
+  "preview": "Aperçu",
+  "division_creator_preview_info__1": "Un total de",
+  "division_creator_preview_info__2": "étudiants peuvent être divisés en",
+  "division_creator_preview_info__3": "groupes (moyenne de",
+  "division_creator_preview_info__4": "étudiants par groupe).",
+  "group" : "Groupe",
+  "for_subject" : "Pour sujet",
+  "validity" : "Validité",
+  "total_students" : "Nombre total d'étudiants",
+  "total_groups" : "Total des groupes",
+  "average_students_per_group" : "Étudiants moyens par groupe",
+  "confirm": "Confirmer",
+  "back": "Précédent",
+  "next": "suivant",
+  "create_division": "Créer une division"
 }

@@ -1,23 +1,20 @@
 {
   "classrooms": "EN Classrooms",
-  "title" : "EN title",
+  "title": "EN title",
   "test": "EN Test",
   "departments": "Departments",
   "year": "Year",
   "divisions": "Divisions",
   "groups": "Groups",
   "students": "Students",
-
   "json": "JSON",
   "JSON": "JSON",
   "id": "ID",
-
   "name": "Name",
   "year": "Year",
   "new_division": "New division",
   "students": "Students",
   "global_timetable": "Global timetable",
-
   "subject": "Subject",
   "duration": "Duration",
   "number_of_groups": "Number of groups",
@@ -29,7 +26,6 @@
   "groups": "Groups",
   "export_division": "Export division",
   "delete_division": "Delete division",
-
   "group_edit": "Edit group",
   "cancel_class": "Cancel class",
   "combined_timetable": "Combined timetable",
@@ -49,10 +45,42 @@
   "duration_descriptive_string__2": " week on ",
   "duration_descriptive_string__3": " from ",
   "duration_descriptive_string__4": " to ",
-
   "index_number": "Index number",
   "move_to_group": "Move to group",
-  "kick_student": "Kick student"
+  "kick_student": "Kick student",
+
+  "by_index_number": "By index number",
+  "random": "Random",
+  "basic_info": "Basic info",
+  "division_name": "Division name",
+  "subject": "Subject",
+  "division_type": "Division type",
+  "start_date": "Start",
+  "end_date": "End",
+  "creation_way": "Creation way",
+  "by_number_of_groups": "By number of groups",
+  "by_number_of_students": "By number of students",
+  "manual": "Manual",
+  "sort_style": "Sort style",
+  "by_index_number": "By index number",
+  "random": "Random",
+  "preview": "Preview",
+  "division_creator_preview_info__1": "A total of",
+  "division_creator_preview_info__2": "students can be divided into",
+  "division_creator_preview_info__3": "groups (average",
+  "division_creator_preview_info__4": "students per group).",
+  "group" : "Group",
+  "name" : "Name",
+  "division_type" : "Division type",
+  "for_subject" : "For subject",
+  "validity" : "Validity",
+  "total_students" : "Total students",
+  "total_groups" : "Total groups",
+  "average_students_per_group" : "Average students per group",
+  "confirm": "Confirm",
+  "back": "Back",
+  "next": "Next",
+  "create_division": "Create division"
 
 
 }
