@@ -191,11 +191,11 @@ namespace Server.Controllers
             try
             {
                 divisionService.CreateInitialDivision(HttpContext.User.GetId(), obj.name, obj.departmentID, obj.courseID, obj.divisionTypeID, obj.beginning, obj.ending, obj.groups.ToList());
-                return Ok(new { status = "uspelo" });
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 

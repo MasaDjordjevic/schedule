@@ -3,7 +3,7 @@ import {Department} from '../../../models/Department';
 import {Student} from '../../../models/Student';
 import {StudentsService} from '../../services/students.service';
 import {DepartmentsService} from '../../services/departments.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {StudentFinderComponent} from '../../dialogs/student-finder/student-finder.component';
 import {DivisionCreatorComponent} from '../../dialogs/division-creator/division-creator.component';
@@ -30,6 +30,7 @@ export class DepartmentOptionsComponent implements OnInit {
   constructor(private departmentService: DepartmentsService,
               private studentsService: StudentsService,
               private route: ActivatedRoute,
+              private router: Router,
               public dialog: MdDialog) { }
 
 
@@ -38,7 +39,13 @@ export class DepartmentOptionsComponent implements OnInit {
 }
 
   openNewDivisionDialog() {
-    this.dialog.open(DivisionCreatorComponent, {data: {departmentId: this.departmentId}});
+
+    const dialogRef = this.dialog.open(DivisionCreatorComponent, {data: {departmentId: this.departmentId}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'created') {
+        this.router.navigate(['/assistant', {departmentId: this.departmentId, refresh: true}]);
+      }
+    });
   }
 
   getDepartment(): void {

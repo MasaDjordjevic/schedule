@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DivisionsService} from '../../services/divisions.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-division.component';
 
@@ -11,7 +11,7 @@ import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-divi
 })
 export class DivisionOptionsComponent implements OnInit {
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
-
+  departmentId: number; // for refreshing
   divisionId: number;
   division: any;
   errorMessage: string;
@@ -19,6 +19,7 @@ export class DivisionOptionsComponent implements OnInit {
 
   constructor(private divisionsService: DivisionsService,
               private route: ActivatedRoute,
+              private router: Router,
               public dialog: MdDialog) { }
 
   getDivision(): void {
@@ -49,13 +50,20 @@ export class DivisionOptionsComponent implements OnInit {
     this.route.params
       .subscribe((params: Params) => {
         this.divisionId = +params['divisionId'];
+        this.departmentId = +params['departmentId'];
         this.getDivision();
       });
   }
 
 
   openDeleteDivisionDialog() {
-    this.dialog.open(DeleteDivisionComponent, {data: {division: this.division}});
+    const dialogRef = this.dialog.open(DeleteDivisionComponent, {data: {division: this.division}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'deleted') {
+        this.router.navigate(['/assistant', {departmentId: this.departmentId}]);
+      }
+    });
   }
+
 
 }

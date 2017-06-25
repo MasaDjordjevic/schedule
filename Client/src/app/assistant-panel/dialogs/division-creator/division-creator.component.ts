@@ -4,7 +4,7 @@ import {Student} from '../../../models/Student';
 import {DivisionType} from '../../../models/DivisionType';
 import {DivisionsService} from '../../services/divisions.service';
 import {CoursesService} from '../../services/courses.service';
-import {MD_DIALOG_DATA} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import preventExtensions = Reflect.preventExtensions;
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeService} from '../../services/theme.service';
@@ -145,14 +145,21 @@ export class DivisionCreatorComponent implements AfterViewInit {
     return this.themeService.getTheme()
   }
 
+  close(message: string = null) {
+    this.dialogRef.close(message);
+  }
+
   constructor(private coursesService: CoursesService,
               private divisionsService: DivisionsService,
               private translate: TranslateService,
               private themeService: ThemeService,
+              public snackBar: MdSnackBar,
+              public dialogRef: MdDialogRef<DivisionCreatorComponent>,
               @Inject(MD_DIALOG_DATA) public data: any) {
     this.departmentId = data.departmentId;
     this.resetAll();
   }
+
 
   private resetAll() {
     this.courses = null;
@@ -222,6 +229,12 @@ export class DivisionCreatorComponent implements AfterViewInit {
     return ret;
   }
 
+  openSnackBar(message: string, action: string = null) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   createInitialDivision() {
     this.divisionsService.createInitialDivision(
       this.newDivisionName,
@@ -234,25 +247,21 @@ export class DivisionCreatorComponent implements AfterViewInit {
     )
       .then(response => {
         switch (response.status) {
-          case 'uspelo':
-            // this._globalService.toast(
-            //   this._globalService.translate('successfully_created_division__1') +
-            //   '*' + this.newDivisionName + '*' +
-            //   this._globalService.translate('successfully_created_division__2'));
-
-            console.log('succesfully_created_division ' + this.newDivisionName);
+          case 'success':
+            this.openSnackBar(
+              this.translate.instant('successfully_created_division__1') + this.newDivisionName +
+              this.translate.instant('successfully_created_division__2'));
+            this.close('created');
             break;
           default:
-            // this._globalService.toast(this._globalService.translate('error') + ' ' +
-            //   this._globalService.translate('division_not_created'));
+            this.openSnackBar(
+              this.translate.instant('error') + ' ' +
+              this.translate.instant('division_not_created'));
             console.log('error division not created')
             debugger;
+            this.close();
             break;
         }
-      })
-      .then(() => {
-        // this.closeMe();
-        // this._globalService.refreshAssistantPanelAll();
       });
   }
 
