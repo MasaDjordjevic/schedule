@@ -86,8 +86,8 @@
   "division_not_created": "Division not created.",
   "delete_division__1": "Delete division ",
   "delete_division__2": "?",
-  "successfully_deleted_division__1": "Successfully deleted division",
+  "successfully_deleted_division__1": "Successfully deleted division ",
   "successfully_deleted_division__2": ".",
-  "division_not_deleted__1": "Division",
+  "division_not_deleted__1": "Division ",
   "division_not_deleted__2": " not deleted."
 }

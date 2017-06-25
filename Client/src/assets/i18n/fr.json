@@ -81,5 +81,15 @@
   "confirm": "Confirmer",
   "back": "Précédent",
   "next": "suivant",
-  "create_division": "Créer une division"
+  "create_division": "Créer une division",
+  "successfully_created_division__1": "Division ",
+  "successfully_created_division__2": "créée avec succès.",
+  "error": "Une erreur s'est produite.",
+  "division_not_created": "Division non créée.",
+  "delete_division__1": "Supprimer la division ",
+  "delete_division__2": "?",
+  "successfully_deleted_division__1": "Division  ",
+  "successfully_deleted_division__2": "supprimée avec succès.",
+  "division_not_deleted__1": "Division ",
+  "division_not_deleted__2": " non supprimé."
 }

@@ -82,5 +82,15 @@
   "confirm": "Potvrda",
   "back": "Back",
   "next": "Next",
-  "create_division": "Create division"
+  "create_division": "Kreiraj raspodelu",
+  "successfully_created_division__1": "Uspešno kreirana raspodela ",
+  "successfully_created_division__2": ".",
+  "error": "Došlo je do greške.",
+  "division_not_created": "Nije kreirana raspodela.",
+  "delete_division__1": "Obriši raspodelu ",
+  "delete_division__2": "?",
+  "successfully_deleted_division__1": "Uspešno obrisana raspodela ",
+  "successfully_deleted_division__2": ".",
+  "division_not_deleted__1": "Raspodela ",
+  "division_not_deleted__2": " nije obrisana."
 }
