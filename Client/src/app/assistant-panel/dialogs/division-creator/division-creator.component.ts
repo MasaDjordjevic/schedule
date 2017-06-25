@@ -83,12 +83,12 @@ export class DivisionCreatorComponent implements AfterViewInit {
 
   public get $$newDivisionCreationNumberX(): boolean {
     let ret: boolean = !!this.newDivisionCreationNumberX;
-    ret = ret && !!this.newDivisionCreationNumberX.match(/^\d+$/); // integer
+    ret = this.newDivisionCreationWay === 'manual' || (ret && !!this.newDivisionCreationNumberX.match(/^\d+$/)); // integer
     return ret;
   }
 
   public get $$newDivisionCreationOrderIsRandom(): boolean {
-    return this.newDivisionCreationOrderIsRandom !== null;
+    return this.newDivisionCreationOrderIsRandom !== null || this.newDivisionCreationWay === 'manual';
   }
 
   // 0 se misli da je sve validno, zajedno
@@ -206,7 +206,6 @@ export class DivisionCreatorComponent implements AfterViewInit {
       this.divisionsService.getGroupsOnX(+courseId, +numberX, +studentsOrder)
         .then(groups => this.createdGroups = groups, error => this.errorMessage = <any>error);
     } else {
-      // this._globalService.toast(this._globalService.translate('selected_manual_no_list_to_display'));
       console.log('selected_manual_no_list_to_display');
     }
   }
@@ -219,6 +218,9 @@ export class DivisionCreatorComponent implements AfterViewInit {
   }
 
   private getNamedGroups() {
+    if (!this.createdGroups) {
+      return [];
+    }
     const ret: Array<any> = [];
     for (let i = 0; i < this.createdGroups.length; i++) {
       ret[i] = {

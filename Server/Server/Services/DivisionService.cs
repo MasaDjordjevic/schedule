@@ -40,9 +40,8 @@ namespace Server.Services
                            .Include(p => p.Department)
                            .Include(p => p.Course)
                            .Include(p => p.Groups)
-                           //.ThenInclude(a => a.GroupsStudents)//.ThenInclude(a=>a.Student).ThenInclude(a=>a.UniMembers)
-                           .Include(p => p.Groups).ThenInclude(a => a.Classroom)
-                           .Include(p => p.Groups).ThenInclude(a => a.TimeSpan)
+                           //.Include(p => p.Groups).ThenInclude(a => a.Classroom)
+                           //.Include(p => p.Groups).ThenInclude(a => a.TimeSpan)
                        where a.DivisionId == DivisionId
                        select a).First();
 
