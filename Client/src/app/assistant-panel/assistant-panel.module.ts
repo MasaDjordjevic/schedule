@@ -27,6 +27,7 @@ import { HighlightPipe } from './pipes/highlight.pipe';
 import { DivisionCreatorComponent } from './dialogs/division-creator/division-creator.component';
 import {CoursesService} from './services/courses.service';
 import { DeleteDivisionComponent } from './dialogs/delete-division/delete-division.component';
+import { MassGroupEditComponent } from './dialogs/mass-group-edit/mass-group-edit.component';
 
 @NgModule({
   imports: [
@@ -37,12 +38,12 @@ import { DeleteDivisionComponent } from './dialogs/delete-division/delete-divisi
     FormsModule,
     AssistantPanelRoutingModule
   ],
-  entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent],
+  entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent, MassGroupEditComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent,
-    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent],
+    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent, MassGroupEditComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService, CoursesService]
 })
 export class AssistantPanelModule {

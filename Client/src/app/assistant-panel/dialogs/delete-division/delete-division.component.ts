@@ -15,7 +15,7 @@ export class DeleteDivisionComponent implements OnInit {
               public snackBar: MdSnackBar,
               private translate: TranslateService,
               @Inject(MD_DIALOG_DATA) public data: any,
-              private dvisionsService: DivisionsService) {
+              private divisionsService: DivisionsService) {
     this.division = data.division;
   }
 
@@ -31,7 +31,7 @@ export class DeleteDivisionComponent implements OnInit {
   }
 
   removeDivision() {
-    this.dvisionsService.deleteDivision(this.division.DivisionId)
+    this.divisionsService.deleteDivision(this.division.DivisionId)
       .then(response => {
         switch (response.status) {
           case 'success':

@@ -1,0 +1,20 @@
+<div *ngIf="editedDivision.length > 0" class="content">
+  <div *ngFor="let group of division.Groups; let i = index">
+    <div class="name">{{group.Name}}</div>
+    <div class="classroom">
+      <md-input-container>
+        <input mdInput
+               [placeholder]="'classroom' | translate"
+               [mdAutocomplete]="classroomAutocomplete">
+        <md-autocomplete #classroomAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let classroom of classrooms"
+                     (onSelectionChange)="editedDivision[i].classroomId = classroom.classroomId"
+                     [value]="classroom.number">
+            {{classroom.number}}
+          </md-option>
+        </md-autocomplete>
+
+      </md-input-container>
+    </div>
+  </div>
+</div>
