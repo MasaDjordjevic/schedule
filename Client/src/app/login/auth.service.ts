@@ -15,12 +15,12 @@ export class AuthService {
       'username': username,
       'password': password
     });
+    const headers =  new Headers({'Content-Type': 'application/json'});
 
-    return this.authPost(this.loginUrl, body)
-      .then(res => {
-        let a = res.data;
-        sessionStorage.setItem(this.tokenKey, res.data.accessToken);
-      })
+    return this.http.post(this.loginUrl, body, {headers: headers}).toPromise()
+      .then(response => response.json())
+      .then(res =>  sessionStorage.setItem(this.tokenKey, res.data.accessToken))
+      .catch(this.handleError);
   }
 
   private getLocalToken(): string {
