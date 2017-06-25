@@ -9,8 +9,8 @@ import {LoginService} from '../login.service';
 export class LoginComponent implements OnInit {
   private loginMessage = '';
 
-  public username = '';
-  public password = '';
+  public username = 'wlada';
+  public password = 'wlada';
 
   constructor(private loginService: LoginService) { }
 

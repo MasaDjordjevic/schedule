@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DivisionsService} from '../../services/divisions.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {MdDialog} from '@angular/material';
+import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-division.component';
 
 @Component({
   selector: 'app-division-options',
@@ -16,7 +18,8 @@ export class DivisionOptionsComponent implements OnInit {
   emptyGroup: any; // sluzi za dodavanje nove grupe preko edit-group komponente
 
   constructor(private divisionsService: DivisionsService,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute,
+              public dialog: MdDialog) { }
 
   getDivision(): void {
     if (!this.divisionId) {
@@ -48,6 +51,11 @@ export class DivisionOptionsComponent implements OnInit {
         this.divisionId = +params['divisionId'];
         this.getDivision();
       });
+  }
+
+
+  openDeleteDivisionDialog() {
+    this.dialog.open(DeleteDivisionComponent, {data: {division: this.division}});
   }
 
 }

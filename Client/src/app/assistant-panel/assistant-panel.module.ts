@@ -26,6 +26,7 @@ import {FormsModule} from '@angular/forms';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { DivisionCreatorComponent } from './dialogs/division-creator/division-creator.component';
 import {CoursesService} from './services/courses.service';
+import { DeleteDivisionComponent } from './dialogs/delete-division/delete-division.component';
 
 @NgModule({
   imports: [
@@ -36,11 +37,12 @@ import {CoursesService} from './services/courses.service';
     FormsModule,
     AssistantPanelRoutingModule
   ],
-  entryComponents: [StudentFinderComponent, DivisionCreatorComponent],
+  entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
-    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent, HighlightPipe, DivisionCreatorComponent],
+    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent,
+    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService, CoursesService]
 })
 export class AssistantPanelModule {

@@ -34,8 +34,8 @@ export class DepartmentOptionsComponent implements OnInit {
 
 
   openAllStudentsDialog() {
-    this.dialog.open(StudentFinderComponent, {data: {students: this.students}});
-  }
+  this.dialog.open(StudentFinderComponent, {data: {students: this.students}});
+}
 
   openNewDivisionDialog() {
     this.dialog.open(DivisionCreatorComponent, {data: {departmentId: this.departmentId}});

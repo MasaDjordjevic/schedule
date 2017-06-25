@@ -251,6 +251,23 @@ namespace Server.Controllers
             return CreatedAtAction("GetDivisions", new { id = divisions.DivisionId }, divisions);
         }
 
+        [HttpGet]
+        [Route("DeleteDivision/{id}")]
+        public IActionResult DeleteDivision([FromRoute] int id)
+        {            
+            if (!HttpContext.User.IsAssistant()) return Unauthorized();
+            
+            try
+            {
+                divisionService.DeleteDivision(id);
+                return Ok(new { status = "success" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { status = "error", message = ex.Message });
+            }
+        }
+
         // DELETE: api/Divisions/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDivisions([FromRoute] int id)

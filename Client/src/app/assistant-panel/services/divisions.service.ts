@@ -42,10 +42,7 @@ export class DivisionsService {
   }
 
   public deleteDivision(divisionId) {
-    return this.http.get(this.divisionsUrl + '/DeleteDivision/?divisionID=' + divisionId)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.divisionsUrl + '/DeleteDivision/' + divisionId);
   }
 
   /**
