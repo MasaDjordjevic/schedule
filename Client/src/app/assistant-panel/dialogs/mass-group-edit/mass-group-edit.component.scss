@@ -2,49 +2,76 @@
 @import "../../../palette";
 @import "../../../themes";
 
-:host .content{
+:host {
+  md-input-container {
+    margin: 0.2em;
+  }
+
   display: flex;
-  flex-direction: column;
-  padding: 1.5em;
-  //max-height: 90vh;
-  //overflow-y: auto;
-
-  > div:not(.controls) {
+  .content {
     display: flex;
-    align-items: baseline;
-    padding: .25em;
+    flex-direction: column;
+    padding: 1.5em;
+    //max-height: 90vh;
+    //overflow-y: auto;
 
-    .name, .classroom, .timespan {
-      padding: .25em;
-    }
-
-    .name {
-      width: 120px;
-      font-weight: bold;
-    }
-
-    .classroom {
-      width: 80px;
-    }
-
-    .timespan {
-      width: 700px;
+    .group {
       display: flex;
+      align-items: center;
 
-      > * {
-        flex: 1 0 auto;
-        padding: 0 .25em;
+      .name {
+        padding: .25em;
+        width: 120px;
+        font-weight: bold;
       }
 
-      r-dropdown:nth-of-type(2) {
-        @include force-width(120px);
+      .inputs {
+        display: flex;
+        padding: 1.5em;
+
+        display: flex;
+        align-items: baseline;
+        padding: .25em;
+
+        .name, .classroom, .timespan {
+          padding: .25em;
+        }
+
+
+        .classroom {
+          width: 60px;
+        }
+
+        .day-of-week {
+          width: 80px;
+        }
+
+        .timespan {
+          width: 180px;
+          display: flex;
+
+          > * {
+            flex: 1 0 auto;
+            padding: 0 .25em;
+          }
+
+        }
+
+        .date {
+          width: 150px;
+        }
+
       }
     }
-  }
 
-  > .controls {
-    padding-top: 1em;
-    display: flex;
-    justify-content: flex-end;
+    > .controls {
+      padding-top: 1em;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
+}
+
+.full-width {
+  width: 100%;
 }

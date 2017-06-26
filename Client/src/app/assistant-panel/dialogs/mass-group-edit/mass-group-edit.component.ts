@@ -17,6 +17,7 @@ export class MassGroupEditComponent implements OnInit {
   private errorMessage: string;
 
   private editedDivision = [];
+  private daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
   public get division() {
     return this._division;
@@ -79,6 +80,7 @@ export class MassGroupEditComponent implements OnInit {
   close(message: string = null) {
     this.dialogRef.close(message);
   }
+
 
 
   openSnackBar(message: string, action: string = null) {
