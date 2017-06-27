@@ -27,13 +27,15 @@ export class MassGroupEditComponent implements OnInit {
   public set division(d) {
     this._division = d;
     this.editedDivision = [];
+    console.log(this.division.Groups);
+    debugger;
     for (let i = 0; i < this.division.Groups.length; i++) {
       // vrlo je bitno da idu istim redom zbog čuvanja kasnije
-      if (this.division.Groups[i].timeSpan) {
+      if (this.division.Groups[i].TimeSpan) {
         this.editedDivision.push({
-          groupId: this.division.Groups[i].groupID,
-          classroomId: this.division.Groups[i].classroomID,
-          period: this.division.Groups[i].timeSpan.period,
+          groupId: this.division.Groups[i].GroupId,
+          classroomId: this.division.Groups[i].ClassroomId,
+          period: this.division.Groups[i].TimeSpan.period,
           dayOfWeek: moment(this.division.Groups[i].timeSpan.startDate).clone().day(), // 0 nedelja, 1 ponedeljak, ... 6 subota
           timeStart: this.division.Groups[i].timeSpan.period === 0 ? null :
             moment(this.division.Groups[i].timeSpan.startDate).clone().format('HH:mm'),
@@ -57,6 +59,7 @@ export class MassGroupEditComponent implements OnInit {
         });
       }
     }
+    console.log(this.editedDivision);
   };
 
   constructor(public dialogRef: MdDialogRef<MassGroupEditComponent>,

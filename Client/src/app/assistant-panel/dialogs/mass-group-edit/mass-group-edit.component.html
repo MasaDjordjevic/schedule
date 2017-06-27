@@ -7,9 +7,11 @@
       <md-input-container class="classroom">
         <input mdInput
                [placeholder]="'classroom' | translate"
-               [mdAutocomplete]="classroomAutocomplete">
+               [mdAutocomplete]="classroomAutocomplete"
+               >
       </md-input-container>
-      <md-autocomplete #classroomAutocomplete="mdAutocomplete">
+      <md-autocomplete #classroomAutocomplete="mdAutocomplete"
+     >
         <md-option *ngFor="let classroom of classrooms"
                    (onSelectionChange)="editedDivision[i].classroomId = classroom.classroomId"
                    [value]="classroom.number">
@@ -21,7 +23,9 @@
       <md-input-container class="timespan">
         <input mdInput
                [placeholder]="'period' | translate"
-               [mdAutocomplete]="timespanAutocomplete">
+               [mdAutocomplete]="timespanAutocomplete"
+               [value]="editedDivision[i].period">
+        {{editedDivision[i] |json}}
       </md-input-container>
       <md-autocomplete #timespanAutocomplete="mdAutocomplete">
         <md-option (onSelectionChange)="editedDivision[i].period = 1"
