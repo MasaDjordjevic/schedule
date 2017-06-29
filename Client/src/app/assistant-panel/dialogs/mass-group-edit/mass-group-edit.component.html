@@ -8,6 +8,7 @@
         <input mdInput
                [placeholder]="'classroom' | translate"
                [mdAutocomplete]="classroomAutocomplete"
+               [value]="getClassroomNumber(editedDivision[i].classroomId)"
                >
       </md-input-container>
       <md-autocomplete #classroomAutocomplete="mdAutocomplete"
@@ -24,8 +25,7 @@
         <input mdInput
                [placeholder]="'period' | translate"
                [mdAutocomplete]="timespanAutocomplete"
-               [value]="editedDivision[i].period">
-        {{editedDivision[i] |json}}
+               [value]="getPeriod(editedDivision[i].period)">
       </md-input-container>
       <md-autocomplete #timespanAutocomplete="mdAutocomplete">
         <md-option (onSelectionChange)="editedDivision[i].period = 1"
@@ -50,7 +50,8 @@
         <md-input-container class="day-of-week">
           <input mdInput
                  [placeholder]="'day_in_week' | translate"
-                 [mdAutocomplete]="dayAutocomplete">
+                 [mdAutocomplete]="dayAutocomplete"
+          >
         </md-input-container>
         <md-autocomplete #dayAutocomplete="mdAutocomplete">
           <md-option *ngFor="let day of daysOfWeek; let d = index"
