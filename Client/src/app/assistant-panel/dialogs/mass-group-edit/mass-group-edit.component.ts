@@ -5,6 +5,7 @@ import {ClassroomsService} from '../../../test/classrooms/classrooms.service';
 import {GroupsService} from '../../services/groups.service';
 import {TranslateService} from '@ngx-translate/core';
 import {startWith} from 'rxjs/operator/startWith';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-mass-group-edit',
@@ -64,12 +65,17 @@ export class MassGroupEditComponent implements OnInit {
   constructor(public dialogRef: MdDialogRef<MassGroupEditComponent>,
               public snackBar: MdSnackBar,
               private translate: TranslateService,
+              private themeService: ThemeService,
               private classroomsService: ClassroomsService,
               private groupsService: GroupsService,
               @Inject(MD_DIALOG_DATA) public data: any,) {
     this.getClassrooms();
     this.division = data.division;
     console.log(this.division);
+  }
+
+  get theme() {
+    return this.themeService.getTheme() + '-theme';
   }
 
   getClassrooms() {

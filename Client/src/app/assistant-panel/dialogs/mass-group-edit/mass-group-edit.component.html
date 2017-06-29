@@ -1,18 +1,18 @@
-<div *ngIf="editedDivision.length > 0" class="content">
+<div *ngIf="editedDivision.length > 0" [class]="'content ' + theme">
   <div class="group"
        *ngFor="let group of division.Groups; let i = index">
     <div class="name">{{group.Name}}</div>
 
     <div class="inputs">
-      <md-input-container class="classroom">
+      <md-input-container class="classroom" color="accent">
         <input mdInput
                [placeholder]="'classroom' | translate"
                [mdAutocomplete]="classroomAutocomplete"
                [value]="getClassroomNumber(editedDivision[i].classroomId)"
-               >
+        >
       </md-input-container>
       <md-autocomplete #classroomAutocomplete="mdAutocomplete"
-     >
+      >
         <md-option *ngFor="let classroom of classrooms"
                    (onSelectionChange)="editedDivision[i].classroomId = classroom.classroomId"
                    [value]="classroom.number">
@@ -21,7 +21,7 @@
       </md-autocomplete>
 
 
-      <md-input-container class="timespan">
+      <md-input-container class="timespan" color="accent">
         <input mdInput
                [placeholder]="'period' | translate"
                [mdAutocomplete]="timespanAutocomplete"
@@ -47,7 +47,7 @@
       </md-autocomplete>
 
       <div *ngIf="editedDivision[i].period && editedDivision[i].period !== 0">
-        <md-input-container class="day-of-week">
+        <md-input-container class="day-of-week" color="accent">
           <input mdInput
                  [placeholder]="'day_of_week' | translate"
                  [mdAutocomplete]="dayAutocomplete"
@@ -63,26 +63,26 @@
         </md-autocomplete>
       </div>
 
-      <md-input-container class="date">
+      <md-input-container class="date" color="accent">
         <input mdInput
                [placeholder]="('beginning' | translate) + ' (HH:MM)'"
                [(ngModel)]="editedDivision[i].timeStart">
       </md-input-container>
 
-      <md-input-container class="date">
+      <md-input-container class="date" color="accent">
         <input mdInput
                [placeholder]="('ending' | translate) + ' (HH:MM)'"
                [(ngModel)]="editedDivision[i].timeEnd">
       </md-input-container>
 
       <div *ngIf="editedDivision[i].period == 0">
-        <md-input-container class="date">
+        <md-input-container class="date" color="accent">
           <input mdInput
                  [placeholder]="('beginning' | translate) + ' (YYYY-MM-DD HH:MM)'"
                  [(ngModel)]="editedDivision[i].dateTimeStart">
         </md-input-container>
 
-        <md-input-container class="date">
+        <md-input-container class="date" color="accent">
           <input mdInput
                  [placeholder]="('ending' | translate) + ' (YYYY-MM-DD HH:MM)'"
                  [(ngModel)]="editedDivision[i].dateTimeEnd">

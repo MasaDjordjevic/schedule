@@ -142,7 +142,7 @@ export class DivisionCreatorComponent implements AfterViewInit {
 
 
   get theme() {
-    return this.themeService.getTheme()
+    return this.themeService.getTheme();
   }
 
   close(message: string = null) {
