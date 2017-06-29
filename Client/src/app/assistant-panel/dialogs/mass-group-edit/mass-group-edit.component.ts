@@ -18,7 +18,7 @@ export class MassGroupEditComponent implements OnInit {
   private errorMessage: string;
 
   private editedDivision = [];
-  private daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   public get division() {
     return this._division;
@@ -151,7 +151,7 @@ export class MassGroupEditComponent implements OnInit {
           case 'uspelo':
             this.openSnackBar(this.translate.instant('successfully_edited_groups_from_division__1')
               + ' ' + this.division.Name + ' ' +
-              this.translate.instant('successfully_edited_groups_from_division__1'));
+              this.translate.instant('successfully_edited_groups_from_division__2'));
             this.close();
             break;
           default:

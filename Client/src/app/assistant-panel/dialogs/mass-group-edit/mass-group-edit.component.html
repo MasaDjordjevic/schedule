@@ -49,7 +49,7 @@
       <div *ngIf="editedDivision[i].period && editedDivision[i].period !== 0">
         <md-input-container class="day-of-week">
           <input mdInput
-                 [placeholder]="'day_in_week' | translate"
+                 [placeholder]="'day_of_week' | translate"
                  [mdAutocomplete]="dayAutocomplete"
                  [value]="getDayOfWeek(editedDivision[i].dayOfWeek)"
           >

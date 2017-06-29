@@ -92,5 +92,19 @@
   "successfully_deleted_division__1": "Uspešno obrisana raspodela ",
   "successfully_deleted_division__2": ".",
   "division_not_deleted__1": "Raspodela ",
-  "division_not_deleted__2": " nije obrisana."
+  "division_not_deleted__2": " nije obrisana.",
+
+  "successfully_edited_groups_from_division__1": "Uspešno promenjene grupe raspodele ",
+  "successfully_edited_groups_from_division__2": ".",
+  "mass_edit_unsuccessful": "Nije uspelo menjanje grupa raspodele.",
+  "classroom": "Učionica",
+  "period": "Perioda",
+  "every_week": "Svake nedelje",
+  "every_second_week": "Svake druge nedelje",
+  "every_fourth_week": "Svake četvrte nedelje",
+  "just_once": "Samo jednom",
+  "day_of_week": "Dan u nedelji",
+  "beginning": "Početak",
+  "ending": "Kraj",
+  "save_changes": "Sačuvaj izmene"
 }

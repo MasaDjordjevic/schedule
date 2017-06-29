@@ -89,5 +89,20 @@
   "successfully_deleted_division__1": "Successfully deleted division ",
   "successfully_deleted_division__2": ".",
   "division_not_deleted__1": "Division ",
-  "division_not_deleted__2": " not deleted."
+  "division_not_deleted__2": " not deleted.",
+
+  "successfully_edited_groups_from_division__1": "Successfully edited groups from division ",
+  "successfully_edited_groups_from_division__2": ".",
+  "mass_edit_unsuccessful": "Mass edit of groups was not successful.",
+  "classroom": "Classroom",
+  "period": "Period",
+  "every_week": "Every week",
+  "every_second_week": "Every second week",
+  "every_fourth_week": "Every fourth week",
+  "just_once": "Just once",
+  "day_of_week": "Day of week",
+  "beginning": "Beginning",
+  "ending": "Ending",
+  "save_changes": "Save changes"
+
 }
