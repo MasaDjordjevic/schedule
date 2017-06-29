@@ -70,7 +70,7 @@ namespace Server
                 options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);         
 
 
-            var connection = @"Server=MASA;Database=Raspored;Trusted_Connection=True;";
+            var connection = @"Server=MASA;Database=Raspored;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<RasporedContext>(options => options.UseSqlServer(connection));
 
             // Adds a default in-memory implementation of IDistributedCache.

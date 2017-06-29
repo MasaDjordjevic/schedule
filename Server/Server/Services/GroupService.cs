@@ -587,15 +587,17 @@ namespace Server.Services
             return scheduleService.Convert(returnValue);
         }
 
-        //GroupId je grupa ciji cas treba zanemariti (grupa koja menja ucionicu
+        //GroupId je grupa ciji cas treba zanemariti (grupa koja menja ucionicu)
         public bool CheckIfClassroomIsAvailable(int ClassroomId, TimeSpans ts, int? GroupId = null)
         {
-            List<TimeSpans> groupsSchedule = _context.Groups
-                .Where(a => a.ClassroomId == ClassroomId &&
-                            (GroupId == null || a.GroupId != GroupId) && // da ne uzme u obzir trenutni ts grupe, posto se ionako menja
-                            TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, ts.StartDate, ts.EndDate)
-                                 && this.IsActive(a.GroupId, ts)) //provera da li raspodela kojoj grupa pripada i dalje vazi_
-                    .Select(a => a.TimeSpan).ToList();
+            var pom = _context.Groups
+               .Where(a => a.ClassroomId == ClassroomId &&
+                           (GroupId == null || a.GroupId != GroupId) && // da ne uzme u obzir trenutni ts grupe, posto se ionako menja
+                           TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, ts.StartDate, ts.EndDate)) //provera da li raspodela kojoj grupa pripada i dalje vazi
+                           .ToList();
+            // mora iz dva dela
+            List<TimeSpans> groupsSchedule = pom.Where(a => a.TimeSpan != null && this.IsActive(a.GroupId, ts)).Select(a => a.TimeSpan).ToList();
+
 
             List<TimeSpans> activitiesSchedule =
                 _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
@@ -604,7 +606,7 @@ namespace Server.Services
 
             List<TimeSpans> schedule = groupsSchedule.Concat(activitiesSchedule).ToList();
 
-            if (schedule.Any(TimeSpan => Services.TimeSpan.Overlap(TimeSpan, ts)))
+            if (schedule.Any(timespan => Services.TimeSpan.Overlap(timespan, ts)))
             {
                 string ClassroomNumber = _context.Classrooms.First(a => a.ClassroomId == ClassroomId).Number;
                 throw new InconsistentDivisionException("Ucionica (" + ClassroomNumber + ") nije slobodna u to vreme (" + TimeSpan.ToString(ts) + ").");

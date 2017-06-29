@@ -51,6 +51,7 @@
           <input mdInput
                  [placeholder]="'day_in_week' | translate"
                  [mdAutocomplete]="dayAutocomplete"
+                 [value]="getDayOfWeek(editedDivision[i].dayOfWeek)"
           >
         </md-input-container>
         <md-autocomplete #dayAutocomplete="mdAutocomplete">

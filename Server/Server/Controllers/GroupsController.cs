@@ -228,9 +228,10 @@ namespace Server.Controllers
         }
 
         [HttpPost]
+        [Route("MassGroupEdit")]
         public IActionResult MassGroupEdit([FromBody] MassGroupEditBinding obj)
         {
-            if (!HttpContext.Session.IsAssistant()) return Unauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             if (obj?.groups == null)
             {

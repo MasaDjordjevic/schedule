@@ -18,6 +18,8 @@ export class DivisionOptionsComponent implements OnInit {
   errorMessage: string;
   emptyGroup: any; // sluzi za dodavanje nove grupe preko edit-group komponente
 
+  private refreshNumber = 0;
+
   constructor(private divisionsService: DivisionsService,
               private route: ActivatedRoute,
               private router: Router,
@@ -68,6 +70,9 @@ export class DivisionOptionsComponent implements OnInit {
 
   openGroupsDialog() {
     const dialogRef = this.dialog.open(MassGroupEditComponent, {data: {division: this.division}});
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/assistant', {departmentId: this.departmentId, divisionId: this.divisionId, refresh: this.refreshNumber++}]);
+    });
   }
 
 

@@ -86,10 +86,11 @@ export class MassGroupEditComponent implements OnInit {
     return this.classrooms.find(c => c.classroomId === id).number;
   }
 
-  getDayOfWeek(groupId: number) {
-    let day = this.division.Groups[groupId].dayOfWeek;
+  getDayOfWeek(day: number) {
     if (day === 0) {
       day = 6;
+    } else {
+      day--;
     }
     return this.daysOfWeek[day];
   }
@@ -130,14 +131,14 @@ export class MassGroupEditComponent implements OnInit {
         timespan: null
       };
       // ostace null ukoliko nista nije izabrano
-      if (this.editedDivision[i].Period) {
+      if (this.editedDivision[i].period) {
         sendObj.timespan = {
           StartDate: new Date(this.editedDivision[i].dateTimeStart),
           EndDate: new Date(this.editedDivision[i].dateTimeEnd),
-          Period: +this.editedDivision[i].Period,
-          dayOfWeek: this.editedDivision[i].dayOfWeek,
-          timeStart: this.editedDivision[i].timeStart,
-          timeEnd: this.editedDivision[i].timeEnd
+          Period: +this.editedDivision[i].period,
+          DayOfWeek: this.editedDivision[i].dayOfWeek,
+          TimeStart: this.editedDivision[i].timeStart,
+          TimeEnd: this.editedDivision[i].timeEnd
         };
       }
       sendData.push(sendObj);
@@ -149,8 +150,9 @@ export class MassGroupEditComponent implements OnInit {
         switch (response.status) {
           case 'uspelo':
             this.openSnackBar(this.translate.instant('successfully_edited_groups_from_division__1')
-              + ' ' + this.division.name + ' ' +
+              + ' ' + this.division.Name + ' ' +
               this.translate.instant('successfully_edited_groups_from_division__1'));
+            this.close();
             break;
           default:
             this.openSnackBar(this.translate.instant('error')
