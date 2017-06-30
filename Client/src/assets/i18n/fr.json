@@ -86,6 +86,8 @@
   "successfully_created_division__2": "créée avec succès.",
   "error": "Une erreur s'est produite.",
   "division_not_created": "Division non créée.",
+
+  "delete": "Effacer",
   "delete_division__1": "Supprimer la division ",
   "delete_division__2": "?",
   "successfully_deleted_division__1": "Division  ",
@@ -105,5 +107,12 @@
   "day_of_week": "Jour de la semaine",
   "beginning": "Début",
   "ending": "Fin",
-  "save_changes": "Sauvegarder les modifications"
+  "save_changes": "Sauvegarder les modifications",
+
+  "copy": "Copie",
+  "copy_successful": "Copié dans le presse-papier.",
+  "copy_unsuccessful": "Copier dans le presse-papiers sans succès.",
+  "successfully_copied_division__1": "Division copiée avec succès",
+  "successfully_copied_division__2": ".",
+  "division_not_copied": "Division non copiée."
 }

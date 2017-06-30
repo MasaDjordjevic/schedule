@@ -59,7 +59,7 @@ export class ExportDivisionComponent implements OnInit {
       document.execCommand("copy");
       this.openSnackBar(this.translate.instant('copy_successful'));
     } catch (err) {
-      this.openSnackBar(this.translate.instant('copy_successful'));
+      this.openSnackBar(this.translate.instant('copy_unsuccessful'));
     } finally {
       // deselect
       el.selectionStart = 0;

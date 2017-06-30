@@ -72,7 +72,7 @@ export class DivisionOptionsComponent implements OnInit {
         switch (response.status) {
           case "success":
             this.openSnackBar(this.translate.instant('successfully_copied_division__1') +
-              ' ' + this.division.Name + ' ' + this.translate.instant('successfully_copied_division__1'));
+              ' ' + this.division.Name + ' ' + this.translate.instant('successfully_copied_division__2'));
             // refresh
             this.router.navigate(['/assistant', {departmentId: this.departmentId}]);
             break;

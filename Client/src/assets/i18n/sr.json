@@ -87,6 +87,8 @@
   "successfully_created_division__2": ".",
   "error": "Došlo je do greške.",
   "division_not_created": "Nije kreirana raspodela.",
+
+  "delete": "Obriši",
   "delete_division__1": "Obriši raspodelu ",
   "delete_division__2": "?",
   "successfully_deleted_division__1": "Uspešno obrisana raspodela ",
@@ -106,5 +108,12 @@
   "day_of_week": "Dan u nedelji",
   "beginning": "Početak",
   "ending": "Kraj",
-  "save_changes": "Sačuvaj izmene"
+  "save_changes": "Sačuvaj izmene",
+
+  "copy": "Kopiraj",
+  "copy_successful": "Iskopirano.",
+  "copy_unsuccessful": "Kopiranje nije uspelo.",
+  "successfully_copied_division__1": "Uspešno kopirana raspodela",
+  "successfully_copied_division__2": ".",
+  "division_not_copied": "Nije kopirana raspodela."
 }
