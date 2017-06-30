@@ -1,0 +1,14 @@
+<textarea id="csvExport"
+          #csvExport
+          readonly
+          cols="100"
+          rows="20"
+          [value]="csv"></textarea>
+<div class="controls">
+  <button md-raised-button
+          color="accent"
+          (click)="copyToClipboard(csvExport)"
+  >
+    {{'copy' | translate}}
+  </button>
+</div>

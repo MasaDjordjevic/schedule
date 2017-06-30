@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-division.component';
 import {MassGroupEditComponent} from '../../dialogs/mass-group-edit/mass-group-edit.component';
+import {ExportDivisionComponent} from '../../dialogs/export-division/export-division.component';
 
 @Component({
   selector: 'app-division-options',
@@ -73,6 +74,10 @@ export class DivisionOptionsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate(['/assistant', {departmentId: this.departmentId, divisionId: this.divisionId, refresh: this.refreshNumber++}]);
     });
+  }
+
+  openExportDivisionDialog() {
+    this.dialog.open(ExportDivisionComponent, {data: {division: this.division}});
   }
 
 
