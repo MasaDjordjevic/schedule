@@ -1,7 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, HostBinding} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {DivisionsService} from '../../services/divisions.service';
 import {TranslateService} from '@ngx-translate/core';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-delete-division',
@@ -10,13 +11,20 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class DeleteDivisionComponent implements OnInit {
   @Input() division: any;
+  @HostBinding('class') themeClass = this.theme;
+
 
   constructor(public dialogRef: MdDialogRef<DeleteDivisionComponent>,
               public snackBar: MdSnackBar,
+              private themeService: ThemeService,
               private translate: TranslateService,
               @Inject(MD_DIALOG_DATA) public data: any,
               private divisionsService: DivisionsService) {
     this.division = data.division;
+  }
+
+  get theme() {
+    return this.themeService.getTheme() + '-theme';
   }
 
   close(message: string = null) {
