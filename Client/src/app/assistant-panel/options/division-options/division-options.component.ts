@@ -1,10 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DivisionsService} from '../../services/divisions.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {MdDialog} from '@angular/material';
+import {MdDialog, MdSnackBar} from '@angular/material';
 import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-division.component';
 import {MassGroupEditComponent} from '../../dialogs/mass-group-edit/mass-group-edit.component';
 import {ExportDivisionComponent} from '../../dialogs/export-division/export-division.component';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-division-options',
@@ -24,6 +25,8 @@ export class DivisionOptionsComponent implements OnInit {
   constructor(private divisionsService: DivisionsService,
               private route: ActivatedRoute,
               private router: Router,
+              private translate: TranslateService,
+              public snackBar: MdSnackBar,
               public dialog: MdDialog) { }
 
   getDivision(): void {
@@ -59,6 +62,29 @@ export class DivisionOptionsComponent implements OnInit {
       });
   }
 
+  openSnackBar(message: string, action: string = null) {
+    this.snackBar.open(message, action, {duration: 2000});
+  }
+
+  copyDivision() {
+    this.divisionsService.copyDivision(this.divisionId)
+      .then(response => {
+        switch (response.status) {
+          case "success":
+            this.openSnackBar(this.translate.instant('successfully_copied_division__1') +
+              ' ' + this.division.Name + ' ' + this.translate.instant('successfully_copied_division__1'));
+            // refresh
+            this.router.navigate(['/assistant', {departmentId: this.departmentId}]);
+            break;
+          default:
+            this.openSnackBar(this.translate.instant('error') + ' '
+              + this.translate.instant('division_not_copied'));
+            debugger;
+            break;
+        }
+      });
+  }
+
 
   openDeleteDivisionDialog() {
     const dialogRef = this.dialog.open(DeleteDivisionComponent, {data: {division: this.division}});
@@ -72,7 +98,11 @@ export class DivisionOptionsComponent implements OnInit {
   openGroupsDialog() {
     const dialogRef = this.dialog.open(MassGroupEditComponent, {data: {division: this.division}});
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['/assistant', {departmentId: this.departmentId, divisionId: this.divisionId, refresh: this.refreshNumber++}]);
+      this.router.navigate(['/assistant', {
+        departmentId: this.departmentId,
+        divisionId: this.divisionId,
+        refresh: this.refreshNumber++
+      }]);
     });
   }
 

@@ -35,10 +35,7 @@ export class DivisionsService {
   }
 
   public copyDivision(divisionId) {
-    return this.http.get(this.divisionsUrl + '/CopyDivision/?divisionID=' + divisionId)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.divisionsUrl + '/CopyDivision/?divisionId=' + divisionId);
   }
 
   public deleteDivision(divisionId) {

@@ -159,19 +159,14 @@ namespace Server.Controllers
 
         [HttpGet]
         [Route("CopyDivision")]
-        public IActionResult CopyDivision(int divisionID)
+        public IActionResult CopyDivision(int divisionId)
         {
             //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+                       
             try
             {
-                divisionService.CopyDivision(HttpContext.Session.GetAssistantId(), divisionID);
-                return Ok(new { status = "uspelo" });
+                divisionService.CopyDivision(HttpContext.User.GetId(), divisionId);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
