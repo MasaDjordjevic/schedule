@@ -377,16 +377,17 @@ namespace Server.Controllers
         // POST: api/Groups/AddActivity
         // ako je groupID null onda je to obavestenje za sve
         [HttpPost]
+        [Route("AddActivity")]
         public IActionResult AddActivity([FromBody] AddActivityBinding obj)
         {
             try
             {
-                groupService.AddActivity(HttpContext.Session.GetAssistantId(), obj.groupID, obj.classroomID, obj.timespan, obj.place, obj.title, obj.content);
-                return Ok(new { status = "uspelo" });
+                groupService.AddActivity(HttpContext.User.GetId(), obj.groupID, obj.classroomID, obj.timespan, obj.place, obj.title, obj.content);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }

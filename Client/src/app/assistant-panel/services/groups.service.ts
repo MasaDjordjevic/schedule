@@ -42,22 +42,17 @@ export class GroupsService {
       .catch(this.handleError);
   }
 
-  addActivity(groupID: number, classroomID: number, place: string, title: string, content: string, timespan: TimeSpan) {
+  addActivity(groupId: number, classroomId: number, place: string, title: string, content: string, timespan: TimeSpan) {
     const body = JSON.stringify({
-      groupID: groupID,
-      classroomID: classroomID,
+      groupID: groupId,
+      classroomID: classroomId,
       place: place,
       title: title,
       content: content,
       timespan: timespan
     });
     console.log(body);
-
-    const options = new RequestOptions({headers: this.headers});
-    return this.http.post(this.groupsUrl + '/AddActivity', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.groupsUrl + '/AddActivity', body);
   }
 
   cancelClass(groupID: number, title: string, content: string, timespan: TimeSpan) {

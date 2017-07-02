@@ -1,7 +1,5 @@
 {
-  "classrooms": "EN Classrooms",
-  "title": "EN title",
-  "test": "EN Test",
+  "classrooms": "Classrooms",
   "departments": "Departments",
   "year": "Year",
   "divisions": "Divisions",
@@ -119,11 +117,17 @@
   "all_assistants": "All assistants",
   "successfully_edited_group__1": "Successfully edited group",
   "successfully_edited_group__2": ".",
-
   "delete_group__1": "Delete group ",
   "delete_group__2": "?",
   "group_delete_successful__1": "Successfully deleted group",
   "group_delete_successful__2": ".",
   "group_delete_unsuccessful__1": "Deleting group",
-  "group_delete_unsuccessful__2": " did not complete successfully."
+  "group_delete_unsuccessful__2": " did not complete successfully.",
+
+  "title": "Title",
+  "content": "Content",
+  "place": "Place",
+  "add_announcement": "Add announcement",
+  "successfully_added_announcement": "Successfully added announcement.",
+  "announcement_not_added": "Announcement not added."
 }

@@ -1,7 +1,4 @@
 {
-  "classrooms": "FRA Classrooms",
-  "title" : "FRA title",
-  "test": "FRA Test",
   "departments": "Départements",
   "year": "Année",
   "divisions": "Les divisions",
@@ -132,5 +129,12 @@
   "group_delete_successful__1": "Groupe supprimé avec succès",
   "group_delete_successful__2": ".",
   "group_delete_unsuccessful__1": "Supprimer le groupe",
-  "group_delete_unsuccessful__2": " n'a pas été complété avec succès."
+  "group_delete_unsuccessful__2": " n'a pas été complété avec succès.",
+
+  "title": "Titre",
+  "content": "Contenu",
+  "place": "Endroit",
+  "add_announcement": "Ajouter une annonce",
+  "successfully_added_announcement": "Annonce avec succès.",
+  "announcement_not_added": "Annonce non ajoutée."
 }

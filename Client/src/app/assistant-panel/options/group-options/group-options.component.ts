@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {DeleteGroupComponent} from '../../dialogs/delete-group/delete-group.component';
 import {MdDialog, MdSnackBar} from '@angular/material';
+import {AddAnnouncementComponent} from '../../dialogs/add-announcement/add-announcement.component';
 
 @Component({
   selector: 'app-group-options',
@@ -100,6 +101,10 @@ export class GroupOptionsComponent implements OnInit {
         }]);
       }
     });
+  }
+
+  openAddAnnouncementDialog() {
+    const dialogRef = this.dialog.open(AddAnnouncementComponent, {data: {group: this.group}});
   }
 
 }

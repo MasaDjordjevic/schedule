@@ -1,0 +1,51 @@
+<md-input-container color="warn">
+  <input mdInput
+         [value]="announcement.title"
+         [placeholder]="'title' | translate">
+</md-input-container>
+
+<md-input-container color="warn">
+  <textarea  mdInput
+         [value]="announcement.content"
+         [placeholder]="'content' | translate"></textarea>
+</md-input-container>
+
+<div *ngIf="classrooms">
+  <md-input-container color="warn">
+    <input mdInput
+           [value]="getClassroomNumber(announcement.classroomId)"
+           [placeholder]="'classroom' | translate"
+           [mdAutocomplete]="classroomsAutocomplete">
+  </md-input-container>
+  <md-autocomplete #classroomsAutocomplete="mdAutocomplete">
+    <md-option *ngFor="let classroom of classrooms"
+               (onSelectionChange)="announcement.classroomId = classroom.classroomId"
+               [value]="classroom.number">
+      {{classroom.number}}
+    </md-option>
+  </md-autocomplete>
+</div>
+
+<md-input-container color="warn">
+  <input mdInput
+          [(ngModel)]="announcement.place"
+          [placeholder]="'place' | translate">
+</md-input-container>
+<md-input-container color="warn">
+  <input mdInput
+         [(ngModel)]="announcement.startDate"
+         [placeholder]="('beginning' | translate) + ' (YYYY-MM-DD HH:MM)'">
+</md-input-container>
+<md-input-container color="warn">
+  <input mdInput
+         [(ngModel)]="announcement.endDate"
+         [placeholder]="('ending' | translate) + ' (YYYY-MM-DD HH:MM)'">
+</md-input-container>
+
+<div class="controls">
+  <button md-raised-button
+          color="warn"
+          (click)="save()">
+    {{'add_announcement' | translate}}
+  </button>
+</div>
