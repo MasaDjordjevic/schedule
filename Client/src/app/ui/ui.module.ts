@@ -9,17 +9,23 @@ import {StepperHeaderComponent} from './stepper/stepper-header/stepper-header.co
 import {StepperComponent} from './stepper/stepper/stepper.component';
 import {SharedModule} from '../shared/shared.module';
 import {StudentsSelectorComponent} from './students-selector/students-selector.component';
+import {HighlightPipe} from './pipes/highlight.pipe';
+import {RomanNumeralsPipe} from './pipes/roman-numerals.pipe';
+import {WithoutStudentsPipe} from './pipes/without-students.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [NestedListComponent, NestedListInnerComponent, NestedListInnerItemComponent,
-    SDlComponent, StepComponent, StepperHeaderComponent, StepperComponent, StudentsSelectorComponent],
+    SDlComponent, StepComponent, StepperHeaderComponent, StepperComponent, StudentsSelectorComponent,
+    HighlightPipe, RomanNumeralsPipe, WithoutStudentsPipe
+  ],
   exports: [NestedListComponent, NestedListInnerComponent,
     NestedListInnerItemComponent, SDlComponent, StepperComponent,
-    StepComponent, StudentsSelectorComponent]
+    StepComponent, StudentsSelectorComponent,
+    HighlightPipe, RomanNumeralsPipe, WithoutStudentsPipe]
 })
 export class UiModule {
 }

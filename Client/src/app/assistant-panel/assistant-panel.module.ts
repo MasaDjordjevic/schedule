@@ -19,18 +19,15 @@ import {DepartmentOptionsComponent} from './options/department-options/departmen
 import {DivisionOptionsComponent} from './options/division-options/division-options.component';
 import {GroupOptionsComponent} from './options/group-options/group-options.component';
 import {StudentOptionsComponent} from './options/student-options/student-options.component';
-import {RomanNumeralsPipe} from './pipes/roman-numerals.pipe';
 import {ThemeService} from './services/theme.service';
 import {StudentFinderComponent} from './dialogs/student-finder/student-finder.component';
 import {FormsModule} from '@angular/forms';
-import {HighlightPipe} from './pipes/highlight.pipe';
 import {DivisionCreatorComponent} from './dialogs/division-creator/division-creator.component';
 import {CoursesService} from './services/courses.service';
 import {DeleteDivisionComponent} from './dialogs/delete-division/delete-division.component';
 import {MassGroupEditComponent} from './dialogs/mass-group-edit/mass-group-edit.component';
 import {ExportDivisionComponent} from './dialogs/export-division/export-division.component';
 import {EditDivisionComponent} from './dialogs/edit-division/edit-division.component';
-import {WithoutStudentsPipe} from './pipes/without-students.pipe';
 import {EditGroupComponent} from './dialogs/edit-group/edit-group.component';
 import {AssistantsService} from './services/assistants.service';
 import {ClassroomsService} from './services/classrooms.service';
@@ -49,9 +46,8 @@ import {ClassroomsService} from './services/classrooms.service';
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
-    GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent,
-    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, WithoutStudentsPipe, EditGroupComponent],
+    GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
     StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })
