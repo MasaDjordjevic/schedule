@@ -8,6 +8,7 @@ import {StepComponent} from './stepper/step/step.component';
 import {StepperHeaderComponent} from './stepper/stepper-header/stepper-header.component';
 import {StepperComponent} from './stepper/stepper/stepper.component';
 import {SharedModule} from '../shared/shared.module';
+import {StudentsSelectorComponent} from './students-selector/students-selector.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,10 @@ import {SharedModule} from '../shared/shared.module';
     SharedModule
   ],
   declarations: [NestedListComponent, NestedListInnerComponent, NestedListInnerItemComponent,
-    SDlComponent, StepComponent, StepperHeaderComponent, StepperComponent],
-  exports: [NestedListComponent, NestedListInnerComponent, NestedListInnerItemComponent, SDlComponent, StepperComponent, StepComponent]
+    SDlComponent, StepComponent, StepperHeaderComponent, StepperComponent, StudentsSelectorComponent],
+  exports: [NestedListComponent, NestedListInnerComponent,
+    NestedListInnerItemComponent, SDlComponent, StepperComponent,
+    StepComponent, StudentsSelectorComponent]
 })
 export class UiModule {
 }

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 import {StudentsService} from '../../services/students.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeService} from '../../services/theme.service';
@@ -8,22 +9,25 @@ import {Inject} from '@angular/core';
 import {AssistantsService} from '../../services/assistants.service';
 import {ClassroomsService} from '../../services/classrooms.service';
 
+
 @Component({
-  selector: 'app-edit-grouproup',
-  templateUrl: './edit-grouproup.component.html',
-  styleUrls: ['./edit-grouproup.component.scss']
+  selector: 'app-edit-group',
+  templateUrl: './edit-group.component.html',
+  styleUrls: ['./edit-group.component.scss']
 })
 export class EditGroupComponent implements OnInit {
 
   group: any;
-  editedGroup: any;
+  editedGroup: any = {};
 
   private classrooms;
   private assistants;
+  private students;
   private errorMessage;
 
-  otherStudents;
-  chosenStudents;
+  private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  @HostBinding('class') themeClass = this.theme;
 
   constructor(private classroomsService: ClassroomsService,
               private assistantsService: AssistantsService,
@@ -32,9 +36,17 @@ export class EditGroupComponent implements OnInit {
               private themeService: ThemeService,
               public snackBar: MdSnackBar,
               public dialogRef: MdDialogRef<EditGroupComponent>,
-              @Inject(MD_DIALOG_DATA) public data: any) { }
+              @Inject(MD_DIALOG_DATA) public data: any) {
+      this.group = data.group;
+      console.log(this.group);
+      this.cloneToEdit(this.group);
+      this.afterGroupInit();
+  }
 
   ngOnInit() {
+  }
+  get theme() {
+    return this.themeService.getTheme() + '-theme';
   }
 
   private cloneToEdit(group) {
@@ -54,12 +66,6 @@ export class EditGroupComponent implements OnInit {
 
   afterGroupInit() {
     this.getAllStudents();
-
-    const ret = [];
-    for (let i = 0; i < this.group.GroupsStudents.length; i++) {
-      ret.push(this.group.GroupsStudents[i].student);
-    }
-    this.chosenStudents = ret;
 
     if (this.group.GroupId) {
       this.getAssistants();
@@ -97,10 +103,40 @@ export class EditGroupComponent implements OnInit {
   getAllStudents() {
     this.studentsService.getStudentsOfDepartment(this.group.Division.DepartmentId)
       .then(
-        otherStudents => this.otherStudents = otherStudents,
+        students => this.students = students,
         error => this.errorMessage = <any>error);
   }
 
+  getClassroomNumber(id: number) {
+    if (!this.classrooms) {
+      return '';
+    }
+    return this.classrooms.find(c => c.classroomId === id).number;
+  }
+
+  getDayOfWeek(day: number) {
+    if (day === 0) {
+      day = 6;
+    } else {
+      day--;
+    }
+    return this.daysOfWeek[day];
+  }
+
+  getPeriod(period: number) {
+    switch (period) {
+      case 1:
+        return this.translate.instant('every_week');
+      case 2:
+        return this.translate.instant('every_second_week');
+      case 4:
+        return this.translate.instant('every_fourth_week');
+      case 0:
+        return this.translate.instant('just_once');
+      default:
+        return '';
+    }
+  }
 
   uniq_fast(a) {
     const seen = {};
@@ -109,39 +145,16 @@ export class EditGroupComponent implements OnInit {
     let j = 0;
     for (let i = 0; i < len; i++) {
       const item = a[i];
-      if (seen[item.uniMemberID] !== 1) {
-        seen[item.uniMemberID] = 1;
+      if (seen[item.UniMemberId] !== 1) {
+        seen[item.UniMemberId] = 1;
         out[j++] = item;
       }
     }
     return out;
   }
 
-  // prihvata niz studentID
-  moveToOthers(arr) {
-    if (!arr) {
-      return;
-    } // ako nista nije selektirano
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < this.chosenStudents.length; j++) {
-        if (this.chosenStudents[j].StudentId === arr[i]) {
-          this.chosenStudents.splice(j--, 1);
-        }
-      }
-    }
-  }
 
-  // prihvata niz studentID
-  moveToChosen(arr) {
-    if (!arr) {
-      return;
-    } // ako nista nije selektirano
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < this.otherStudents.length; j++) {
-        if (this.otherStudents[j].StudentId === arr[i]) {
-          this.chosenStudents.push(this.otherStudents[j]);
-        }
-      }
-    }
+  selectionChanged(param) {
+    this.editedGroup.GroupsStudents = _.xor([param], this.editedGroup.GroupsStudents);
   }
 }

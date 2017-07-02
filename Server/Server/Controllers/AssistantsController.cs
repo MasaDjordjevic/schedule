@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace Server.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Assistant")]
+    [Route("api/Assistants")]
     public class AssistantsController : Controller
     {
         private readonly RasporedContext _context;

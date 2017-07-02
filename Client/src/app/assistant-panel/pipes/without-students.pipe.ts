@@ -23,7 +23,6 @@ export class WithoutStudentsPipe implements PipeTransform {
         }
         ret.push(students[i]);
       }
-
     return ret;
   }
 

@@ -7,6 +7,7 @@ import {MassGroupEditComponent} from '../../dialogs/mass-group-edit/mass-group-e
 import {ExportDivisionComponent} from '../../dialogs/export-division/export-division.component';
 import {TranslateService} from '@ngx-translate/core';
 import {EditDivisionComponent} from '../../dialogs/edit-division/edit-division.component';
+import {EditGroupComponent} from '../../dialogs/edit-group/edit-group.component';
 
 @Component({
   selector: 'app-division-options',
@@ -71,7 +72,7 @@ export class DivisionOptionsComponent implements OnInit {
     this.divisionsService.copyDivision(this.divisionId)
       .then(response => {
         switch (response.status) {
-          case "success":
+          case 'success':
             this.openSnackBar(this.translate.instant('successfully_copied_division__1') +
               ' ' + this.division.Name + ' ' + this.translate.instant('successfully_copied_division__2'));
             // refresh
@@ -116,6 +117,14 @@ export class DivisionOptionsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'edited') {
         this.router.navigate(['/assistant', {departmentId: this.departmentId}]);
+      }
+    });
+  }
+
+  openNewGroupDialog() {
+    this.dialog.open(EditGroupComponent, {
+      data: {
+        group: {Name: '', ClassroomId: null, GroupsStudents: [], Division: this.division}
       }
     });
   }

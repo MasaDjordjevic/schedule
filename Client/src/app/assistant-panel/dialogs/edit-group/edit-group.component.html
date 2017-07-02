@@ -1,3 +1,127 @@
-<p>
-  edit-group works!
-</p>
+<div class="content-top" *ngIf="editedGroup">
+  <div class="inputs">
+    <div class="top">
+      <div class="left">
+
+        <md-input-container color="accent" class="full-width">
+          <input mdInput
+                 [(ngModel)]="editedGroup.name"
+                 [placeholder]="'group_name' | translate">
+        </md-input-container>
+
+        <md-input-container color="accent" class="full-width">
+          <input mdInput
+                 [placeholder]="'classroom' | translate"
+                 [value]="getClassroomNumber(editedGroup.classroomId)"
+                 [mdAutocomplete]="classroomsAutocomplete">
+        </md-input-container>
+        <md-autocomplete #classroomsAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let classroom of classrooms"
+                     (onSelectionChange)="editedGroup.classroomId = classroom.classroomId"
+                     [value]="classroom.number">
+            {{classroom.number}}
+          </md-option>
+        </md-autocomplete>
+
+        <button md-button
+                color="accent"
+                (click)="getAllAssistants()">
+          {{'all_assistants' | translate}}
+        </button>
+      </div>
+
+      <div class="right">
+        <md-input-container class="full-width" color="accent">
+          <input mdInput
+                 [placeholder]="'period' | translate"
+                 [mdAutocomplete]="timespanAutocomplete"
+                 [value]="getPeriod(editedGroup.period)">
+        </md-input-container>
+        <md-autocomplete #timespanAutocomplete="mdAutocomplete">
+          <md-option (onSelectionChange)="editedGroup.period = 1"
+                     [value]="'every_week' | translate">
+            {{'every_week' | translate}}
+          </md-option>
+          <md-option (onSelectionChange)="editedGroup.period = 2"
+                     [value]="'every_second_week' | translate">
+            {{'every_second_week' | translate}}
+          </md-option>
+          <md-option (onSelectionChange)="editedGroup.period = 4"
+                     [value]="'every_fourth_week' | translate">
+            {{'every_fourth_week' | translate}}
+          </md-option>
+          <md-option (onSelectionChange)="editedGroup.period = 0"
+                     [value]="'just_once' | translate">
+            {{'just_once' | translate}}
+          </md-option>
+        </md-autocomplete>
+
+        <div *ngIf="editedGroup.period && editedGroup.period !== 0">
+          <md-input-container class="full-width" color="accent">
+            <input mdInput
+                   [placeholder]="'day_of_week' | translate"
+                   [mdAutocomplete]="dayAutocomplete"
+                   [value]="getDayOfWeek(editedGroup.dayOfWeek)"
+            >
+          </md-input-container>
+          <md-autocomplete #dayAutocomplete="mdAutocomplete">
+            <md-option *ngFor="let day of daysOfWeek; let d = index"
+                       (onSelectionChange)="editedGroup.dayOfWeek = d == 6 ? 0 : d+1"
+                       [value]=" day | translate">
+              {{day | translate}}
+            </md-option>
+          </md-autocomplete>
+        </div>
+
+
+        <md-input-container class="full-width" color="accent">
+          <input mdInput
+                 [placeholder]="('beginning' | translate) + ' (HH:MM)'"
+                 [(ngModel)]="editedGroup.timeStart">
+        </md-input-container>
+
+        <md-input-container class="full-width" color="accent">
+          <input mdInput
+                 [placeholder]="('ending' | translate) + ' (HH:MM)'"
+                 [(ngModel)]="editedGroup.timeEnd">
+        </md-input-container>
+
+        <div *ngIf="editedGroup.period == 0">
+          <md-input-container class="full-width" color="accent">
+            <input mdInput
+                   [placeholder]="('beginning' | translate) + ' (YYYY-MM-DD HH:MM)'"
+                   [(ngModel)]="editedGroup.dateTimeStart">
+          </md-input-container>
+
+          <md-input-container class="full-width" color="accent">
+            <input mdInput
+                   [placeholder]="('ending' | translate) + ' (YYYY-MM-DD HH:MM)'"
+                   [(ngModel)]="editedGroup.dateTimeEnd">
+          </md-input-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chosen-selector">
+    <app-students-selector [students]="editedGroup.GroupsStudents"
+                           (onSelectionChange)="selectionChanged($event)"
+                           [checked]="true">
+    </app-students-selector>
+  </div>
+
+
+</div>
+<div class="others-selector">
+  <app-students-selector [students]="students | withoutStudents : editedGroup.GroupsStudents"
+                         (onSelectionChange)="selectionChanged($event)"
+                         [checked]="false">
+  </app-students-selector>
+</div>
+
+<div class="controls">
+  <button md-raised-button
+          color="accent">
+    {{'save_changes' | translate}}
+  </button>
+</div>

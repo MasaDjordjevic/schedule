@@ -1,0 +1,7 @@
+<section>
+  <md-checkbox *ngFor="let student of students"
+               [checked]="checked"
+  (change)="studentClicked(student)">
+    {{student.UniMembers.Name}}
+  </md-checkbox>
+</section>
