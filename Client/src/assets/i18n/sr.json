@@ -119,5 +119,12 @@
 
   "successfully_edited_division__1": "Uspešno izmenjana raspodela",
   "successfully_edited_division__2": ".",
-  "group_not_edited": "Grupa nije izmenjena."
+  "group_not_edited": "Grupa nije izmenjena.",
+
+  "members": "Članovi",
+  "others": "Ostali",
+  "group_name": "Ime grupe",
+  "all_assistants": "Svi asistenti",
+  "successfully_edited_group__1": "Uspešno izmenjena grupa",
+  "successfully_edited_group__2": "."
 }

@@ -120,6 +120,7 @@
   </div>
 
   <div class="chosen-selector">
+    <h3>{{'members' | translate}}</h3>
     <app-students-selector [students]="editedGroup.GroupsStudents"
                            (onSelectionChange)="selectionChanged($event)"
                            [checked]="true">
@@ -129,6 +130,7 @@
 
 </div>
 <div class="others-selector">
+  <h3>{{'others' | translate}}</h3>
   <app-students-selector [students]="students | withoutStudents : editedGroup.GroupsStudents"
                          (onSelectionChange)="selectionChanged($event)"
                          [checked]="false"

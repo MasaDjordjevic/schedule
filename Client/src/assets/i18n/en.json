@@ -84,7 +84,6 @@
   "successfully_created_division__2": ".",
   "error": "An error occurred.",
   "division_not_created": "Division not created.",
-
   "delete": "Delete",
   "delete_division__1": "Delete division ",
   "delete_division__2": "?",
@@ -105,15 +104,20 @@
   "beginning": "Beginning",
   "ending": "Ending",
   "save_changes": "Save changes",
-
   "copy": "Copy",
   "copy_successful": "Copied to clipboard.",
   "copy_unsuccessful": "Copy to clipboard not successful.",
   "successfully_copied_division__1": "Successfully copied division",
   "successfully_copied_division__2": ".",
   "division_not_copied": "Division not copied.",
-
   "successfully_edited_division__1": "Successfully edited division",
   "successfully_edited_division__2": ".",
-  "group_not_edited": "Group not edited."
+  "group_not_edited": "Group not edited.",
+
+  "members": "Members",
+  "others": "Others",
+  "group_name": "Group name",
+  "all_assistants": "All assistants",
+  "successfully_edited_group__1": "Successfully edited group",
+  "successfully_edited_group__2": "."
 }

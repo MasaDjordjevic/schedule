@@ -128,6 +128,9 @@ export class EditGroupComponent implements OnInit {
   }
 
   getDayOfWeek(day: number) {
+    if (!day) {
+      return '';
+    }
     if (day === 0) {
       day = 6;
     } else {
@@ -194,7 +197,7 @@ export class EditGroupComponent implements OnInit {
       timespan.timeStart = this.editedGroup.timeStart;
       timespan.timeEnd = this.editedGroup.timeEnd;
     }
-    
+
     this.groupsService.updateGroup(
       this.group.GroupId, this.group.Division.DivisionId, this.editedGroup.assistantId,
       this.editedGroup.name, this.editedGroup.classroomId, timespan, pom

@@ -118,5 +118,12 @@
 
   "successfully_edited_division__1": "Division éditée avec succès",
   "successfully_edited_division__2": ".",
-  "group_not_edited": "Groupe non édité."
+  "group_not_edited": "Groupe non édité.",
+
+  "members": "Membres",
+  "others": "Autres",
+  "group_name": "Nom de groupe",
+  "all_assistants": "Tous les assistants",
+  "successfully_edited_group__1": "Groupe édité avec succès",
+  "successfully_edited_group__2": "."
 }
