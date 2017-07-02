@@ -116,6 +116,14 @@ export class EditGroupComponent implements OnInit {
     return this.classrooms.find(c => c.classroomId === id).number;
   }
 
+  getAssistantName(id: number) {
+    if(!this.editedGroup.assistantId) {
+      return '';
+    }
+    const asst =  this.assistants.find(a => a.uniMemberId === id);
+    return asst.name + ' ' + asst.surname;
+  }
+
   getDayOfWeek(day: number) {
     if (day === 0) {
       day = 6;

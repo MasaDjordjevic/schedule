@@ -23,6 +23,22 @@
           </md-option>
         </md-autocomplete>
 
+        <div *ngIf="assistants">
+          <md-input-container color="accent" class="full-width">
+            <input mdInput
+                   [placeholder]="'assistant' | translate"
+                   [value]="getAssistantName(editedGroup.assistantId)"
+                   [mdAutocomplete]="assistantsAutocomplete">
+          </md-input-container>
+          <md-autocomplete #assistantsAutocomplete="mdAutocomplete">
+            <md-option *ngFor="let assistant of assistants"
+                       (onSelectionChange)="editedGroup.assistantId = assistant.uniMemberId"
+                       [value]="assistant.name + ' ' + assistant.surname">
+              {{assistant.name + ' ' + assistant.surname}}
+            </md-option>
+          </md-autocomplete>
+        </div>
+
         <button md-button
                 color="accent"
                 (click)="getAllAssistants()">
