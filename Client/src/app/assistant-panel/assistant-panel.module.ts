@@ -30,6 +30,10 @@ import {DeleteDivisionComponent} from './dialogs/delete-division/delete-division
 import {MassGroupEditComponent} from './dialogs/mass-group-edit/mass-group-edit.component';
 import {ExportDivisionComponent} from './dialogs/export-division/export-division.component';
 import {EditDivisionComponent} from './dialogs/edit-division/edit-division.component';
+import {WithoutStudentsPipe} from './pipes/without-students.pipe';
+import {EditGroupComponent} from './dialogs/edit-group/edit-group.component';
+import {AssistantsService} from './services/assistants.service';
+import {ClassroomsService} from './services/classrooms.service';
 
 @NgModule({
   imports: [
@@ -41,14 +45,15 @@ import {EditDivisionComponent} from './dialogs/edit-division/edit-division.compo
     AssistantPanelRoutingModule
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent],
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent,
     HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent],
-  providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService, CoursesService]
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, WithoutStudentsPipe, EditGroupComponent],
+  providers: [DepartmentsService, DivisionsService, GroupsService,
+    StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })
 export class AssistantPanelModule {
 }

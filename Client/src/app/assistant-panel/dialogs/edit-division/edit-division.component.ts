@@ -5,8 +5,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {ThemeService} from '../../services/theme.service';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import * as moment from 'moment';
-import {DivisionType} from '../../../models/DivisionType';
-import {Course} from '../../../models/Course';
 import {StudentsService} from '../../services/students.service';
 
 @Component({
