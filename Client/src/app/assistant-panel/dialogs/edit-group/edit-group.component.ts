@@ -183,7 +183,8 @@ export class EditGroupComponent implements OnInit {
   }
 
   save() {
-    const pom: Array<number> = this.editedGroup.GroupsStudents.map(i => i.StudentId);
+    const pom: Array<number> = (this.editedGroup.GroupsStudents && this.editedGroup.GroupsStudents.length > 0) ?
+      this.editedGroup.GroupsStudents.map(i => i.StudentId) : [];
     let timespan: any = {};
 
     // ako nista nije odabrano

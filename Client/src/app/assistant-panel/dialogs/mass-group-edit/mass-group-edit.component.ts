@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {ClassroomsService} from '../../../test/classrooms/classrooms.service';
@@ -20,6 +20,8 @@ export class MassGroupEditComponent implements OnInit {
 
   private editedDivision = [];
   private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  @HostBinding('class') themeClass = this.theme;
 
   public get division() {
     return this._division;
@@ -86,7 +88,7 @@ export class MassGroupEditComponent implements OnInit {
   }
 
   getClassroomNumber(id: number) {
-    if (!this.classrooms) {
+    if (!this.classrooms || !id) {
       return '';
     }
     return this.classrooms.find(c => c.classroomId === id).number;

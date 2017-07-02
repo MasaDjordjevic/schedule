@@ -1,4 +1,4 @@
-<div *ngIf="editedDivision.length > 0" [class]="'content ' + theme">
+<div *ngIf="editedDivision.length > 0" class="content">
   <div class="group"
        *ngFor="let group of division.Groups; let i = index">
     <div class="name">{{group.Name}}</div>
@@ -89,12 +89,15 @@
         </md-input-container>
       </div>
     </div>
-    <div class="controls">
-      <button md-raised-button
-              color="accent"
-              (click)="save()">
-        {{'save_changes' | translate}}
-      </button>
-    </div>
+
   </div>
+
+</div>
+<!-- ne znam zasto nece bez teme ovde -->
+<div [class]="'controls ' + theme">
+  <button md-raised-button
+          color="accent"
+          (click)="save()">
+    {{'save_changes' | translate}}
+  </button>
 </div>
