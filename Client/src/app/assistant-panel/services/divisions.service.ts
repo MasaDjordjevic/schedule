@@ -27,11 +27,7 @@ export class DivisionsService {
       'courseID': courseID,
     });
     console.log(body);
-    const options = new RequestOptions({headers: this.headers});
-    return this.http.post(this.divisionsUrl + '/UpdateDivision', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.divisionsUrl + '/UpdateDivision', body);
   }
 
   public copyDivision(divisionId) {

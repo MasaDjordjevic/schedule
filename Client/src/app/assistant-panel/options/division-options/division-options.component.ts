@@ -6,6 +6,7 @@ import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-divi
 import {MassGroupEditComponent} from '../../dialogs/mass-group-edit/mass-group-edit.component';
 import {ExportDivisionComponent} from '../../dialogs/export-division/export-division.component';
 import {TranslateService} from '@ngx-translate/core';
+import {EditDivisionComponent} from '../../dialogs/edit-division/edit-division.component';
 
 @Component({
   selector: 'app-division-options',
@@ -110,5 +111,8 @@ export class DivisionOptionsComponent implements OnInit {
     this.dialog.open(ExportDivisionComponent, {data: {division: this.division}});
   }
 
+  openEditDivisionDialog() {
+    this.dialog.open(EditDivisionComponent, {data: {division: this.division}});
+  }
 
 }

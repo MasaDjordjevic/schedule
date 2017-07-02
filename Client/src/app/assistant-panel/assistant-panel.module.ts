@@ -21,14 +21,15 @@ import {GroupOptionsComponent} from './options/group-options/group-options.compo
 import {StudentOptionsComponent} from './options/student-options/student-options.component';
 import {RomanNumeralsPipe} from './pipes/roman-numerals.pipe';
 import {ThemeService} from './services/theme.service';
-import { StudentFinderComponent } from './dialogs/student-finder/student-finder.component';
+import {StudentFinderComponent} from './dialogs/student-finder/student-finder.component';
 import {FormsModule} from '@angular/forms';
-import { HighlightPipe } from './pipes/highlight.pipe';
-import { DivisionCreatorComponent } from './dialogs/division-creator/division-creator.component';
+import {HighlightPipe} from './pipes/highlight.pipe';
+import {DivisionCreatorComponent} from './dialogs/division-creator/division-creator.component';
 import {CoursesService} from './services/courses.service';
-import { DeleteDivisionComponent } from './dialogs/delete-division/delete-division.component';
-import { MassGroupEditComponent } from './dialogs/mass-group-edit/mass-group-edit.component';
-import { ExportDivisionComponent } from './dialogs/export-division/export-division.component';
+import {DeleteDivisionComponent} from './dialogs/delete-division/delete-division.component';
+import {MassGroupEditComponent} from './dialogs/mass-group-edit/mass-group-edit.component';
+import {ExportDivisionComponent} from './dialogs/export-division/export-division.component';
+import {EditDivisionComponent} from './dialogs/edit-division/edit-division.component';
 
 @NgModule({
   imports: [
@@ -39,12 +40,14 @@ import { ExportDivisionComponent } from './dialogs/export-division/export-divisi
     FormsModule,
     AssistantPanelRoutingModule
   ],
-  entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent, MassGroupEditComponent, ExportDivisionComponent],
+  entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, RomanNumeralsPipe, StudentFinderComponent,
-    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent, MassGroupEditComponent, ExportDivisionComponent],
+    HighlightPipe, DivisionCreatorComponent, DeleteDivisionComponent,
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService, StudentsService, ThemeService, CoursesService]
 })
 export class AssistantPanelModule {

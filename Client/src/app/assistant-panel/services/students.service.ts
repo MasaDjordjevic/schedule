@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {TimeSpan} from '../../models/TimeSpan';
 import {Student} from '../../models/Student';
+import {AuthService} from '../../login/auth.service';
 
 
 @Injectable()
@@ -9,7 +10,8 @@ export class StudentsService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private studentsUrl = 'http://localhost:55281/api/Students';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private authService: AuthService) { }
 
 
 
@@ -42,11 +44,8 @@ export class StudentsService {
       .catch(this.handleError);
   }
 
-  getStudentsOfCourse(courseID: number): Promise<any[]> {
-    return this.http.get(this.studentsUrl + '/GetStudentsOfCourse/' + courseID)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+  getStudentsOfCourse(courseId: number): Promise<any[]> {
+    return this.authService.authGet(this.studentsUrl + '/GetStudentsOfCourse/' + courseId);
   }
 
   moveToGroup(studentID: number, groupID: number): Promise<any[]> {

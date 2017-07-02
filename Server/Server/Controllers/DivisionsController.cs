@@ -194,6 +194,37 @@ namespace Server.Controllers
             }
         }
 
+        //nicemu ne sluzi, inace se ne konvertuju lepo podaci, nzm zasto
+        public class DivisionUpdateBinding
+        {
+            public int? divisionId;
+            public string name;
+            public DateTime? beginning;
+            public DateTime? ending;
+            public int? divisionTypeId;
+            public int? courseID;
+        }
+
+        [HttpPost]
+        [Route("UpdateDivision")]
+        public IActionResult UpdateDivision([FromBody] DivisionsController.DivisionUpdateBinding obj)
+        {
+           // if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();
+
+            if (obj?.divisionId == null)
+                return Ok(new { status = "parameter error" });
+
+            try
+            {
+                divisionService.UpdateDivision(obj.divisionId.Value, obj.name, obj.beginning, obj.ending, obj.divisionTypeId, obj.courseID);
+                return Ok(new { status = "sucess" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { status = "inconsistent division", message = ex.Message });
+            }
+
+        }
 
 
         // PUT: api/Divisions/5
