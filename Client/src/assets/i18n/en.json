@@ -129,13 +129,18 @@
   "add_announcement": "Add announcement",
   "successfully_added_announcement": "Successfully added announcement.",
   "announcement_not_added": "Announcement not added.",
-
   "canceling_class_scheduled_for": "Canceling class scheduled for",
   "cancel_class": "Cancel class",
   "class_successfully_canceled": "Class successfully canceled",
   "class_already_canceled": "Class is already canceled.",
   "class_not_canceled": "Class not canceled.",
-
   "adding_announcement_for_class": "Adding announcement for class scheduled for",
-  "add_activity": "Add activity"
+  "add_activity": "Add activity",
+
+  "remove_student__1": "Remove ",
+  "remove_student__2": "with index number ",
+  "remove_student__3": "?",
+  "kick": "Kick student",
+  "student_kick_successful": "Student successfully kicked out of the group.",
+  "student_kick_unsuccessful": "Student was not kicked out of the group."
 }

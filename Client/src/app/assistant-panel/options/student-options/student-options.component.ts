@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StudentsService} from '../../services/students.service';
 import {ThemeService} from '../../services/theme.service';
+import {TranslateService} from '@ngx-translate/core';
+import {MdDialog, MdSnackBar} from '@angular/material';
+import {KickStudentComponent} from '../../dialogs/kick-student/kick-student.component';
 
 @Component({
   selector: 'app-student-options',
@@ -18,6 +21,10 @@ export class StudentOptionsComponent implements OnInit {
   errorMessage: string;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
+              private translate: TranslateService,
+              public snackBar: MdSnackBar,
+              public dialog: MdDialog,
               private studentsService: StudentsService,
               private themeService: ThemeService) {
   }
@@ -47,4 +54,16 @@ export class StudentOptionsComponent implements OnInit {
     return this.themeService.getTheme() + '-accent2';
   }
 
+  openKickStudentDialog() {
+    const dialogRef = this.dialog.open(KickStudentComponent, {data: {student: this.student, groupId: this.selectedGroupId}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'kicked') {
+        this.router.navigate(['/assistant', {
+          departmentId: this.selectedDepartmentId,
+          divisionId: this.selectedDivisionId,
+          groupId: this.selectedGroupId
+        }]);
+      }
+    });
+  }
 }

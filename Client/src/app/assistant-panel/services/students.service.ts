@@ -77,10 +77,7 @@ export class StudentsService {
   }
 
   removeFromGroup(studentID: number, groupID: number): Promise<any[]> {
-    return this.http.get(this.studentsUrl + `/RemoveFromGroup/?studentID=${studentID}&groupID=${groupID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.studentsUrl + `/RemoveFromGroup/?studentID=${studentID}&groupID=${groupID}`);
   }
 
   hideClass(groupID: number): Promise<any[]> {

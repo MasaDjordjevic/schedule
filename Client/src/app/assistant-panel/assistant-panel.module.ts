@@ -35,6 +35,7 @@ import {DeleteGroupComponent} from './dialogs/delete-group/delete-group.componen
 import {AddAnnouncementComponent} from './dialogs/add-announcement/add-announcement.component';
 import {CancelClassComponent} from './dialogs/cancel-class/cancel-class.component';
 import {AddActivityComponent} from './dialogs/add-activity/add-activity.component';
+import {KickStudentComponent} from './dialogs/kick-student/kick-student.component';
 
 @NgModule({
   imports: [
@@ -47,13 +48,14 @@ import {AddActivityComponent} from './dialogs/add-activity/add-activity.componen
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
-    DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent],
+    DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent,
+    KickStudentComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent,
-    EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent],
+    EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent, KickStudentComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
     StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })

@@ -1,0 +1,12 @@
+<div class="dialog-text">
+  {{'remove_student__1' | translate}}<b>{{student.UniMembers.Name}} {{student.UniMembers.Surname}}</b>
+  {{'remove_student__2' | translate}}<b>{{student.IndexNumber}}</b>
+  {{'remove_student__3' | translate}}
+</div>
+<div [class]="'dialog-controls ' +  accentClass">
+  <button md-raised-button
+          (click)="kickStudnet()"
+          color="accent2">
+    {{'kick' | translate}}
+  </button>
+</div>

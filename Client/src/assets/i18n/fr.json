@@ -145,5 +145,12 @@
   "class_not_canceled": "Classe non annulée.",
 
   "adding_announcement_for_class": "Ajouter une annonce pour la classe prévue pour",
-  "add_activity": "Ajouter une activité"
+  "add_activity": "Ajouter une activité",
+
+  "remove_student__1": "Retirer ",
+  "remove_student__2": "avec numéro d'index ",
+  "remove_student__3": "?",
+  "kick": "Kick student",
+  "student_kick_successful": "L'élève a réussi à sortir du groupe.",
+  "student_kick_unsuccessful": "L'étudiant n'a pas été expulsé du groupe."
 }
