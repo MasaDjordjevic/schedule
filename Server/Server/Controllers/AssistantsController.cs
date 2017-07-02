@@ -55,8 +55,8 @@ namespace Server.Controllers
         }
         
         [HttpGet]
-        [Route("getAssistantsByGroupID")]
-        public IActionResult GetAssistantsByGroupID(int id)
+        [Route("GetAssistantsByGroupID/{id}")]
+        public IActionResult GetAssistantsByGroupID([FromRoute]int id)
         {
             if (!ModelState.IsValid)
             {

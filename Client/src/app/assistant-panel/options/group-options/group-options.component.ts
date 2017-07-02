@@ -6,6 +6,7 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {DeleteGroupComponent} from '../../dialogs/delete-group/delete-group.component';
 import {MdDialog, MdSnackBar} from '@angular/material';
 import {AddAnnouncementComponent} from '../../dialogs/add-announcement/add-announcement.component';
+import {EditGroupComponent} from '../../dialogs/edit-group/edit-group.component';
 
 @Component({
   selector: 'app-group-options',
@@ -105,6 +106,18 @@ export class GroupOptionsComponent implements OnInit {
 
   openAddAnnouncementDialog() {
     const dialogRef = this.dialog.open(AddAnnouncementComponent, {data: {group: this.group}});
+  }
+
+  openEditGroupDialog() {
+    const dialogRef = this.dialog.open(EditGroupComponent, {data: {group: this.group}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.router.navigate(['/assistant', {
+          departmentId: this.departmentId,
+          divisionId: this.divisionId,
+        }]);
+      }
+    });
   }
 
 }
