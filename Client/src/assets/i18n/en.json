@@ -134,5 +134,8 @@
   "cancel_class": "Cancel class",
   "class_successfully_canceled": "Class successfully canceled",
   "class_already_canceled": "Class is already canceled.",
-  "class_not_canceled": "Class not canceled."
+  "class_not_canceled": "Class not canceled.",
+
+  "adding_announcement_for_class": "Adding announcement for class scheduled for",
+  "add_activity": "Add activity"
 }

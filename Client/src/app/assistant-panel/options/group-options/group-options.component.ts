@@ -8,6 +8,7 @@ import {MdDialog, MdSnackBar} from '@angular/material';
 import {AddAnnouncementComponent} from '../../dialogs/add-announcement/add-announcement.component';
 import {EditGroupComponent} from '../../dialogs/edit-group/edit-group.component';
 import {CancelClassComponent} from '../../dialogs/cancel-class/cancel-class.component';
+import {AddActivityComponent} from '../../dialogs/add-activity/add-activity.component';
 
 @Component({
   selector: 'app-group-options',
@@ -105,8 +106,8 @@ export class GroupOptionsComponent implements OnInit {
     });
   }
 
-  openAddAnnouncementDialog() {
-    const dialogRef = this.dialog.open(AddAnnouncementComponent, {data: {group: this.group}});
+  openAddActivityDialog() {
+    const dialogRef = this.dialog.open(AddActivityComponent, {data: {group: this.group}});
   }
 
   openEditGroupDialog() {

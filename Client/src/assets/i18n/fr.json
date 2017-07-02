@@ -142,5 +142,8 @@
   "cancel_class": "Annuler la classe",
   "class_successfully_canceled": "Classe annulée avec succès",
   "class_already_canceled": "La classe est déjà annulée.",
-  "class_not_canceled": "Classe non annulée."
+  "class_not_canceled": "Classe non annulée.",
+
+  "adding_announcement_for_class": "Ajouter une annonce pour la classe prévue pour",
+  "add_activity": "Ajouter une activité"
 }

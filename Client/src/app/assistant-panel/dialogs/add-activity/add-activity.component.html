@@ -1,0 +1,36 @@
+<div *ngIf="dateChoices && dateChoices.length > 1">
+  <md-input-container color="warn" class="full-width">
+    <input mdInput
+           [value]="announcement.startDate"
+           [placeholder]="('adding_announcement_for_class' | translate) + ' ' + dateChoices[0]"
+           [mdAutocomplete]="dateAutocomplete">
+  </md-input-container>
+  <md-autocomplete #dateAutocomplete="mdAutocomplete">
+    <md-option *ngFor="let dateChoice of dateChoices"
+               (click)="announcement.startDate = dateChoice"
+               [value]="dateChoice">
+      {{dateChoice}}
+    </md-option>
+
+  </md-autocomplete>
+
+  <md-input-container color="warn" class="full-width">
+    <input mdInput
+           [value]="announcement.title"
+           [placeholder]="'title' | translate">
+  </md-input-container>
+
+  <md-input-container color="warn" class="full-width">
+  <textarea  mdInput
+             [value]="announcement.content"
+             [placeholder]="'content' | translate"></textarea>
+  </md-input-container>
+</div>
+
+<div class="controls">
+  <button md-raised-button
+          color="warn"
+          (click)="save()">
+    {{'add_activity' | translate}}
+  </button>
+</div>

@@ -143,5 +143,8 @@
   "cancel_class": "Otkaži čas",
   "class_successfully_canceled": "Čas uspešno otkazan.",
   "class_already_canceled": "Čas je već otkazan.",
-  "class_not_canceled": "Nije otkazan čas."
+  "class_not_canceled": "Nije otkazan čas.",
+
+  "adding_announcement_for_class": "Dodajem obaveštenje za čas koji treba da bude održan",
+  "add_activity": "Dodaj aktivnost"
 }

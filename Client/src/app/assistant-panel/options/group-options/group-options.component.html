@@ -29,28 +29,28 @@
 
     <div class="flex-spacer"></div>
 
-    <button md-raised-button color="warn" #editGroupButton
+    <button md-raised-button color="warn"
             (click)="openEditGroupDialog()">
       {{'group_edit' | translate}}
     </button>
 
     <button *ngIf="group.TimeSpanId"
-            md-raised-button color="warn" #cancelClassButton
+            md-raised-button color="warn"
             (click)="openCancelClassDialog()">
       {{'cancel_class' | translate}}
     </button>
 
-    <button md-raised-button color="warn" #combinedScheduleButton
+    <button md-raised-button color="warn"
             (click)="combinedScheduleDialog.open()">
       {{'combined_timetable' | translate}}
     </button>
 
-    <button md-raised-button color="warn" #addNotificationButton
-            (click)="openAddAnnouncementDialog()">
-      {{'add_announcement' | translate}}
+    <button md-raised-button color="warn"
+            (click)="openAddActivityDialog()">
+      {{'add_activity' | translate}}
     </button>
 
-    <button md-raised-button color="warn" #removeGroupButton
+    <button md-raised-button color="warn"
             (click)="openDeleteGroupDialog()">
       {{'delete_group' | translate}}
     </button>

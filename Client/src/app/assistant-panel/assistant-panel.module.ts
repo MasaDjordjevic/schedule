@@ -32,8 +32,9 @@ import {EditGroupComponent} from './dialogs/edit-group/edit-group.component';
 import {AssistantsService} from './services/assistants.service';
 import {ClassroomsService} from './services/classrooms.service';
 import {DeleteGroupComponent} from './dialogs/delete-group/delete-group.component';
-import { AddAnnouncementComponent } from './dialogs/add-announcement/add-announcement.component';
-import { CancelClassComponent } from './dialogs/cancel-class/cancel-class.component';
+import {AddAnnouncementComponent} from './dialogs/add-announcement/add-announcement.component';
+import {CancelClassComponent} from './dialogs/cancel-class/cancel-class.component';
+import {AddActivityComponent} from './dialogs/add-activity/add-activity.component';
 
 @NgModule({
   imports: [
@@ -46,12 +47,13 @@ import { CancelClassComponent } from './dialogs/cancel-class/cancel-class.compon
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
-    DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent],
+    DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent],
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent,
+    EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
     StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })
