@@ -153,5 +153,12 @@
   "remove_student__3": "?",
   "kick": "Izbaci iz grupe",
   "student_kick_successful": "Student uspešno izbačen iz grupe.",
-  "student_kick_unsuccessful": "Student nije izbačen iz grupe."
+  "student_kick_unsuccessful": "Student nije izbačen iz grupe.",
+
+  "student_is_currently_in_group__1": "Student se trenutno nalazi u grupi",
+  "student_is_currently_in_group__2": ".",
+  "target_group": "Odredišna grupa",
+  "move": "Prebaci",
+  "student_successfully_moved":  "Student uspešno prebačen.",
+  "student_not_moved": "Student nije prebačen."
 }

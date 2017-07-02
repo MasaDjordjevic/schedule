@@ -142,5 +142,12 @@
   "remove_student__3": "?",
   "kick": "Kick student",
   "student_kick_successful": "Student successfully kicked out of the group.",
-  "student_kick_unsuccessful": "Student was not kicked out of the group."
+  "student_kick_unsuccessful": "Student was not kicked out of the group.",
+
+  "student_is_currently_in_group__1": "Student is currently in group",
+  "student_is_currently_in_group__2": ".",
+  "target_group": "Target group",
+  "move": "Move",
+  "student_successfully_moved":  "Student successfully moved.",
+  "student_not_moved": "Student not moved."
 }

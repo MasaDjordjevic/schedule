@@ -152,5 +152,12 @@
   "remove_student__3": "?",
   "kick": "Kick student",
   "student_kick_successful": "L'élève a réussi à sortir du groupe.",
-  "student_kick_unsuccessful": "L'étudiant n'a pas été expulsé du groupe."
+  "student_kick_unsuccessful": "L'étudiant n'a pas été expulsé du groupe.",
+
+  "student_is_currently_in_group__1": "L'étudiant est actuellement en groupe",
+  "student_is_currently_in_group__2": ".",
+  "target_group": "Groupe ciblé",
+  "move": "Déplacer",
+  "student_successfully_moved":  "L'élève est déplacé avec succès.",
+  "student_not_moved": "Étudiant non déplacé."
 }

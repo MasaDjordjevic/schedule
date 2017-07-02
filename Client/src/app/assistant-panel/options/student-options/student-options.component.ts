@@ -5,6 +5,7 @@ import {ThemeService} from '../../services/theme.service';
 import {TranslateService} from '@ngx-translate/core';
 import {MdDialog, MdSnackBar} from '@angular/material';
 import {KickStudentComponent} from '../../dialogs/kick-student/kick-student.component';
+import {MoveStudentComponent} from '../../dialogs/move-student/move-student.component';
 
 @Component({
   selector: 'app-student-options',
@@ -55,7 +56,12 @@ export class StudentOptionsComponent implements OnInit {
   }
 
   openKickStudentDialog() {
-    const dialogRef = this.dialog.open(KickStudentComponent, {data: {student: this.student, groupId: this.selectedGroupId}});
+    const dialogRef = this.dialog.open(KickStudentComponent, {
+      data: {
+        student: this.student,
+        groupId: this.selectedGroupId
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'kicked') {
         this.router.navigate(['/assistant', {
@@ -66,4 +72,19 @@ export class StudentOptionsComponent implements OnInit {
       }
     });
   }
+
+  openMoveStudentDialog() {
+    const dialogRef = this.dialog.open(MoveStudentComponent,
+      {data: {student: this.student, groupId: this.selectedGroupId, divisionId: this.selectedDivisionId}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'moved') {
+        this.router.navigate(['/assistant', {
+          departmentId: this.selectedDepartmentId,
+          divisionId: this.selectedDivisionId,
+          groupId: this.selectedGroupId
+        }]);
+      }
+    });
+  }
+
 }

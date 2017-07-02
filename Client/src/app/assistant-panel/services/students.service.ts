@@ -49,10 +49,7 @@ export class StudentsService {
   }
 
   moveToGroup(studentID: number, groupID: number): Promise<any[]> {
-    return this.http.get(this.studentsUrl + `/MoveToGroup?studentID=${studentID}&groupID=${groupID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.studentsUrl + `/MoveToGroup?studentID=${studentID}&groupID=${groupID}`);
   }
 
   getSchedule(studentID: number, weeksFromNow: number): Promise<any[]> {

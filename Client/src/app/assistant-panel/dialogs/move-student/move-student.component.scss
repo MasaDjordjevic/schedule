@@ -1,0 +1,38 @@
+@import "../../../themes";
+:host {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  > * {
+    margin-bottom: .5em;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-end;
+    margin-top: 1em;
+  }
+
+  //region Themes
+  @each $string, $var  in $theme-all-var-string {
+    .#{$string} {
+      button {
+        background-color: $var;
+        &.flat {
+          background-color: transparent;
+          color: $var;
+        }
+      }
+
+    }
+  }
+  //endregion
+}

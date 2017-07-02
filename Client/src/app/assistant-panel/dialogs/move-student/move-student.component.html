@@ -1,0 +1,27 @@
+<div *ngIf="groups && groups.length > 1">
+  <span>
+    {{'student_is_currently_in_group__1' | translate}}
+    {{groupName}}
+    {{'student_is_currently_in_group__2' | translate}}
+  </span>
+
+  <md-input-container color="accent" class="full-width">
+    <input mdInput
+           [placeholder]="'target_group' | translate"
+           [mdAutocomplete]="groupAutocomplete">
+  </md-input-container>
+  <md-autocomplete #groupAutocomplete="mdAutocomplete">
+    <md-option *ngFor="let group of groupsWithoutCurrent"
+               (click)="selectedGroupId = group.GroupId"
+               [value]="group && group.Name">
+      {{group && group.Name}}
+    </md-option>
+
+  </md-autocomplete>
+</div>
+<div [class]="'controls '  +  accentClass">
+  <button md-raised-button
+          (click)="save()">
+    {{'move' | translate}}
+  </button>
+</div>

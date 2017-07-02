@@ -232,11 +232,6 @@ namespace Server.Controllers
         [Route("MoveToGroup")]
         public IActionResult MoveToGroup(int studentID, int groupID)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
                 studentService.MoveToGroup(studentID, groupID);
@@ -250,7 +245,7 @@ namespace Server.Controllers
                 throw;
             }
 
-            return Ok(new { status = "uspelo" });
+            return Ok(new { status = "success" });
         }
 
         [HttpGet]
