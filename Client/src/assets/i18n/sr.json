@@ -137,5 +137,11 @@
   "place": "Mesto",
   "add_announcement": "Dodaj obaveštenje",
   "successfully_added_announcement": "Uspešno dodato obaveštenje.",
-  "announcement_not_added": "Nije dodato obaveštenje."
+  "announcement_not_added": "Nije dodato obaveštenje.",
+
+  "canceling_class_scheduled_for": "Otkazuje se čas zakazan za",
+  "cancel_class": "Otkaži čas",
+  "class_successfully_canceled": "Čas uspešno otkazan.",
+  "class_already_canceled": "Čas je već otkazan.",
+  "class_not_canceled": "Nije otkazan čas."
 }

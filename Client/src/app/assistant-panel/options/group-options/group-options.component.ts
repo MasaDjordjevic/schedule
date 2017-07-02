@@ -7,6 +7,7 @@ import {DeleteGroupComponent} from '../../dialogs/delete-group/delete-group.comp
 import {MdDialog, MdSnackBar} from '@angular/material';
 import {AddAnnouncementComponent} from '../../dialogs/add-announcement/add-announcement.component';
 import {EditGroupComponent} from '../../dialogs/edit-group/edit-group.component';
+import {CancelClassComponent} from '../../dialogs/cancel-class/cancel-class.component';
 
 @Component({
   selector: 'app-group-options',
@@ -118,6 +119,10 @@ export class GroupOptionsComponent implements OnInit {
         }]);
       }
     });
+  }
+
+  openCancelClassDialog() {
+    const dialogRef = this.dialog.open(CancelClassComponent, {data: {group: this.group}});
   }
 
 }

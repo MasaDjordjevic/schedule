@@ -401,9 +401,10 @@ namespace Server.Controllers
         }
 
         [HttpPost]
+        [Route("CancelClass")]
         public IActionResult CancelClass([FromBody] CancelClassBinding obj)
         {
-            if (!HttpContext.Session.IsAssistant()) return Unauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             if (obj == null)
             {
@@ -413,12 +414,12 @@ namespace Server.Controllers
             try
             {
                 groupService.CancelClass(obj.groupID, obj.title, obj.content, obj.timespan);
-                return Ok(new { status = "uspelo" });
+                return Ok(new { status = "success" });
 
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }

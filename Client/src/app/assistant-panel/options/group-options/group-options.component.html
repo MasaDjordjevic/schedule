@@ -34,9 +34,9 @@
       {{'group_edit' | translate}}
     </button>
 
-    <button *ngIf="group.timeSpanID"
+    <button *ngIf="group.TimeSpanId"
             md-raised-button color="warn" #cancelClassButton
-            (click)="cancelClassDialog.open()">
+            (click)="openCancelClassDialog()">
       {{'cancel_class' | translate}}
     </button>
 

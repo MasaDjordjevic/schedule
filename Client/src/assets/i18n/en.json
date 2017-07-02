@@ -123,11 +123,16 @@
   "group_delete_successful__2": ".",
   "group_delete_unsuccessful__1": "Deleting group",
   "group_delete_unsuccessful__2": " did not complete successfully.",
-
   "title": "Title",
   "content": "Content",
   "place": "Place",
   "add_announcement": "Add announcement",
   "successfully_added_announcement": "Successfully added announcement.",
-  "announcement_not_added": "Announcement not added."
+  "announcement_not_added": "Announcement not added.",
+
+  "canceling_class_scheduled_for": "Canceling class scheduled for",
+  "cancel_class": "Cancel class",
+  "class_successfully_canceled": "Class successfully canceled",
+  "class_already_canceled": "Class is already canceled.",
+  "class_not_canceled": "Class not canceled."
 }

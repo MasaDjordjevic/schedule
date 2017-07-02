@@ -63,12 +63,7 @@ export class GroupsService {
       timespan: timespan
     });
     console.log(body);
-
-    const options = new RequestOptions({headers: this.headers});
-    return this.http.post(this.groupsUrl + '/CancelClass', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.groupsUrl + '/CancelClass', body);
   }
 
   unCancelClass(activityID: number): Promise<any[]> {

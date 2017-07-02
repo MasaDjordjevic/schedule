@@ -136,5 +136,11 @@
   "place": "Endroit",
   "add_announcement": "Ajouter une annonce",
   "successfully_added_announcement": "Annonce avec succès.",
-  "announcement_not_added": "Annonce non ajoutée."
+  "announcement_not_added": "Annonce non ajoutée.",
+
+  "canceling_class_scheduled_for": "Annulation de la classe prévue pour",
+  "cancel_class": "Annuler la classe",
+  "class_successfully_canceled": "Classe annulée avec succès",
+  "class_already_canceled": "La classe est déjà annulée.",
+  "class_not_canceled": "Classe non annulée."
 }

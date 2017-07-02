@@ -33,6 +33,7 @@ import {AssistantsService} from './services/assistants.service';
 import {ClassroomsService} from './services/classrooms.service';
 import {DeleteGroupComponent} from './dialogs/delete-group/delete-group.component';
 import { AddAnnouncementComponent } from './dialogs/add-announcement/add-announcement.component';
+import { CancelClassComponent } from './dialogs/cancel-class/cancel-class.component';
 
 @NgModule({
   imports: [
@@ -45,12 +46,12 @@ import { AddAnnouncementComponent } from './dialogs/add-announcement/add-announc
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
-    DeleteGroupComponent, AddAnnouncementComponent],
+    DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent],
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
     StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })
