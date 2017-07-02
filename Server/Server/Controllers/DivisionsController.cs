@@ -217,7 +217,7 @@ namespace Server.Controllers
             try
             {
                 divisionService.UpdateDivision(obj.divisionId.Value, obj.name, obj.beginning, obj.ending, obj.divisionTypeId, obj.courseID);
-                return Ok(new { status = "sucess" });
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {

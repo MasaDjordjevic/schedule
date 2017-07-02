@@ -115,5 +115,9 @@
   "copy_unsuccessful": "Kopiranje nije uspelo.",
   "successfully_copied_division__1": "Uspešno kopirana raspodela",
   "successfully_copied_division__2": ".",
-  "division_not_copied": "Nije kopirana raspodela."
+  "division_not_copied": "Nije kopirana raspodela.",
+
+  "successfully_edited_division__1": "Uspešno izmenjana raspodela",
+  "successfully_edited_division__2": ".",
+  "group_not_edited": "Grupa nije izmenjena."
 }

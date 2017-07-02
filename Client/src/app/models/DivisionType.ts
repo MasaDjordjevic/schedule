@@ -1,4 +1,4 @@
 export class DivisionType {
-    divisionTypeID: number;
-    type: string;
+  divisionTypeID: number;
+  type: string;
 }

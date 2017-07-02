@@ -17,7 +17,7 @@ import {StudentsService} from '../../services/students.service';
 export class EditDivisionComponent implements OnInit {
 
   courses: any[];
-  divisionTypes: DivisionType;
+  divisionTypes: any[];
   studentsOfCourse: any[];
   division: any;
   private editedDivision: any = {};
@@ -69,7 +69,8 @@ export class EditDivisionComponent implements OnInit {
   // Iz look-up tabele
   public getAllDivisionTypes() {
     this.divisionsService.getAllDivisionTypes()
-      .then(type => this.divisionTypes = type,
+      .then(
+        type => this.divisionTypes = type,
         error => this.errorMessage = <any>error);
   }
 
@@ -88,28 +89,43 @@ export class EditDivisionComponent implements OnInit {
     this.dialogRef.close(message);
   }
 
+  openSnackBar(message: string, action: string = null) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
+  getCourseName(courseId: number) {
+    return this.courses && this.courses.find(c => c.CourseId === courseId).Name;
+  }
+
+  getDivisionTypeName(divisionTypeId: number) {
+    return this.divisionTypes && this.divisionTypes.find(d => d.divisionTypeId === divisionTypeId).type;
+  }
+
   update() {
-    const sendId = this.division.divisionId;
+    const sendId = this.division.DivisionId;
     const sendName = this.editedDivision.name;
     const sendBeginning = this.editedDivision.beginning;
     const sendEnding = this.editedDivision.ending;
-    const sendDivisionTypeID = this.editedDivision.divisionTypeId;
-    const sendCourseID = this.editedDivision.courseId;
+    const sendDivisionTypeId = this.editedDivision.divisionTypeId;
+    const sendCourseId = this.editedDivision.courseId;
 
-    console.log(sendId, sendName, sendBeginning, sendEnding, sendDivisionTypeID, sendCourseID);
-    /*debugger;*/
+
+    console.log(sendId, sendName, sendBeginning, sendEnding, sendDivisionTypeId, sendCourseId);
 
     this.divisionsService.updateDivision(
-      sendId, sendName, sendBeginning, sendEnding, sendDivisionTypeID, sendCourseID)
+      sendId, sendName, sendBeginning, sendEnding, sendDivisionTypeId, sendCourseId)
       .then(response => {
         switch (response.status) {
           case 'success':
-            this.snackBar.open(this.translate.instant('successfully_edited_division__1') +
+            this.openSnackBar(this.translate.instant('successfully_edited_division__1') +
               ' ' + sendName + ' ' + this.translate.instant('successfully_edited_division__2'));
             this.close('edited');
             break;
           default:
-            this.snackBar.open(this.translate.instant('error') + ' ' + this.translate.instant('group_not_edited'));
+            this.openSnackBar(this.translate.instant('error') + ' ' + this.translate.instant('group_not_edited'));
             debugger;
             this.close();
             break;

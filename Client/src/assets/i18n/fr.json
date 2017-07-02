@@ -114,5 +114,9 @@
   "copy_unsuccessful": "Copier dans le presse-papiers sans succès.",
   "successfully_copied_division__1": "Division copiée avec succès",
   "successfully_copied_division__2": ".",
-  "division_not_copied": "Division non copiée."
+  "division_not_copied": "Division non copiée.",
+
+  "successfully_edited_division__1": "Division éditée avec succès",
+  "successfully_edited_division__2": ".",
+  "group_not_edited": "Groupe non édité."
 }

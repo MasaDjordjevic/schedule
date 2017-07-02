@@ -1,0 +1,74 @@
+<div class="content" *ngIf="editedDivision">
+
+  <div class="top">
+    <md-input-container color="accent">
+      <input mdInput
+             [(ngModel)]="editedDivision.name"
+             [placeholder]="'division_name' | translate">
+    </md-input-container>
+  </div>
+
+  <div class="left">
+    <md-input-container color="accent">
+      <input mdInput
+             [placeholder]="'subject' | translate"
+             [value]="getCourseName(editedDivision.courseId)"
+             [mdAutocomplete]="coursesAutocomplete">
+    </md-input-container>
+    <md-autocomplete #coursesAutocomplete="mdAutocomplete">
+      <md-option *ngFor="let course of courses"
+                 (onSelectionChange)="editedDivision.courseId = course.CourseId"
+                 [value]="course.Name">
+        {{course.Name}}
+      </md-option>
+    </md-autocomplete>
+
+    <md-input-container color="accent">
+      <input mdInput
+             [placeholder]="'division_type' | translate"
+             [value]="getDivisionTypeName(editedDivision.divisionTypeId)"
+             [mdAutocomplete]="divisionTypesAutocomplete">
+    </md-input-container>
+    <md-autocomplete #divisionTypesAutocomplete="mdAutocomplete">
+      <md-option *ngFor="let dType of divisionTypes"
+                 (onSelectionChange)="editedDivision.divisionTypeId = dType.divisionTypeId"
+                 [value]="dType.type">
+        {{dType.type}}
+      </md-option>
+    </md-autocomplete>
+
+  </div>
+
+  <div class="right">
+    <md-input-container color="accent">
+      <input mdInput
+             [placeholder]="'start_date' | translate"
+             [mdDatepicker]="startPicker"
+             [(ngModel)]="editedDivision.beginning">
+      <button mdSuffix [mdDatepickerToggle]="startPicker"></button>
+    </md-input-container>
+    <md-datepicker #startPicker></md-datepicker>
+
+    <md-input-container color="accent">
+      <input mdInput
+             [placeholder]="'end_date' | translate"
+             [mdDatepicker]="endPicker"
+             [(ngModel)]="editedDivision.ending">
+      <button mdSuffix [mdDatepickerToggle]="endPicker"></button>
+    </md-input-container>
+    <md-datepicker #endPicker></md-datepicker>
+  </div>
+</div>
+
+<div class="dialog-controls">
+  <button md-button
+          color="accent"
+          (click)="reset()">
+    {{'reset' | translate}}
+  </button>
+  <button md-raised-button
+          color="accent"
+          (click)="update()">
+    {{'save_changes' | translate}}
+  </button>
+</div>

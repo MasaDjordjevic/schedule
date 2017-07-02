@@ -111,5 +111,9 @@
   "copy_unsuccessful": "Copy to clipboard not successful.",
   "successfully_copied_division__1": "Successfully copied division",
   "successfully_copied_division__2": ".",
-  "division_not_copied": "Division not copied."
+  "division_not_copied": "Division not copied.",
+
+  "successfully_edited_division__1": "Successfully edited division",
+  "successfully_edited_division__2": ".",
+  "group_not_edited": "Group not edited."
 }

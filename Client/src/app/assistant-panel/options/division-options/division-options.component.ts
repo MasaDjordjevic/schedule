@@ -112,7 +112,12 @@ export class DivisionOptionsComponent implements OnInit {
   }
 
   openEditDivisionDialog() {
-    this.dialog.open(EditDivisionComponent, {data: {division: this.division}});
+    const dialogRef = this.dialog.open(EditDivisionComponent, {data: {division: this.division}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'edited') {
+        this.router.navigate(['/assistant', {departmentId: this.departmentId}]);
+      }
+    });
   }
 
 }
