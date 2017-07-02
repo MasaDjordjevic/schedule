@@ -226,8 +226,9 @@ namespace Server.Services
                             TimeSpan.DatesOverlap(a.Group.Division.Beginning, a.Group.Division.Ending, ts.StartDate, ts.EndDate)) //provera da li raspodela kojoj grupa pripada i dalje vazi
                             .Select(a => a.GroupId).ToList();
 
-            List<TimeSpans> GroupsSchedule =
-                _context.Groups.Where(a => Groups.Contains(a.GroupId) && groupService.IsActive(a.GroupId, ts)).Select(a => a.TimeSpan).ToList();
+            var GroupsSchedulePom =
+                _context.Groups.Where(a => Groups.Contains(a.GroupId)).ToList();
+            List<TimeSpans> GroupsSchedule = GroupsSchedulePom.Where(a => a.TimeSpan != null && groupService.IsActive(a.GroupId, ts)).Select(a => a.TimeSpan).ToList();
 
 
             List<int> activities =
@@ -240,7 +241,7 @@ namespace Server.Services
 
             List<TimeSpans> schedule = GroupsSchedule.Concat(activitiesSchedule).ToList();
 
-            return schedule.All(TimeSpan => !Server.Services.TimeSpan.Overlap(TimeSpan, ts));
+            return ts == null || schedule.All(timeSpan => !Server.Services.TimeSpan.Overlap(timeSpan, ts));
 
         }
 

@@ -122,9 +122,18 @@ export class DivisionOptionsComponent implements OnInit {
   }
 
   openNewGroupDialog() {
-    this.dialog.open(EditGroupComponent, {
+    const dialogRef = this.dialog.open(EditGroupComponent, {
       data: {
         group: {Name: '', ClassroomId: null, GroupsStudents: [], Division: this.division}
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.router.navigate(['/assistant', {
+          departmentId: this.departmentId,
+          divisionId: this.divisionId,
+          refresh: this.refreshNumber++
+        }]);
       }
     });
   }

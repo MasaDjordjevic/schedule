@@ -207,25 +207,32 @@ namespace Server.Services
 
         
 
-        public Groups Create(int DivisionId, string name, int? ClassroomId, TimeSpans TimeSpan)
+        public Groups Create(int DivisionId, string name, int? ClassroomId, TimeSpans timeSpan)
         {
 
 
             //provera da li je ucionica slobodna u to vreme
             if (ClassroomId != null)
             {
-                this.CheckIfClassroomIsAvailable(ClassroomId.Value, TimeSpan);
+                this.CheckIfClassroomIsAvailable(ClassroomId.Value, timeSpan);
             }
 
-            _context.TimeSpans.Add(TimeSpan);
+            if (timeSpan != null)
+            {
+                _context.TimeSpans.Add(timeSpan);
+            }
             _context.SaveChanges();
             Groups g = new Groups
             {
                 DivisionId = DivisionId,
                 Name = name,
                 ClassroomId = ClassroomId,
-                TimeSpanId = TimeSpan.TimeSpanId
+                
             };
+            if(timeSpan != null)
+            {
+                g.TimeSpanId = timeSpan.TimeSpanId;
+            }
             _context.Groups.Add(g);
             _context.SaveChanges();
 
@@ -593,7 +600,7 @@ namespace Server.Services
             var pom = _context.Groups
                .Where(a => a.ClassroomId == ClassroomId &&
                            (GroupId == null || a.GroupId != GroupId) && // da ne uzme u obzir trenutni ts grupe, posto se ionako menja
-                           TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, ts.StartDate, ts.EndDate)) //provera da li raspodela kojoj grupa pripada i dalje vazi
+                           (ts == null || TimeSpan.DatesOverlap(a.Division.Beginning, a.Division.Ending, ts.StartDate, ts.EndDate))) //provera da li raspodela kojoj grupa pripada i dalje vazi
                            .ToList();
             // mora iz dva dela
             List<TimeSpans> groupsSchedule = pom.Where(a => a.TimeSpan != null && this.IsActive(a.GroupId, ts)).Select(a => a.TimeSpan).ToList();

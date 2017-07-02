@@ -2,20 +2,19 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {Group} from '../../models/Group';
 import {TimeSpan} from '../../models/TimeSpan';
+import {AuthService} from '../../login/auth.service';
 
 @Injectable()
 export class GroupsService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private groupsUrl = 'http://localhost:55281/api/Groups';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private authService: AuthService) { }
 
 
   getGroup(groupId: number): Promise<Group> {
-    return this.http.get(this.groupsUrl + '/GetGroup/' + groupId)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.groupsUrl + '/GetGroup/' + groupId);
   }
 
   updateGroup(groupID: number, divisionID: number, assistantID: number,
@@ -32,11 +31,7 @@ export class GroupsService {
     console.log(body);
     /*debugger;*/
 
-    const options = new RequestOptions({headers: this.headers});
-    return this.http.post(this.groupsUrl + '/Update', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.groupsUrl + '/Update', body);
   }
 
 

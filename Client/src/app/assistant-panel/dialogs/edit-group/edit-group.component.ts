@@ -8,6 +8,7 @@ import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {Inject} from '@angular/core';
 import {AssistantsService} from '../../services/assistants.service';
 import {ClassroomsService} from '../../services/classrooms.service';
+import {GroupsService} from '../../services/groups.service';
 
 
 @Component({
@@ -34,19 +35,21 @@ export class EditGroupComponent implements OnInit {
   constructor(private classroomsService: ClassroomsService,
               private assistantsService: AssistantsService,
               private studentsService: StudentsService,
+              private groupsService: GroupsService,
               private translate: TranslateService,
               private themeService: ThemeService,
               public snackBar: MdSnackBar,
               public dialogRef: MdDialogRef<EditGroupComponent>,
               @Inject(MD_DIALOG_DATA) public data: any) {
-      this.group = data.group;
-      console.log(this.group);
-      this.cloneToEdit(this.group);
-      this.afterGroupInit();
+    this.group = data.group;
+    console.log(this.group);
+    this.cloneToEdit(this.group);
+    this.afterGroupInit();
   }
 
   ngOnInit() {
   }
+
   get theme() {
     return this.themeService.getTheme() + '-theme';
   }
@@ -68,7 +71,7 @@ export class EditGroupComponent implements OnInit {
 
   afterGroupInit() {
     this.getAllStudents();
-
+    this.getClassrooms();
     if (this.group.GroupId) {
       this.getAssistants();
     }
@@ -110,17 +113,17 @@ export class EditGroupComponent implements OnInit {
   }
 
   getClassroomNumber(id: number) {
-    if (!this.classrooms) {
+    if (!this.classrooms || !id) {
       return '';
     }
     return this.classrooms.find(c => c.classroomId === id).number;
   }
 
   getAssistantName(id: number) {
-    if(!this.editedGroup.assistantId) {
+    if (!this.editedGroup.assistantId) {
       return '';
     }
-    const asst =  this.assistants.find(a => a.uniMemberId === id);
+    const asst = this.assistants.find(a => a.uniMemberId === id);
     return asst.name + ' ' + asst.surname;
   }
 
@@ -166,5 +169,49 @@ export class EditGroupComponent implements OnInit {
 
   selectionChanged(param) {
     this.editedGroup.GroupsStudents = _.xor([param], this.editedGroup.GroupsStudents);
+  }
+
+  openSnackBar(message: string, action: string = null) {
+    this.snackBar.open(message, action, {duration: 2000});
+  }
+
+  close(message: string = null) {
+    this.dialogRef.close(message);
+  }
+
+  save() {
+    const pom: Array<number> = this.editedGroup.GroupsStudents.map(i => i.StudentId);
+    let timespan: any = {};
+
+    // ako nista nije odabrano
+    if (!this.editedGroup.period) {
+      timespan = null;
+    } else {
+      timespan.startDate = new Date(this.editedGroup.dateTimeStart);
+      timespan.endDate = new Date(this.editedGroup.dateTimeEnd);
+      timespan.period = +this.editedGroup.period;
+      timespan.dayOfWeek = this.editedGroup.dayOfWeek;
+      timespan.timeStart = this.editedGroup.timeStart;
+      timespan.timeEnd = this.editedGroup.timeEnd;
+    }
+    
+    this.groupsService.updateGroup(
+      this.group.GroupId, this.group.Division.DivisionId, this.editedGroup.assistantId,
+      this.editedGroup.name, this.editedGroup.classroomId, timespan, pom
+    )
+      .then(response => {
+        switch (response.status) {
+          case 'success':
+            this.openSnackBar(this.translate.instant('successfully_edited_group__1') +
+              ' ' + this.editedGroup.name + ' ' + this.translate.instant('successfully_edited_group__2'));
+            this.close('updated');
+            break;
+          default:
+            this.openSnackBar(this.translate.instant('error') + ' ' +
+              this.translate.instant('group_not_edited'));
+            debugger;
+            break;
+        }
+      });
   }
 }

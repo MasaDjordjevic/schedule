@@ -290,6 +290,7 @@ namespace Server.Controllers
 
         // POST: api/Groups/Update
         [HttpPost]
+        [Route("Update")]
         public IActionResult Update([FromBody] GroupsController.UpdateGroupBinding obj)
         {
 
@@ -312,11 +313,7 @@ namespace Server.Controllers
             }
 
             try
-            {
-                if (obj.assistantID != null)
-                {
-                    groupService.SetAsstant(obj.groupID.Value, obj.assistantID.Value);
-                }
+            {              
 
                 //konvertovanje u timeSpan
                 TimeSpans ts = Services.TimeSpan.getTimeSpan(obj.timespan);
@@ -334,6 +331,10 @@ namespace Server.Controllers
                     Groups newGroup = groupService.Create(obj.divisionID.Value, obj.name, obj.classroomID,
                         ts);
                     studentService.ChangeStudents(newGroup.GroupId, obj.students.ToList());
+                    if (obj.assistantID != null)
+                    {
+                        groupService.SetAsstant(newGroup.GroupId, obj.assistantID.Value);
+                    }
                 }
                 else //update grupe
                 {
@@ -344,9 +345,13 @@ namespace Server.Controllers
 
                     studentService.Update(obj.groupID.Value, obj.name, obj.classroomID, ts);
                     studentService.ChangeStudents(obj.groupID.Value, obj.students.ToList());
-
+                    if (obj.assistantID != null)
+                    {
+                        groupService.SetAsstant(obj.groupID.Value, obj.assistantID.Value);
+                    }
                 }
-                return Ok(new { status = "uspelo" });
+             
+                return Ok(new { status = "success" });
             }
             catch (InconsistentDivisionException ex)
             {
@@ -354,7 +359,7 @@ namespace Server.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }

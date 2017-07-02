@@ -142,7 +142,8 @@
            [(ngModel)]="query">
   </md-input-container>
   <button md-raised-button
-          color="accent">
+          color="accent"
+          (click)="save()">
     {{'save_changes' | translate}}
   </button>
 </div>
