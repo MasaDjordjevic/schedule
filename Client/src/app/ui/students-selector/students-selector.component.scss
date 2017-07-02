@@ -1,0 +1,38 @@
+:host section{
+  display: flex;
+  flex-wrap: wrap;
+  .student {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    margin-left: .66em;
+    margin-right: .25em;
+    margin-bottom: 0.3em;
+
+    .primary {
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .secondary {
+      display: inline-block;
+      font-size: 0.75em;
+      color: rgba(black, .72);
+
+      .index-number {
+        display: inline-block;
+      }
+
+      .e-mail {
+        display: inline-block;
+        margin-left: 1em;
+      }
+
+      i {
+        display: inline-block;
+        margin-right: .5em;
+        color: rgba(black, .36);
+      }
+    }
+  }
+}

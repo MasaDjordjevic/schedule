@@ -115,11 +115,16 @@
 <div class="others-selector">
   <app-students-selector [students]="students | withoutStudents : editedGroup.GroupsStudents"
                          (onSelectionChange)="selectionChanged($event)"
-                         [checked]="false">
+                         [checked]="false"
+                         [query]="query">
   </app-students-selector>
 </div>
 
 <div class="controls">
+  <md-input-container color="accent">
+    <input mdInput
+           [(ngModel)]="query">
+  </md-input-container>
   <button md-raised-button
           color="accent">
     {{'save_changes' | translate}}

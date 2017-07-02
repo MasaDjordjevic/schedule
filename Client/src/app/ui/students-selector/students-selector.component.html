@@ -1,7 +1,15 @@
 <section>
-  <md-checkbox *ngFor="let student of students"
+  <md-checkbox *ngFor="let student of filteredStudents"
                [checked]="checked"
-  (change)="studentClicked(student)">
-    {{student.UniMembers.Name}}
+               (change)="studentClicked(student)"
+               class="student">
+      <span class="primary"
+            [innerHTML]="(student.UniMembers?.Name | highlight:query) + ' ' + (student.UniMembers?.Surname | highlight:query)"></span>
+    <span class="secondary">
+                    <span class="index-number"><i class="fa fa-book"></i>
+                      <span [innerHTML]="student.IndexNumber.toString() | highlight:query"></span></span>
+                    <span class="e-mail"><i class="fa fa-envelope"></i>
+                      <span [innerHTML]="student.UniMembers?.Email | highlight:query"></span></span>
+                </span>
   </md-checkbox>
 </section>

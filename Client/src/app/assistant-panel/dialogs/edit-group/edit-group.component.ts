@@ -25,6 +25,8 @@ export class EditGroupComponent implements OnInit {
   private students;
   private errorMessage;
 
+  query = '';
+
   private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   @HostBinding('class') themeClass = this.theme;
