@@ -1,0 +1,15 @@
+<div class="dialog-text">
+  {{'delete_group__1' | translate}}<b>{{group.Name}}</b>{{'delete_group__2' | translate}}
+</div>
+<div class="dialog-controls">
+  <button md-button
+          (click)="close()"
+          color="warn">
+    {{'cancel' | translate}}
+  </button>
+  <button md-raised-button
+          (click)="removeGroup()"
+          color="warn">
+    {{'delete' | translate}}
+  </button>
+</div>

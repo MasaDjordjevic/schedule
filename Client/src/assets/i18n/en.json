@@ -113,11 +113,17 @@
   "successfully_edited_division__1": "Successfully edited division",
   "successfully_edited_division__2": ".",
   "group_not_edited": "Group not edited.",
-
   "members": "Members",
   "others": "Others",
   "group_name": "Group name",
   "all_assistants": "All assistants",
   "successfully_edited_group__1": "Successfully edited group",
-  "successfully_edited_group__2": "."
+  "successfully_edited_group__2": ".",
+
+  "delete_group__1": "Delete group ",
+  "delete_group__2": "?",
+  "group_delete_successful__1": "Successfully deleted group",
+  "group_delete_successful__2": ".",
+  "group_delete_unsuccessful__1": "Deleting group",
+  "group_delete_unsuccessful__2": " did not complete successfully."
 }

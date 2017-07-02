@@ -25,7 +25,7 @@ namespace Server.Controllers
         {
             _context = context;
             this.groupService = groupService;
-            this.studentService = studentService; 
+            this.studentService = studentService;
         }
 
         // GET: api/Groups
@@ -36,7 +36,7 @@ namespace Server.Controllers
             return _context.Groups;
         }
 
-       
+
         [HttpGet]
         [Route("GetAllGroups")]
         public IActionResult GetAllGroups()
@@ -313,7 +313,7 @@ namespace Server.Controllers
             }
 
             try
-            {              
+            {
 
                 //konvertovanje u timeSpan
                 TimeSpans ts = Services.TimeSpan.getTimeSpan(obj.timespan);
@@ -350,7 +350,7 @@ namespace Server.Controllers
                         groupService.SetAsstant(obj.groupID.Value, obj.assistantID.Value);
                     }
                 }
-             
+
                 return Ok(new { status = "success" });
             }
             catch (InconsistentDivisionException ex)
@@ -481,7 +481,7 @@ namespace Server.Controllers
 
         }
 
-      
+
 
 
         // PUT: api/Groups/5
@@ -536,23 +536,32 @@ namespace Server.Controllers
 
         // DELETE: api/Groups/5
         [HttpDelete("{id}")]
+        [Route("DeleteGroups/{id}")]
+
         public async Task<IActionResult> DeleteGroups([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
-            }
 
-            var groups = await _context.Groups.SingleOrDefaultAsync(m => m.GroupId == id);
-            if (groups == null)
+                var groups = await _context.Groups.SingleOrDefaultAsync(m => m.GroupId == id);
+                if (groups == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Groups.Remove(groups);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { status = "success" });
+            }
+            catch (Exception ex)
             {
-                return NotFound();
+                return Ok(new
+                {
+                    status = "error",
+                    message = ex.Message
+                });
             }
-
-            _context.Groups.Remove(groups);
-            await _context.SaveChangesAsync();
-
-            return Ok(groups);
         }
 
         private bool GroupsExists(int id)

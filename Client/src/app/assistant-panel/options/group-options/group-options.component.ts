@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../../services/groups.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import * as moment from 'moment';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {DeleteGroupComponent} from '../../dialogs/delete-group/delete-group.component';
+import {MdDialog, MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-group-options',
@@ -11,17 +13,24 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 })
 export class GroupOptionsComponent implements OnInit {
   groupId: number;
+  departmentId: number;
+  divisionId: number;
   group: any;
   errorMessage: string;
 
   constructor(private groupsService: GroupsService,
               private route: ActivatedRoute,
-              private translate: TranslateService) { }
+              private router: Router,
+              private translate: TranslateService,
+              public snackBar: MdSnackBar,
+              public dialog: MdDialog) { }
 
   ngOnInit() {
     this.route.params
       .subscribe((params: Params) => {
         this.groupId = +params['groupId'];
+        this.divisionId = +params['divisionId'];
+        this.departmentId = +params['departmentId'];
         this.getGroup();
       });
   }
@@ -79,6 +88,18 @@ export class GroupOptionsComponent implements OnInit {
         end.format('HH:mm');
     }
 
+  }
+
+  openDeleteGroupDialog() {
+    const dialogRef = this.dialog.open(DeleteGroupComponent, {data: {group: this.group}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'deleted') {
+        this.router.navigate(['/assistant', {
+          departmentId: this.departmentId,
+          divisionId: this.divisionId
+        }]);
+      }
+    });
   }
 
 }

@@ -125,5 +125,12 @@
   "group_name": "Nom de groupe",
   "all_assistants": "Tous les assistants",
   "successfully_edited_group__1": "Groupe édité avec succès",
-  "successfully_edited_group__2": "."
+  "successfully_edited_group__2": ".",
+
+  "delete_group__1": "Supprimer le groupe ",
+  "delete_group__2": "?",
+  "group_delete_successful__1": "Groupe supprimé avec succès",
+  "group_delete_successful__2": ".",
+  "group_delete_unsuccessful__1": "Supprimer le groupe",
+  "group_delete_unsuccessful__2": " n'a pas été complété avec succès."
 }

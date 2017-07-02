@@ -31,6 +31,7 @@ import {EditDivisionComponent} from './dialogs/edit-division/edit-division.compo
 import {EditGroupComponent} from './dialogs/edit-group/edit-group.component';
 import {AssistantsService} from './services/assistants.service';
 import {ClassroomsService} from './services/classrooms.service';
+import {DeleteGroupComponent} from './dialogs/delete-group/delete-group.component';
 
 @NgModule({
   imports: [
@@ -42,12 +43,13 @@ import {ClassroomsService} from './services/classrooms.service';
     AssistantPanelRoutingModule
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent],
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
+    DeleteGroupComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
-    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent],
+    MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent, DeleteGroupComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
     StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
 })
