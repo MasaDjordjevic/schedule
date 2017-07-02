@@ -17,27 +17,19 @@
 
 
   <div class="footer-buttons">
-
-    <button md-button color="primary" #debuggingButton
-            (click)="debuggingDialog.open()">
-      {{'JSON' | translate }}
-    </button>
-
-    <div class="flex-spacer"></div>
-
-    <button md-raised-button color="primary" #newDivisionButton
+    <button md-raised-button color="primary"
             (click)="openNewDivisionDialog()">
       {{'new_division' | translate }}
     </button>
 
 
-    <button md-raised-button color="primary" #allStudentsButton
+    <button md-raised-button color="primary"
             (click)="openAllStudentsDialog()">
       {{'students' | translate }}
     </button>
 
 
-    <button md-raised-button color="primary" #globalScheduleButton
+    <button md-raised-button color="primary"
             (click)="globalScheduleDialog.open()">
       {{'global_timetable' | translate }}
     </button>
