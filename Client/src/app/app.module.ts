@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import {TestModule} from './test/test.module';
 import {LoginModule} from './login/login.module';
 import {AuthService} from './login/auth.service';
+import {StudentPanelModule} from './student-panel/student-panel.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -29,6 +30,7 @@ export function HttpLoaderFactory(http: Http) {
     HttpModule,
     TestModule,
     LoginModule,
+    StudentPanelModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {

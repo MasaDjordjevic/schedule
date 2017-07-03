@@ -1,0 +1,27 @@
+<app-header [name]="'Student'"
+            [surname]="'Masa'"
+            [address]="'445'"
+            [email]="'masadjordjevic@gmail.com'"
+></app-header>
+<div>
+
+</div>
+<div id="menu">
+  <div class="tabs">
+    <div class="tab-bar" [style.left]="leftOffset"></div>
+    <div class="tab"
+         (click)="timetableType = 0">
+      {{'official' | translate}}
+    </div>
+
+    <div class="tab"
+         (click)="timetableType = 1">
+      {{'personal' | translate}}
+    </div>
+
+    <div class="tab"
+         (click)="timetableType = 2">
+      {{'global' | translate}}
+    </div>
+  </div>
+</div>

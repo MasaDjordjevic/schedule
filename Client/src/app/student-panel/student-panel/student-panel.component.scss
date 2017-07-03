@@ -1,0 +1,65 @@
+@import "../../ljubenovic-toolkit";
+@import "../../palette";
+@import "../../themes";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include force-height(100vh);
+
+  > * {
+    display: block;
+    position: relative;
+  }
+
+  #timetable-wrapper {
+    position: relative;
+    height: 100%;
+  }
+}
+
+
+#menu {
+  background-color: palette($blue-grey, 100);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  @include force-height(50px);
+
+  .tabs {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+
+    .tab-bar {
+      height: 3px;
+      width: 100px;
+      top: 0;
+      left: 0;
+      transition: left .33s ease;
+      position: absolute;
+      background-color: teal;
+    }
+
+    .tab {
+      box-sizing: border-box;
+      height: 50px;
+      line-height: 50px;
+      width: 100px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+
+      &.current {
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: rgba(black, .1);
+      }
+    }
+
+  }
+
+}
