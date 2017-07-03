@@ -7,7 +7,7 @@ import {CoursesService} from '../../services/courses.service';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import preventExtensions = Reflect.preventExtensions;
 import {TranslateService} from '@ngx-translate/core';
-import {ThemeService} from '../../services/theme.service';
+import {ThemeService} from '../../../shared/theme.service';
 
 @Component({
   selector: 'app-division-creator',

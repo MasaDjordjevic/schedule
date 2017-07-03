@@ -19,7 +19,6 @@ import {DepartmentOptionsComponent} from './options/department-options/departmen
 import {DivisionOptionsComponent} from './options/division-options/division-options.component';
 import {GroupOptionsComponent} from './options/group-options/group-options.component';
 import {StudentOptionsComponent} from './options/student-options/student-options.component';
-import {ThemeService} from './services/theme.service';
 import {StudentFinderComponent} from './dialogs/student-finder/student-finder.component';
 import {FormsModule} from '@angular/forms';
 import {DivisionCreatorComponent} from './dialogs/division-creator/division-creator.component';
@@ -59,7 +58,7 @@ import {MoveStudentComponent} from './dialogs/move-student/move-student.componen
     EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent,
     AddActivityComponent, KickStudentComponent, MoveStudentComponent],
   providers: [DepartmentsService, DivisionsService, GroupsService,
-    StudentsService, ThemeService, CoursesService, AssistantsService, ClassroomsService]
+    StudentsService, CoursesService, AssistantsService, ClassroomsService],
 })
 export class AssistantPanelModule {
 }

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {ThemeService} from '../../assistant-panel/services/theme.service';
+import {ThemeService} from '../../shared/theme.service';
 
 @Component({
   selector: 'app-header',

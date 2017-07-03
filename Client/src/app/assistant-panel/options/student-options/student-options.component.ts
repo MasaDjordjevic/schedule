@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StudentsService} from '../../services/students.service';
-import {ThemeService} from '../../services/theme.service';
+import {ThemeService} from '../../../shared/theme.service';
 import {TranslateService} from '@ngx-translate/core';
 import {MdDialog, MdSnackBar} from '@angular/material';
 import {KickStudentComponent} from '../../dialogs/kick-student/kick-student.component';

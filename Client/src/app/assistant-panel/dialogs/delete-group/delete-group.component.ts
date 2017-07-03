@@ -1,6 +1,6 @@
 import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
-import {ThemeService} from '../../services/theme.service';
+import {ThemeService} from '../../../shared/theme.service';
 import {TranslateService} from '@ngx-translate/core';
 import {DivisionsService} from '../../services/divisions.service';
 import {GroupsService} from '../../services/groups.service';

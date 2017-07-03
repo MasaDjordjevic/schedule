@@ -5,7 +5,7 @@ import {ClassroomsService} from '../../../test/classrooms/classrooms.service';
 import {GroupsService} from '../../services/groups.service';
 import {TranslateService} from '@ngx-translate/core';
 import {startWith} from 'rxjs/operator/startWith';
-import {ThemeService} from '../../services/theme.service';
+import {ThemeService} from '../../../shared/theme.service';
 
 @Component({
   selector: 'app-mass-group-edit',

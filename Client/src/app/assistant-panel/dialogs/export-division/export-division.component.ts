@@ -2,7 +2,7 @@ import {Component, OnInit, Inject, HostBinding} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {DivisionCreatorComponent} from '../division-creator/division-creator.component';
 import {TranslateService} from '@ngx-translate/core';
-import {ThemeService} from '../../services/theme.service';
+import {ThemeService} from '../../../shared/theme.service';
 
 @Component({
   selector: 'app-export-division',

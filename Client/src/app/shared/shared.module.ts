@@ -5,9 +5,11 @@ import {
   MdDialogModule, MdAutocompleteModule, MdDatepickerModule, MdNativeDateModule, MdTooltipModule, MdSnackBar,
   MdSnackBarModule
 } from '@angular/material';
+import {ThemeService} from './theme.service';
 
 
 @NgModule({
+  providers: [ThemeService],
   exports: [
     TranslateModule,
     MdButtonModule,
