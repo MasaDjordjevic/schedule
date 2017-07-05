@@ -16,6 +16,10 @@ export class LoginService {
      return this.authService.login(username, password);
   }
 
+  getUser() {
+    return this.authService.authGet('http://localhost:55281/api/Login/GetUser');
+  }
+
   getUserInfo(): Promise<any> {
     return this.authService.authGet('http://localhost:55281/api/Login/proba')
       .then(res => console.log(res));

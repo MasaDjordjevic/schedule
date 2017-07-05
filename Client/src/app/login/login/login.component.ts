@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,11 @@ import {LoginService} from '../login.service';
 export class LoginComponent implements OnInit {
   private loginMessage = '';
 
-  public username = 'wlada';
-  public password = 'wlada';
+  public username = 'plavusha';
+  public password = 'plavusha';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,13 +23,9 @@ export class LoginComponent implements OnInit {
     this.loginMessage = '';
     this.loginService.login(this.username, this.password)
       .then(res => {
-        console.log(res);
-        // if (res.status === 'success') {
-        //   console.log('sucess');
-        //   console.log(res.data);
-        // } else {
-        //   this.loginMessage = res.exception;
-        // }
+        if (res.status === 'success') {
+          this.router.navigate(['/' + res.url]);
+        }
       });
   }
 

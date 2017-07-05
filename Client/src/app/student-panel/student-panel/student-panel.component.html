@@ -1,11 +1,15 @@
-<app-header [name]="'Student'"
-            [surname]="'Masa'"
-            [address]="'445'"
-            [email]="'masadjordjevic@gmail.com'"
+<app-header *ngIf="student"
+            [name]="student.UniMembers.Name"
+            [surname]="student.UniMembers.Surname"
+            [address]="student.UniMembers.Address"
+            [email]="student.UniMembers.Email"
 ></app-header>
 <div id="timetable-wrapper">
-  <app-timetable [studentId]="3"
-                 [type]="timetableType">
+  <app-timetable
+    [studentId]="studentId"
+    [officialStudentId]="studentOfficialId"
+    [departmentId]="departmentId"
+    [type]="timetableType">
 
   </app-timetable>
 

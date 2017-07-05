@@ -56,13 +56,11 @@ namespace Server.Controllers
             //asistent
             if (usr.StudentId == null)
             {
-                HttpContext.Session.SetString("role", "assistant");
-                return Ok(new { status = "uspelo", url = "/assistant-panel" });
+                return Ok(new { status = "success", url = "/assistant" });
             }
             else //student
-            {
-                HttpContext.Session.SetString("role", "student");
-                return Ok(new { status = "uspelo", url = "/student-panel" });
+            {               
+                return Ok(new { status = "success", url = "/student" });
             }
         }
 
@@ -131,9 +129,9 @@ namespace Server.Controllers
                     tokeyType = TokenAuthOption.TokenType,
                     accessToken = token
                 };
-                return Ok(new { status = "success", data = data });
+                return Ok(new { status = "success", data = data, url = usr.StudentId == null ? "assistant" : "student" });
 
-            }
+                }
             catch (Exception ex)
             {
                 return Ok(new { exception = ex.Message });
@@ -141,12 +139,13 @@ namespace Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetUser")]
         public IActionResult GetUser()
         {
             //mora ovako ruzno jer se tako ocekuje na frontu
-            if (HttpContext.Session.IsStudent())
+            if (HttpContext.User.IsStudent())
             {
-                var student = studentService.GetStudent(HttpContext.Session.GetStudentId());
+                var student = studentService.GetStudent(HttpContext.User.GetId());
                 return Ok(JsonConvert.SerializeObject(student, Formatting.Indented,
                     new JsonSerializerSettings
                     {
@@ -154,9 +153,9 @@ namespace Server.Controllers
                     }));
             }
 
-            if (HttpContext.Session.IsAssistant())
+            if (HttpContext.User.IsAssistant())
             {
-                var assistnat = assistantService.GetAssistant(HttpContext.Session.GetAssistantId());
+                var assistnat = assistantService.GetAssistant(HttpContext.User.GetId());
 
                 return Ok(JsonConvert.SerializeObject(assistnat, Formatting.Indented,
                     new JsonSerializerSettings

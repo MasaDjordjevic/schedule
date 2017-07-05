@@ -19,7 +19,10 @@ export class AuthService {
 
     return this.http.post(this.loginUrl, body, {headers: headers}).toPromise()
       .then(response => response.json())
-      .then(res =>  sessionStorage.setItem(this.tokenKey, res.data.accessToken))
+      .then(res =>  {
+        sessionStorage.setItem(this.tokenKey, res.data.accessToken);
+        return res;
+      })
       .catch(this.handleError);
   }
 
