@@ -78,17 +78,11 @@ export class StudentsService {
   }
 
   hideClass(groupID: number): Promise<any[]> {
-    return this.http.get(this.studentsUrl + `/HideClass/?groupID=${groupID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.studentsUrl + `/HideClass/?groupID=${groupID}`);
   }
 
   unhideClass(groupID: number): Promise<any[]> {
-    return this.http.get(this.studentsUrl + `/AddClassToPersonalSchedule/?groupID=${groupID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.studentsUrl + `/AddClassToPersonalSchedule/?groupID=${groupID}`);
   }
 
   alertClass(groupID: number): Promise<any[]> {

@@ -1,0 +1,23 @@
+<div *ngIf="dateChoices && dateChoices.length > 1">
+  <md-input-container color="warn" class="full-width">
+    <input mdInput
+           [value]="selectedDate"
+           [placeholder]="('undo_cancel_class_for' | translate) + ' ' + dateChoices[0]"
+           [mdAutocomplete]="dateAutocomplete">
+  </md-input-container>
+  <md-autocomplete #dateAutocomplete="mdAutocomplete">
+    <md-option *ngFor="let dateChoice of dateChoices"
+               (click)="selectedDate = dateChoice"
+               [value]="dateChoice">
+      {{dateChoice}}
+    </md-option>
+
+  </md-autocomplete>
+</div>
+<div class="controls">
+  <button md-raised-button
+          color="warn"
+          (click)="uncancelClass()">
+    {{'uncancel_class' | translate}}
+  </button>
+</div>

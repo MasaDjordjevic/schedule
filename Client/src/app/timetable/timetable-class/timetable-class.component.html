@@ -1,9 +1,3 @@
-<div class="invisible-blackout"
-     (click)="collapse()"
-     *ngIf="expanded"
->
-</div>
-
 <div class="r-timetable-class-wrapper-in"
      [class.red]="color === 'MaterialRed'"
      [class.yellow]="color === 'MaterialYellow'"
@@ -26,7 +20,7 @@
      [style.height]="expanded ? expandedHeight : ''"
      [style.boxShadow]="expanded ? '0 0 0 0.7em ' + color + ' inset' : ''"
      [style.color]="expanded ? 'black' : textColor"
-     (click)="expand($event)"
+     (click)="openDetailsDialog($event)"
      [class.activity]="!isClass"
 >
 

@@ -1,0 +1,115 @@
+<md-tab-group>
+  <md-tab [label]="'basic_info' | translate">
+    <!-- čas, a ne aktivnost -->
+    <div class="main-info" *ngIf="class.isClass">
+      <dl>
+        <div>
+          <dt class="class-time">
+            <i class="fa fa-clock-o"></i>
+            <span>{{'time' | translate}}</span>
+          </dt>
+          <dd>
+            {{class.startMinutes | toTimestamp}} — {{class.endMinutes | toTimestamp}}
+          </dd>
+        </div>
+
+        <div>
+          <dt class="class-place">
+            <i class="fa fa-server"></i>
+            <span>{{'place' | translate}}</span>
+          </dt>
+          <dd>
+            {{class.classroom}}
+          </dd>
+        </div>
+
+        <div>
+          <dt class="class-subject">
+            <i class="fa fa-graduation-cap"></i>
+            <span>{{'subject' | translate}}</span>
+          </dt>
+          <dd>
+            {{class.className}}
+          </dd>
+        </div>
+
+        <div>
+          <dt class="type">
+            <i class="fa fa-sitemap"></i>
+            <span>{{'type' | translate}}</span>
+          </dt>
+          <dd>
+            {{class.type}}
+          </dd>
+        </div>
+
+        <div *ngIf="assistant">
+          <dt class="assistant">
+            <i class="fa fa-male"></i>
+            <span>{{'assistant' | translate}}</span>
+          </dt>
+          <dd>
+            {{class.assistant?.name}}
+            &nbsp;
+            <a *ngIf="class.assistant.mail" [href]="'mailto:' + class.assistant?.mail">
+              <i class="fa fa-envelope"></i>
+            </a>
+          </dd>
+        </div>
+
+      </dl>
+
+      <div class="controls">
+        <button *ngIf="mode === _Mode.StudentOfficial || mode === _Mode.StudentGlobal && class.isClass"
+                md-raised-button
+                color="primary"
+                (click)="addToPersonal()">
+          {{'add_to_personal' | translate}}
+        </button>
+
+        <button *ngIf="mode === _Mode.StudentPersonal && class.isClass"
+                md-raised-button
+                color="primary"
+                (click)="hideClass()">
+          {{'hide_class' | translate}}
+        </button>
+
+        <button *ngIf="mode === _Mode.StudentPersonal"
+                md-raised-button
+                color="primary"
+                (click)="addTaskDialog.open()">
+          {{'add_task' | translate}}
+        </button>
+
+        <button *ngIf="mode === _Mode.AssistantOfficial"
+                md-raised-button
+                color="primary"
+                (click)="addAnnouncementDialog.open()">
+          {{'add_announcement' | translate}}
+        </button>
+
+        <button *ngIf="mode === _Mode.AssistantOfficial"
+                md-raised-button
+                color="primary"
+                (click)="cancelClassDialog.open()">
+          {{'cancel_class' | translate}}
+        </button>
+
+        <button *ngIf="mode === _Mode.AssistantOfficial"
+                md-raised-button
+                color="primary"
+                (click)="uncancelClassDialog.open()">
+          {{'undo_cancel' | translate}}
+        </button>
+
+        <button *ngIf="mode !== _Mode.StudentGlobal"
+                md-raised-button
+                color="primary"
+                (click)="bulletinBoardDialog.open()">
+          {{'bulletin_board' | translate}}
+        </button>
+      </div>
+    </div>
+  </md-tab>
+  <md-tab [label]="'announcements' | translate">Content 2</md-tab>
+</md-tab-group>

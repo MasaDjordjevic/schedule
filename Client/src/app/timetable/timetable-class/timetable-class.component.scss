@@ -41,13 +41,8 @@ a, a:hover, a:visited {
   overflow: hidden;
   @include z-depth(1);
   cursor: pointer;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed version, currently
-                                  not supported by any browser */
+  user-select: none;
+
   div {
     display: flex;
     flex-flow: column;
@@ -64,7 +59,7 @@ a, a:hover, a:visited {
 
   & span {
     cursor: default;
-    
+
     &.times { font-size: 0.8em; }
     &.title { font-size: 1.2em; font-weight: bold; }
     &.type  { font-size: 0.8em; opacity: .7; font-style: italic; }

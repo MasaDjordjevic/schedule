@@ -28,6 +28,7 @@ import {CancelClassComponent} from './dialogs/cancel-class/cancel-class.componen
 import {AddActivityComponent} from './dialogs/add-activity/add-activity.component';
 import {KickStudentComponent} from './dialogs/kick-student/kick-student.component';
 import {MoveStudentComponent} from './dialogs/move-student/move-student.component';
+import { UncancelClassComponent } from './dialogs/uncancel-class/uncancel-class.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,7 @@ import {MoveStudentComponent} from './dialogs/move-student/move-student.componen
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent,
     EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent,
-    AddActivityComponent, KickStudentComponent, MoveStudentComponent],
+    AddActivityComponent, KickStudentComponent, MoveStudentComponent, UncancelClassComponent],
 
 })
 export class AssistantPanelModule {

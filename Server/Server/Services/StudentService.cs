@@ -400,7 +400,7 @@ namespace Server.Services
             {
                 GroupsStudents gs = _context.GroupsStudents.First(a => a.StudentId == StudentId && a.GroupId == GroupId);
                 if (gs.Ignore != true) //null ili false
-                    throw new Exception("vec je u licnom");
+                    throw new Exception("class_already_in_personal");
                 gs.Ignore = false;
             }
             else // dodaj u licni

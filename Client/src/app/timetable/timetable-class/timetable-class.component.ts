@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Mode} from '../mode.enum';
+import {MdDialog, MdSnackBar} from '@angular/material';
+import {ClassDetailsComponent} from '../dialogs/class-details/class-details.component';
 
 @Component({
   selector: 'app-timetable-class',
@@ -45,8 +47,30 @@ export class TimetableClassComponent implements OnInit {
     }
   }
 
-
+  constructor(public snackBar: MdSnackBar,
+              public dialog: MdDialog) { }
   ngOnInit() {
   }
+
+  openDetailsDialog() {
+    const dialogRef = this.dialog.open(ClassDetailsComponent, {data: {
+      class: {
+        classId: this.classId,
+        isClass: this.isClass,
+        startMinutes: this.startMinutes,
+        endMinutes: this.endMinutes,
+        classroom: this.classroom,
+        className: this.className,
+        type: this.type,
+        assistant: this.assistant,
+        place: this.place
+      },
+      mode: this.mode,
+    }});
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
 
 }

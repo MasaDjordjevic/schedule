@@ -276,12 +276,12 @@ namespace Server.Controllers
         {
             try
             {
-               studentService.HideClass(HttpContext.Session.GetStudentId(), groupID);
-                return Ok(new { status = "uspelo" });
+               studentService.HideClass(HttpContext.User.GetId(), groupID);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "nije uspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }
@@ -292,12 +292,12 @@ namespace Server.Controllers
         {
             try
             {
-                studentService.AddClassToPersonalSchedule(HttpContext.Session.GetStudentId(), groupID);
-                return Ok(new { status = "uspelo" });
+                studentService.AddClassToPersonalSchedule(HttpContext.User.GetId(), groupID);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "nije uspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 
