@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {DepartmentsService} from '../services/departments.service';
+import {DepartmentsService} from '../../shared/services/departments.service';
 
 @Component({
   selector: 'app-departments-list',

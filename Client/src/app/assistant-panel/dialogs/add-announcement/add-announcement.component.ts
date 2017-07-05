@@ -1,9 +1,9 @@
 import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
-import {GroupsService} from '../../services/groups.service';
+import {GroupsService} from '../../../shared/services/groups.service';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {ThemeService} from '../../../shared/theme.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ClassroomsService} from '../../services/classrooms.service';
+import {ClassroomsService} from '../../../shared/services/classrooms.service';
 import {TimeSpan} from '../../../models/TimeSpan';
 
 @Component({

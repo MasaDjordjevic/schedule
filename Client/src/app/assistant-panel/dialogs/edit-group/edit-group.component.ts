@@ -1,14 +1,14 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {StudentsService} from '../../services/students.service';
+import {StudentsService} from '../../../shared/services/students.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeService} from '../../../shared/theme.service';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {Inject} from '@angular/core';
-import {AssistantsService} from '../../services/assistants.service';
-import {ClassroomsService} from '../../services/classrooms.service';
-import {GroupsService} from '../../services/groups.service';
+import {AssistantsService} from '../../../shared/services/assistants.service';
+import {ClassroomsService} from '../../../shared/services/classrooms.service';
+import {GroupsService} from '../../../shared/services/groups.service';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
-import {GroupsService} from '../../services/groups.service';
-import {ClassroomsService} from '../../services/classrooms.service';
+import {GroupsService} from '../../../shared/services/groups.service';
+import {ClassroomsService} from '../../../shared/services/classrooms.service';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {ThemeService} from '../../../shared/theme.service';
 import {TranslateService} from '@ngx-translate/core';

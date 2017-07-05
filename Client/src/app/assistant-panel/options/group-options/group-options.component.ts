@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GroupsService} from '../../services/groups.service';
+import {GroupsService} from '../../../shared/services/groups.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import * as moment from 'moment';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';

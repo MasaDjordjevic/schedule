@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TimetableType} from '../timetable-type.enum';
+import {TimetableType} from '../../shared/timetable-type.enum';
 
 @Component({
   selector: 'app-student-panel',
@@ -17,7 +17,6 @@ export class StudentPanelComponent implements OnInit {
 
   get leftOffset() {
     const ret =  this.timetableType * 100;
-    console.log(ret);
     return ret + 'px';
   }
 }

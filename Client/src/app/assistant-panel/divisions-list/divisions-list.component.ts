@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TypeDivisions} from '../../models/TypeDivisions';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {DivisionsService} from '../services/divisions.service';
+import {DivisionsService} from '../../shared/services/divisions.service';
 
 @Component({
   selector: 'app-divisions-list',

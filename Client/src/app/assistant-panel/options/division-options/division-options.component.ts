@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DivisionsService} from '../../services/divisions.service';
+import {DivisionsService} from '../../../shared/services/divisions.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog, MdSnackBar} from '@angular/material';
 import {DeleteDivisionComponent} from '../../dialogs/delete-division/delete-division.component';

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Department} from '../../../models/Department';
 import {Student} from '../../../models/Student';
-import {StudentsService} from '../../services/students.service';
-import {DepartmentsService} from '../../services/departments.service';
+import {StudentsService} from '../../../shared/services/students.service';
+import {DepartmentsService} from '../../../shared/services/departments.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {StudentFinderComponent} from '../../dialogs/student-finder/student-finder.component';

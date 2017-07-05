@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {StudentsService} from '../services/students.service';
+import {StudentsService} from '../../shared/services/students.service';
 
 @Component({
   selector: 'app-students-list',

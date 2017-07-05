@@ -2,7 +2,7 @@ import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
 import {ClassroomsService} from '../../../test/classrooms/classrooms.service';
-import {GroupsService} from '../../services/groups.service';
+import {GroupsService} from '../../../shared/services/groups.service';
 import {TranslateService} from '@ngx-translate/core';
 import {startWith} from 'rxjs/operator/startWith';
 import {ThemeService} from '../../../shared/theme.service';
