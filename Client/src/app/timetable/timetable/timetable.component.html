@@ -1,0 +1,21 @@
+<div *ngIf="classes">
+  <div class="day-titles-fixed">
+    <div *ngFor="let dayName of dayNames">
+      {{dayName}}
+    </div>
+  </div>
+  <div class="time-marks">
+    <div *ngFor="let timeStamp of timeStamps"
+         [style.height]="showEvery * scale + 'px'">
+      <span>{{timeStamp}}</span>
+    </div>
+  </div>
+
+  <div class="gutter"></div>
+
+  <button id="options-button"><i class="fa fa-cog"></i></button>
+
+  <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6]">
+    {{i}}
+  </div>
+</div>
