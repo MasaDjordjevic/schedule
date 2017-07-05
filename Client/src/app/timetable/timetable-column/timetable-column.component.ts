@@ -45,6 +45,7 @@ export class TimetableColumnComponent implements OnInit {
       }
       return 0;
     });
+    console.log('title ' + this.title);
     console.log(this.classes);
     // inicijalno su svi samostalni
     for (let i = 0; i < this.classes.length; i++) {

@@ -48,16 +48,23 @@ a, a:hover, a:visited {
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
+  div {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+  }
 
   &.activity {
     box-shadow: 0 0 0 .5em rgba(black, .5) inset;
     padding: .8em;
   }
 
-  & > span {
+  & span {
     cursor: default;
-    display: block;
-
+    
     &.times { font-size: 0.8em; }
     &.title { font-size: 1.2em; font-weight: bold; }
     &.type  { font-size: 0.8em; opacity: .7; font-style: italic; }
