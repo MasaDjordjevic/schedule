@@ -1,0 +1,34 @@
+<div class="day-title">
+  {{title}}
+</div>
+<div class="container">
+  <div class="class-wrapper"
+       *ngFor="let c of getClasses()"
+       [ngStyle]="{'top': ((c.startMinutes - beginningMinutes) * scale) + 'px',
+                        'height': ((c.durationMinutes) * scale) + 'px',
+                        'left': (c.overlapIndex * 100 / c.overlapNumber) + '%',
+                        'width': (100 / c.overlapNumber) + '%'}">
+
+    <app-timetable-class
+      [classId]="c.groupId"
+      [className]="c.className"
+      [isClass]="c.isClass"
+      [abbr]="c.abbr"
+      [classroom]="c.classroom"
+      [assistant]="c.assistant"
+      [color]="c.color"
+      [type]="c.type"
+      [activityId]="c.activityId"
+      [activityContent]="c.activityContent"
+      [activityTitle]="c.activityTitle"
+      [active]="c.active"
+      [notifications]="c.notifications"
+      [startMinutes]="c.startMinutes"
+      [durationMinutes]="c.durationMinutes"
+      [endMinutes]="c.startMinutes + c.durationMinutes"
+      [mode]="mode"
+      [place]="c.place"
+    >
+    </app-timetable-class>
+  </div>
+</div>

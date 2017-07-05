@@ -1,0 +1,88 @@
+<div class="invisible-blackout"
+     (click)="collapse()"
+     *ngIf="expanded"
+>
+</div>
+
+<div class="r-timetable-class-wrapper-in"
+     [class.red]="color === 'MaterialRed'"
+     [class.yellow]="color === 'MaterialYellow'"
+     [class.blue]="color === 'MaterialBlue'"
+     [class.orange]="color === 'MaterialOrange'"
+     [class.purple]="color === 'MaterialPurple'"
+     [class.green]="color === 'MaterialGreen'"
+     [class.pink]="color === 'MaterialPink'"
+     [class.deep-purple]="color === 'MaterialDeep-purple'"
+     [class.light-blue]="color === 'MaterialLight-blue'"
+     [class.lime]="color === 'MaterialLime'"
+     [class.light-green]="color === 'MaterialLight-green'"
+     [class.teal]="color === 'MaterialTeal'"
+     [class.brown]="color === 'MaterialBrown'"
+     [class.active]="active"
+     [class.expanded]="expanded"
+     [style.left]="expanded ? expandedLeft : ''"
+     [style.top]="expanded ? expandedTop : ''"
+     [style.width]="expanded ? expandedWidth : ''"
+     [style.height]="expanded ? expandedHeight : ''"
+     [style.boxShadow]="expanded ? '0 0 0 0.7em ' + color + ' inset' : ''"
+     [style.color]="expanded ? 'black' : textColor"
+     (click)="expand($event)"
+     [class.activity]="!isClass"
+>
+
+    <span class="times">
+        <span class="start">{{startMinutes | toTimestamp}}</span>
+        —
+        <span class="end">{{endMinutes | toTimestamp}}</span>
+    </span>
+
+  <!-- ako je čas (nije aktivnost) -->
+  <div *ngIf="abbr && classroom">
+            <span class="title">
+                {{abbr}}
+                {{'in' | translate}}
+                {{classroom}}
+            </span>
+    <span class="type">{{type}}</span>
+    <span class="assistant">{{assistant?.name}}</span>
+  </div>
+
+  <!-- ako je aktivnost (nije čas) -->
+  <div *ngIf="activityContent && activityTitle">
+    <span class="title">{{activityTitle}}</span>
+    <span class="text">{{activityContent}}</span>
+  </div>
+
+  <!-- ako ima bar jedna aktivnost -->
+  <div *ngIf="notifications && notifications.length">
+    <div class="notification-notification">
+      <i class="fa fa-bell"></i>
+      <span class="counter">
+                <span>{{notifications.length}}</span>
+            </span>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

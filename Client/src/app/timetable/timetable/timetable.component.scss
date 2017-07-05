@@ -1,7 +1,7 @@
 @import '../../ljubenovic-toolkit';
 @import "../../palette";
 
-:host {
+:host > div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -9,7 +9,7 @@
   overflow: auto;
 }
 
-r-timetable-column {
+app-timetable-column {
   width: 100%;
 }
 

@@ -1,0 +1,370 @@
+@import "../../ljubenovic-toolkit";
+@import "../../palette";
+
+:host {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: block;
+  position: absolute;
+  transition: all .3s ease;
+}
+
+a, a:hover, a:visited {
+  color: rgba(black, .7)!important;
+}
+
+.invisible-blackout {
+  position: absolute;
+  z-index: 19;
+  background-color: rgba(black, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.r-timetable-class-wrapper-in {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  $padding: 0.5em;
+  padding: $padding;
+  box-sizing: border-box;
+  transition: all .3s ease;
+  z-index: 2;
+  overflow: hidden;
+  @include z-depth(1);
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+
+  &.activity {
+    box-shadow: 0 0 0 .5em rgba(black, .5) inset;
+    padding: .8em;
+  }
+
+  & > span {
+    cursor: default;
+    display: block;
+
+    &.times { font-size: 0.8em; }
+    &.title { font-size: 1.2em; font-weight: bold; }
+    &.type  { font-size: 0.8em; opacity: .7; font-style: italic; }
+    &.text  { font-size: 0.9em; font-style: italic; }
+  }
+}
+
+//.invisible-blackout {
+//  width: 100%;
+//  height: 100%;
+//  top: 0;
+//  left: 0;
+//  background-color: rgba(black, .4);
+//}
+
+.r-timetable-class-wrapper-in.expanded {
+  z-index: 20!important;
+  @include z-depth(2);
+  padding: 0;
+  background-color: white;
+  cursor: default;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    @include z-depth(1);
+    background-color: white;
+
+    .tab-line {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      width: 50%; // sirina jednog taba
+
+      div {
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        width: 100%; // sirina jednog taba, odozgo
+        transition: left .33s ease;
+      }
+    }
+
+    .tab {
+      flex: 1;
+      padding: 18px;
+      text-align: center;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center; // da ne bude baseline
+      justify-content: center;
+    }
+  }
+
+  .tab-content {
+    flex: 1;
+    padding: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: stretch;
+
+    .main-info, .additional-info {
+      flex: 1;
+    }
+
+    .main-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      font-size: 1.1em;
+
+      dl {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        > div {
+          display: flex;
+          margin-bottom: 20px;
+
+          dt {
+            @include force-width(3em);
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+
+            i {
+              text-align: center;
+              width: 1.2em;
+              height: 1.2em;
+              font-size: 1.2em;
+            }
+
+            span {
+              display: none;
+              font-weight: bold;
+            }
+          }
+
+          dd {
+            width: 75%;
+            display: flex;
+
+            > .more-info {
+              margin-left: .5em;
+              color: rgba(black, .15);
+              width: 1.2em;
+              height: 1.2em;
+              text-align: center;
+              line-height: 1.2em;
+              border-radius: 50%;
+              transition: all .2s ease;
+              position: relative;
+
+              > div {
+                display: none;
+                opacity: 0;
+                transition: opacity .2s ease;
+                background-color: rgba(palette($blue-grey, 900), .8);
+                color: rgba(white, .86);
+                position: absolute;
+                padding: .5em .8em;
+                height: 3ex;
+                line-height: 3ex;
+                border-radius: .3em;
+                margin-left: 2em;
+                top: -0.65em;
+              }
+
+              &:hover {
+                color: rgba(black, .2);
+
+                > div {
+                  display: block;
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .controls {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+
+    .additional-info {
+      display: flex;
+      justify-content: center;
+
+      .no-notifications {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          i {
+            color: rgba(black, .15);
+            font-size: 5em;
+          }
+
+          span {
+            display: inline-block;
+            margin-top: 1em;
+            text-align: center;
+            color: rgba(black, .25);
+            font-size: 1.5em;
+          }
+        }
+      }
+
+      .notifications {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        .notification {
+          border-radius: 3pt;
+          padding: .5em .8em;
+          //background-color: palette($blue-grey, 50);
+          @include z-depth(.5);
+          margin-bottom: 1em;
+          background-color: white;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .title {
+            font-size: 1.4142em;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+//region Notifikacija za notifikacije (yo dwag)
+.notification-notification {
+  $margin: .7em;
+  position: absolute;
+  top: $margin;
+  right: $margin;
+  width: 2em;
+  height: 2em;
+  font-size: 1em;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  i {
+    color: palette($blue); // default
+  }
+
+  .counter {
+    background-color: palette($red, a400);
+    $s: 1em;
+    width: $s;
+    height: $s;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 50%;
+    border: white 2px solid;
+    top: -.3em;
+    right: -.3em;
+    color: white;
+    position: absolute;
+    font-family: Arial, serif;
+    font-weight: bold;
+
+    span {
+      display: block;
+      font-size: $s * .66;
+    }
+  }
+}
+//endregion
+
+//region Themes
+@each $string, $var in $all-colors-string-var {
+  .r-timetable-class-wrapper-in.#{$string} {
+    background-color: palette($var);
+
+    &.expanded {
+      background-color: white;
+
+      .tab-line div {
+        background-color: palette($var, a400);
+      }
+    }
+
+    .notification-notification {
+      i {
+        color: palette($var);
+      }
+    }
+
+    &:not(.active) {
+      color: rgba(white, .54);
+      //background-color: palette($var, 300);
+      $color1: desaturate(palette($var, 300), 40%);
+      $color2: desaturate(palette($var, 400), 40%);
+      background: repeating-linear-gradient(
+          45deg,
+          $color1,
+          $color1 10px,
+          $color2 10px,
+          $color2 20px
+      );
+
+      &.expanded {
+        $color1: white;
+        $color2: mix(black, white, 5%);
+        background: repeating-linear-gradient(
+            45deg,
+            $color1,
+            $color1 10px,
+            $color2 10px,
+            $color2 20px
+        );
+      }
+    }
+  }
+}
+//endregion
