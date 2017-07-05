@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MdDialogRef, MdSnackBar} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 import {Mode} from '../../mode.enum';
 import {TranslateService} from '@ngx-translate/core';
 import {StudentsService} from '../../../shared/services/students.service';
+import {AddTaskComponent} from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-class-details',
@@ -17,6 +18,7 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(public studentsService: StudentsService,
               public dialogRef: MdDialogRef<ClassDetailsComponent>,
+              public dialog: MdDialog,
               public snackBar: MdSnackBar,
               private translate: TranslateService,
               @Inject(MD_DIALOG_DATA) public data: any) {
@@ -101,6 +103,10 @@ export class ClassDetailsComponent implements OnInit {
             break;
         }
       });
+  }
+
+  openAddTaskDialog() {
+    this.dialog.open(AddTaskComponent, {data: {groupId: this.class.classId}});
   }
 
 }

@@ -1,0 +1,61 @@
+<div *ngIf="dateChoices && dateChoices.length > 1">
+  <md-input-container color="warn" class="full-width">
+    <input mdInput
+           [value]="task.startDate"
+           [placeholder]="('adding_task_for_class' | translate) + ' ' + dateChoices[0]"
+           [mdAutocomplete]="dateAutocomplete">
+  </md-input-container>
+  <md-autocomplete #dateAutocomplete="mdAutocomplete">
+    <md-option *ngFor="let dateChoice of dateChoices"
+               (click)="task.startDate = dateChoice"
+               [value]="dateChoice">
+      {{dateChoice}}
+    </md-option>
+
+  </md-autocomplete>
+
+  <md-input-container color="warn" class="full-width">
+    <input mdInput
+           [value]="task.title"
+           [placeholder]="'title' | translate">
+  </md-input-container>
+
+  <div class="classrooms-place">
+    <div>
+      <md-input-container class="full-width">
+        <input mdInput
+               [placeholder]="'classroom' | translate"
+               [value]="getClassroomNumber(classroomId)"
+               [mdAutocomplete]="classroomsAutocomplete">
+      </md-input-container>
+      <md-autocomplete #classroomsAutocomplete="mdAutocomplete">
+        <md-option *ngFor="let classroom of classrooms"
+                   (onSelectionChange)="classroomId = classroom.classroomId"
+                   [value]="classroom.number">
+          {{classroom.number}}
+        </md-option>
+      </md-autocomplete>
+    </div>
+    <div>
+      <md-input-container class="full-width">
+        <input mdInput
+               [value]="task.place"
+               [placeholder]="'place' | translate">
+      </md-input-container>
+    </div>
+  </div>
+
+  <md-input-container color="warn" class="full-width">
+  <textarea mdInput
+            [value]="task.content"
+            [placeholder]="'content' | translate"></textarea>
+  </md-input-container>
+</div>
+
+<div class="controls">
+  <button md-raised-button
+          color="warn"
+          (click)="save()">
+    {{'add_task' | translate}}
+  </button>
+</div>

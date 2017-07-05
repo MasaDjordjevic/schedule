@@ -1,0 +1,12 @@
+.classroom-place {
+  display: flex;
+  justify-content: space-between;
+}
+
+.classroom-place > div {
+  width: 48%;
+}
+
+.full-width {
+  width: 100%;
+}

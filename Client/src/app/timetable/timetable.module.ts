@@ -8,6 +8,7 @@ import {SharedModule} from '../shared/shared.module';
 import {TimetableColumnComponent} from './timetable-column/timetable-column.component';
 import {TimetableClassComponent} from './timetable-class/timetable-class.component';
 import {ClassDetailsComponent} from './dialogs/class-details/class-details.component';
+import { AddTaskComponent } from './dialogs/add-task/add-task.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,8 @@ import {ClassDetailsComponent} from './dialogs/class-details/class-details.compo
     SharedModule,
     TimetableRoutingModule
   ],
-  entryComponents: [ClassDetailsComponent],
-  declarations: [TimetableComponent, ToTimestampPipe, TimetableColumnComponent, TimetableClassComponent, ClassDetailsComponent],
+  entryComponents: [ClassDetailsComponent, AddTaskComponent],
+  declarations: [TimetableComponent, ToTimestampPipe, TimetableColumnComponent, TimetableClassComponent, ClassDetailsComponent, AddTaskComponent],
   exports: [TimetableComponent]
 })
 export class TimetableModule {
