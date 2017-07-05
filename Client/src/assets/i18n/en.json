@@ -149,5 +149,27 @@
   "target_group": "Target group",
   "move": "Move",
   "student_successfully_moved":  "Student successfully moved.",
-  "student_not_moved": "Student not moved."
+  "student_not_moved": "Student not moved.",
+
+
+  "official": "Official",
+  "personal": "Personal",
+  "global": "Global",
+  "in": "in",
+
+  "time": "Time",
+  "type": "Type",
+  "add_to_personal": "Add to personal",
+  "hide_class": "Hide class",
+  "add_task": "Add task",
+  "undo_cancel":  "Undo cancel",
+  "bulletin_board": "Bulletin board",
+  "announcements":  "Announcements",
+
+  "class_added_to_personal_successful": "Class successfully added to personal timetable.",
+  "class_already_in_personal": "Class is already in personal timetable.",
+  "class_added_to_personal_unsuccessful": "Class not added to personal timetable.",
+  "successfully_deleted_activity": "Successfully deleted activity.",
+  "activity_not_deleted": "Activity not deleted.",
+  "class_hidden": "Class hidden."
 }

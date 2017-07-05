@@ -159,5 +159,26 @@
   "target_group": "Groupe ciblé",
   "move": "Déplacer",
   "student_successfully_moved":  "L'élève est déplacé avec succès.",
-  "student_not_moved": "Étudiant non déplacé."
+  "student_not_moved": "Étudiant non déplacé.",
+
+  "official": "Officiel",
+  "personal": "Personnel",
+  "global": "Global",
+  "in": "dans",
+
+  "time": "Temps",
+  "type": "Type",
+  "add_to_personal": "Ajouter au personnel",
+  "hide_class": "Masquer la classe",
+  "add_task": "Ajouter une tâche",
+  "undo_cancel":  "Annuler annuler",
+  "bulletin_board": "Tableau d'affichage",
+  "announcements":  "Annonces",
+
+  "class_added_to_personal_successful": "Classe ajoutée avec succès à un horaire personnel.",
+  "class_already_in_personal": "La classe est déjà dans un calendrier personnel.",
+  "class_added_to_personal_unsuccessful": "Classe non ajoutée au calendrier personnel.",
+  "successfully_deleted_activity": "Activité supprimée avec succès.",
+  "activity_not_deleted": "Activité non supprimée.",
+  "class_hidden": "Classe cachée."
 }

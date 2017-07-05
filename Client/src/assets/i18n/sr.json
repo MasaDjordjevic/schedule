@@ -160,5 +160,26 @@
   "target_group": "Odredišna grupa",
   "move": "Prebaci",
   "student_successfully_moved":  "Student uspešno prebačen.",
-  "student_not_moved": "Student nije prebačen."
+  "student_not_moved": "Student nije prebačen.",
+
+  "official": "Zvanični",
+  "personal": "Lični",
+  "global": "Globalni",
+  "in": "u",
+
+  "time": "Vreme",
+  "type": "Vrsta",
+  "add_to_personal": "Dodaj u lični",
+  "hide_class": "Sakrij čas",
+  "add_task": "Dodaj zadatak",
+  "undo_cancel": "Opozovi otkazivanje",
+  "bulletin_board": "Oglasna tabla",
+  "announcements":  "Obaveštenja",
+
+  "class_added_to_personal_successful": "Čas uspešno dodat u lični raspored.",
+  "class_already_in_personal": "Čas je već u ličnom rasporedu.",
+  "class_added_to_personal_unsuccessful": "Čas nije dodat u lični raspored.",
+  "successfully_deleted_activity": "Uspešno obrisana aktivnost.",
+  "activity_not_deleted": "Aktivnost nije obrisana.",
+  "class_hidden": "Sakriven čas."
 }
