@@ -162,7 +162,7 @@ namespace Server.Controllers
         [Route("GetPersonalSchedule")]
         public IActionResult GetPersonalSchedule(int studentID, int weeksFromNow)
         {
-            if (!HttpContext.Session.IsStudent()) return Unauthorized();
+            //if (!HttpContext.Session.IsStudent()) return Unauthorized();
 
 
             if (!ModelState.IsValid)
@@ -184,7 +184,7 @@ namespace Server.Controllers
         [Route("GetOfficialSchedule")]
         public IActionResult GetOfficialSchedule(int studentID, int weeksFromNow)
         {
-            if (!HttpContext.Session.IsStudent()) return Unauthorized();
+            //if (!HttpContext.Session.IsStudent()) return Unauthorized();
 
             if (!ModelState.IsValid)
             {
@@ -202,10 +202,10 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        [Route("GetOfficialSchedule")]
+        [Route("AddToGroup")]
         public IActionResult AddToGroup(int studentID, int groupID)
         {
-            if (!HttpContext.Session.IsAssistant()) return Unauthorized();
+           // if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             if (!ModelState.IsValid)
             {

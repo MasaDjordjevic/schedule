@@ -113,7 +113,7 @@ namespace Server.Services
         }
 
 
-        
+
 
         //public bool AddStudnets(int GroupId, List<int> Students)
         //{
@@ -140,7 +140,7 @@ namespace Server.Services
         //    return true;
         //}
 
-       
+
 
 
         //proverava da li je neko od studenata iz Students vec clan grupe GroupId
@@ -205,7 +205,7 @@ namespace Server.Services
             _context.SaveChanges();
         }
 
-        
+
 
         public Groups Create(int DivisionId, string name, int? ClassroomId, TimeSpans timeSpan)
         {
@@ -227,9 +227,9 @@ namespace Server.Services
                 DivisionId = DivisionId,
                 Name = name,
                 ClassroomId = ClassroomId,
-                
+
             };
-            if(timeSpan != null)
+            if (timeSpan != null)
             {
                 g.TimeSpanId = timeSpan.TimeSpanId;
             }
@@ -311,13 +311,22 @@ namespace Server.Services
                     {
                         Name = a.Assistant.Name + " " + a.Assistant.Surname,
                         Mail = a.Assistant.Email
-                    });
+                    }).ToList();
             if (query.Any())
                 return query.First();
             else
                 return null;
+        }
 
-
+        public AssistantNameMailDTO GetAssistant(UniMembers asst)
+        {
+            if (asst == null)
+                return null;
+            return new AssistantNameMailDTO
+            {
+                Name = asst.Name + " " + asst.Surname,
+                Mail = asst.Email
+            };
         }
 
         // vraca termine ostalih grupa raspodele
@@ -342,7 +351,7 @@ namespace Server.Services
 
 
 
-       
+
 
 
         public void RemoveAd(int AdId)
@@ -422,7 +431,7 @@ namespace Server.Services
         public List<NotificationDTO> GetNotifications(int GroupId, TimeSpans ts)
         {
             List<NotificationDTO> groupsNotifications = _context.Activities.Where(ac =>
-                 !IsStudentActivity(ac.ActivityId) && // nece ako se ovde direktno ispita
+                 !ac.StudentsActivities.Any() && // nece ako se ovde direktno ispita
                  ac.GroupId == GroupId &&
                  TimeSpan.TimeSpanOverlap(ac.TimeSpan, ts))
                  .Select(ac => new NotificationDTO

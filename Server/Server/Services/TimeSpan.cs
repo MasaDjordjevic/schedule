@@ -22,6 +22,10 @@ namespace Server.Services
 
         public static bool Overlap(TimeSpans paramA, TimeSpans paramB)
         {
+            if(paramA == null || paramB == null)
+            {
+                return false;
+            }
             //moram da kopiram jer se prenosi po referenci
             TimeSpans a = Copy(paramA);
             TimeSpans b = Copy(paramB);

@@ -96,20 +96,22 @@ namespace Server.Services
             List<ScheduleDTO> GroupsSchedule = _context.Groups.Where(a => Groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
-                        Day = a.TimeSpan.StartDate.DayOfWeek,
-                        StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                        DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                        Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                        StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                        DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                         ClassName = a.Division.Course.Name,
                         Abbr = a.Division.Course.Alias,
                         Classroom = a.Classroom.Number,
-                        Assistant = groupService.GetAssistant(a.GroupId),
                         Type = a.Division.DivisionType.Type,
-                        Active = groupService.IsActive(a.GroupId, tsNow),
                         Color = groupService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                         GroupId = a.GroupId,
-                        Notifications = GetClassNotification(StudentId, a.GroupId, tsNow)
+                        Assistant = groupService.GetAssistant(a.Assistant),
                     }).ToList();
+
+            GroupsSchedule.ForEach(a => a.Active = groupService.IsActive(a.GroupId, tsNow));
+            GroupsSchedule.ForEach(a => a.Notifications = GetClassNotification(StudentId, a.GroupId, tsNow));
+
 
             List<int> activities = official ? new List<int>() :
                 _context.StudentsActivities.Where(a => a.StudentId == StudentId && a.Ignore != true).Select(a => a.ActivityId).ToList();
@@ -117,7 +119,7 @@ namespace Server.Services
             List<ScheduleDTO> activitiesSchedule =
                 _context.Activities.Where(a => (activities.Contains(a.ActivityId) ||
                                                 (a.GroupId != null && a.Cancelling == false && Groups.Contains(a.GroupId.Value)) ||
-                                                (!groupService.IsStudentActivity(a.ActivityId) && a.GroupId == null))
+                                                (!a.StudentsActivities.Any() && a.GroupId == null))
                                                 && TimeSpan.Overlap(a.TimeSpan, tsNow)) //nisu obavestenja vezana za casove
                                                 .Select(a => new ScheduleDTO
                                                 {

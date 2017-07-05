@@ -63,7 +63,7 @@ namespace Server.Services
 
             List<ScheduleDTO> activitiesSchedule =
                 _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
-                    !groupsService.IsStudentActivity(a.ActivityId) && // ne uzima studentove aktivnosti
+                    !a.StudentsActivities.Any() && // ne uzima studentove aktivnosti
                     TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
