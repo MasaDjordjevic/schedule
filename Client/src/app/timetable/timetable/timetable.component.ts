@@ -32,6 +32,8 @@ export class TimetableComponent implements OnInit {
   _classroomId: number;
   _assistantId: number;
 
+  loading = false;
+
   public _dayNames: string[] = [
     this.translate.instant('monday'),
     this.translate.instant('tuesday'),
@@ -195,45 +197,57 @@ export class TimetableComponent implements OnInit {
   }
 
   getStudentSchedule() {
+    this.loading = true;
     this.studentsService.getPersonalSchedule(this.studentId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   getOfficialStudentSchedule() {
+    this.loading = true;
     this.studentsService.getOfficialSchedule(this.officialStudentId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   getGroupSchedule() {
+    this.loading = true;
     this.groupsService.getSchedule(this.groupId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   getDepartmentSchedule() {
+    this.loading = true;
     this.departmentsService.getSchedule(this.departmentId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   getClassroomSchedule() {
+    this.loading = true;
     this.clasroomsService.getSchedule(this.classroomId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   getAssistantSchedule() {
+    this.loading = true;
     this.assistantService.getSchedule(this.assistantId, this.weeksFromNow)
       .then(
         sch => this.classes = sch,
-        error => this.errorMessage = error);
+        error => this.errorMessage = error)
+      .then(() => this.loading = false);
   }
 
   ngOnInit() {

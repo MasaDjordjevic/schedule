@@ -24,4 +24,8 @@
                         [scale]="scale"
                         [mode]="mode">
   </app-timetable-column>
+
+  <div class="loader" *ngIf="loading">
+    <md-spinner></md-spinner>
+  </div>
 </div>
