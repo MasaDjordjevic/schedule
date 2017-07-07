@@ -102,8 +102,8 @@ namespace Server.Services
                                                     ActivityContent = a.ActivityContent,
                                                     IsClass = false,
                                                     ActivityId = a.ActivityId,
-                                                    Assistant = studentService.GetAssistantNameEmail(a.AssistantId),
-                                                    Classroom = studentService.GetClassroomNumber(a.ClassroomId),
+                                                    Assistant = groupService.GetAssistant(a.Assistant),
+                                                    Classroom = a.Classroom.Number,
                                                     Place = a.Place
                                                 }).ToList();
             List<ScheduleDTO> returnValue = groupsSchedule.Concat(activitiesSchedule).ToList();

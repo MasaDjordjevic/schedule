@@ -132,8 +132,8 @@ namespace Server.Services
                                                     ActivityContent = a.ActivityContent,
                                                     IsClass = false,
                                                     ActivityId = a.ActivityId,
-                                                    Assistant = GetAssistantNameEmail(a.AssistantId),
-                                                    Classroom = GetClassroomNumber(a.ClassroomId),
+                                                    Assistant = groupService.GetAssistant(a.Assistant),
+                                                    Classroom = a.Classroom.Number,
                                                     Place = a.Place
                                                 }).ToList();
 
@@ -142,43 +142,8 @@ namespace Server.Services
 
             return scheduleService.Convert(returnValue);
         }
-
-        public string GetClassroomNumber(int? ClassroomId)
-        {
-            if (ClassroomId == null) return null;
-
-            var cl = _context.Classrooms.Where(a => a.ClassroomId == ClassroomId);
-            if (cl.Any())
-            {
-                return cl.First().Number;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public AssistantNameMailDTO GetAssistantNameEmail(int? AssistantID)
-        {
-            if (AssistantID == null) return null;
-
-            var asst = _context.UniMembers.Where(a => a.UniMemberId == AssistantID);
-            if (asst.Any())
-            {
-                var a = asst.First();
-                return new AssistantNameMailDTO
-                {
-                    Name = a.Name + " " + a.Surname,
-                    Mail = a.Email
-                };
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
+       
+       
         public IEnumerable GetPersonalSchedule(int StudentId, int weeksFromNow = 0)
         {
             return GetSchedule(StudentId, weeksFromNow, false);
