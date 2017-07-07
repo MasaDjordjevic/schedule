@@ -16,13 +16,13 @@
 
   <md-input-container color="warn" class="full-width">
     <input mdInput
-           [value]="announcement.title"
+           [(ngModel)]="announcement.title"
            [placeholder]="'title' | translate">
   </md-input-container>
 
   <md-input-container color="warn" class="full-width">
   <textarea  mdInput
-             [value]="announcement.content"
+             [(ngModel)]="announcement.content"
              [placeholder]="'content' | translate"></textarea>
   </md-input-container>
 </div>

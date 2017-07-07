@@ -1,13 +1,13 @@
 <md-input-container color="warn">
   <input mdInput
-         [value]="announcement.title"
+         [(ngModel)]="announcement.title"
          [placeholder]="'title' | translate">
 </md-input-container>
 
 <md-input-container color="warn">
-  <textarea  mdInput
-         [value]="announcement.content"
-         [placeholder]="'content' | translate"></textarea>
+  <textarea mdInput
+            [(ngModel)]="announcement.content"
+            [placeholder]="'content' | translate"></textarea>
 </md-input-container>
 
 <div *ngIf="classrooms">
@@ -28,8 +28,8 @@
 
 <md-input-container color="warn">
   <input mdInput
-          [(ngModel)]="announcement.place"
-          [placeholder]="'place' | translate">
+         [(ngModel)]="announcement.place"
+         [placeholder]="'place' | translate">
 </md-input-container>
 <md-input-container color="warn">
   <input mdInput
