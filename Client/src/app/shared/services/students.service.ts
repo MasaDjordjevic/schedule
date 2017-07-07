@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {TimeSpan} from '../../models/TimeSpan';
 import {Student} from '../../models/Student';
@@ -12,7 +12,6 @@ export class StudentsService {
 
   constructor(private http: Http,
               private authService: AuthService) { }
-
 
 
   getStudent(studentId: number): Promise<Student> {
@@ -95,20 +94,15 @@ export class StudentsService {
   public addActivity(groupId: number, classroomId: number, place: string,
                      title: string, content: string, timespan: TimeSpan) {
     const body = JSON.stringify({
-      'classroomID' : classroomId,
-      'timeSpan' : timespan,
-      'place' : place,
-      'title' : title,
-      'content' : content,
+      'classroomID': classroomId,
+      'timeSpan': timespan,
+      'place': place,
+      'title': title,
+      'content': content,
       'groupID': groupId
     });
     console.log(body);
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.post(this.studentsUrl + '/AddActivity', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.studentsUrl + '/AddActivity', body);
   }
 
   deleteActivity(activityID: number): Promise<any[]> {

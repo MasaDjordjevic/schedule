@@ -9,11 +9,13 @@ import {TimetableColumnComponent} from './timetable-column/timetable-column.comp
 import {TimetableClassComponent} from './timetable-class/timetable-class.component';
 import {ClassDetailsComponent} from './dialogs/class-details/class-details.component';
 import { AddTaskComponent } from './dialogs/add-task/add-task.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
     TimetableRoutingModule
   ],
   entryComponents: [ClassDetailsComponent, AddTaskComponent],

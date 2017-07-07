@@ -330,7 +330,7 @@ namespace Server.Controllers
         [Route("AddActivity")]
         public IActionResult AddActivity([FromBody] AddActivityBinding obj)
         {
-            if (!HttpContext.Session.IsStudent()) return Unauthorized();
+            //if (!HttpContext.Session.IsStudent()) return Unauthorized();
 
 
             if (obj.timeSpan == null)
@@ -341,12 +341,12 @@ namespace Server.Controllers
                 //konvertovanje u timeSpan
                 TimeSpans ts = Services.TimeSpan.getTimeSpan(obj.timeSpan);
 
-                studentService.AddActivity(HttpContext.Session.GetStudentId(), obj.groupID, obj.classroomID, ts, obj.place, obj.title, obj.content);
-                return Ok(new { status = "uspelo" });
+                studentService.AddActivity(HttpContext.User.GetId(), obj.groupID, obj.classroomID, ts, obj.place, obj.title, obj.content);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "nije uspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 

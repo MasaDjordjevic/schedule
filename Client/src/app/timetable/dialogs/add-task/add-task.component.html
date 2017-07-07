@@ -16,7 +16,7 @@
 
   <md-input-container color="warn" class="full-width">
     <input mdInput
-           [value]="task.title"
+           [(ngModel)]="task.title"
            [placeholder]="'title' | translate">
   </md-input-container>
 
@@ -30,7 +30,7 @@
       </md-input-container>
       <md-autocomplete #classroomsAutocomplete="mdAutocomplete">
         <md-option *ngFor="let classroom of classrooms"
-                   (onSelectionChange)="classroomId = classroom.classroomId"
+                   (onSelectionChange)="task.classroomId = classroom.classroomId"
                    [value]="classroom.number">
           {{classroom.number}}
         </md-option>
@@ -39,7 +39,7 @@
     <div>
       <md-input-container class="full-width">
         <input mdInput
-               [value]="task.place"
+               [(ngModel)]="task.place"
                [placeholder]="'place' | translate">
       </md-input-container>
     </div>
@@ -47,7 +47,7 @@
 
   <md-input-container color="warn" class="full-width">
   <textarea mdInput
-            [value]="task.content"
+            [(ngModel)]="task.content"
             [placeholder]="'content' | translate"></textarea>
   </md-input-container>
 </div>

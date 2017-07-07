@@ -121,7 +121,7 @@ export class AddTaskComponent implements OnInit {
     timespan.period = 0;
 
     this.studentsService.addActivity(
-      this.group.groupID,
+      this.group.GroupId,
       this.task.classroomId,
       this.task.place,
       this.task.title,
@@ -131,7 +131,7 @@ export class AddTaskComponent implements OnInit {
       .then(response => {
         console.log(response);
         switch (response.status) {
-          case 'uspelo':
+          case 'success':
             this.openSnackBar(this.translate.instant('add_task_successful'));
             break;
           default:
