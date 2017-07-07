@@ -63,7 +63,8 @@ export class TimetableClassComponent implements OnInit {
         className: this.className,
         type: this.type,
         assistant: this.assistant,
-        place: this.place
+        place: this.place,
+        notifications: this.notifications
       },
       mode: this.mode,
     }});

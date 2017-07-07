@@ -24,7 +24,7 @@ export class ClassDetailsComponent implements OnInit {
               @Inject(MD_DIALOG_DATA) public data: any) {
     this.class = data.class;
     this.mode = data.mode;
-    console.log(this.mode);
+    console.log(this.class);
   }
 
   ngOnInit() {

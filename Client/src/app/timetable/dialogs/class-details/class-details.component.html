@@ -111,5 +111,28 @@
       </div>
     </div>
   </md-tab>
-  <md-tab [label]="'announcements' | translate">Content 2</md-tab>
+  <md-tab [label]="'announcements' | translate">
+    <div class="additional-info">
+
+      <div class="no-notifications" *ngIf="class.notifications && !class.notifications.length">
+        <div>
+          <i class="fa fa-bell-slash-o"></i>
+          <span>{{'no_announcements__1' | translate}}<br>{{'no_announcements__2' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="notifications" *ngIf="class.notifications && class.notifications.length">
+        <div class="notification"
+             *ngFor="let notification of class.notifications"
+        >
+          <div class="title">{{notification.title}}</div>
+          <div class="info">
+            <div class="place">{{notification.place}}</div>
+          </div>
+          <div class="content">{{notification.activityContent}}</div>
+        </div>
+      </div>
+
+    </div>
+  </md-tab>
 </md-tab-group>
