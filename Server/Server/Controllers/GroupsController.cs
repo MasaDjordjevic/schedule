@@ -160,7 +160,7 @@ namespace Server.Controllers
 
         // menja studenta sa onim koji je postavio oglas koji mu odgovara
         [HttpGet]
-        [Route("ExcangeStudents/{id}")]
+        [Route("ExchangeStudents")]
         public IActionResult ExchangeStudents(int groupID, int adID)
         {        
 

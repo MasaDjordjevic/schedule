@@ -1,4 +1,14 @@
 :host {
   display: flex;
   flex-direction: column;
+
+  md-radio-group, button, div {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
 }

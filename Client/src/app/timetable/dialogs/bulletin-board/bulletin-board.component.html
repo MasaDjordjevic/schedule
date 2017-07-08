@@ -6,17 +6,17 @@
     </md-radio-button>
   </md-radio-group>
   <button md-raised-button
+          color="primary"
           (click)="exchangeWith()">
     {{'exchange' | translate}}
   </button>
-  {{chosenPossibleChoice}}
 </ng-container>
 <ng-container *ngIf="possibleChoices && possibleChoices.length === 0 && allChoices && allChoices.length > 0">
   <span>{{'no_ads' | translate}}</span>
 </ng-container>
 
 
-<ng-container *ngIf="allChoices && allChoices.length">
+<div *ngIf="allChoices && allChoices.length">
   <md-checkbox *ngFor="let item of allChoices"
                [value]="item.groupId"
                [checked]="item.chosen"
@@ -29,7 +29,7 @@
           (click)="addAd()">
     {{'edit_add' | translate}}
   </button>
-</ng-container>
+</div>
 <ng-container *ngIf="allChoices && allChoices.length === 0">
   <span>{{'no_possibilities' | translate}}</span>
 </ng-container>

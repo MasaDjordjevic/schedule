@@ -185,5 +185,14 @@
   "year_of_study": "Year of study",
   "assistant": "Assistant",
   "no_announcements__1": "No announcements",
-  "no_announcements__2": "at the moment"
+  "no_announcements__2": "at the moment",
+
+  "exchange_successful": "Exchange successful.",
+  "exchange_not_successful": "Exchange not successful.",
+  "adding_ad_successful": "Successfully added ad.",
+  "adding_ad_unsuccessful": "Add not added.",
+  "exchange": "Exchange",
+  "no_ads": "No ads. You can write your own.",
+  "edit_add": "Edit ad",
+  "no_possibilities": "No groups for exchange."
 }

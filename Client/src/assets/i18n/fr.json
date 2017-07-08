@@ -194,5 +194,14 @@
   "year_of_study": "Année d'étude",
   "assistant": "Assistant",
   "no_announcements__1": "Aucune annonce",
-  "no_announcements__2": "en ce moment"
+  "no_announcements__2": "en ce moment",
+
+  "exchange_successful": "L'échange a réussi.",
+  "exchange_not_successful": "L'échange échoue.",
+  "adding_ad_successful": "Annonce ajoutée avec succès.",
+  "adding_ad_unsuccessful": "Ajouter non ajouté.",
+  "exchange": "Échange",
+  "no_ads": "Aucune publicité. Vous pouvez écrire la vôtre.",
+  "edit_add": "Modifier l'annonce",
+  "no_possibilities": "Aucun groupe pour l'échange."
 }

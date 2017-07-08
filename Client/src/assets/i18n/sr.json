@@ -195,5 +195,14 @@
   "year_of_study": "Godina studija",
   "assistant": "Asistent",
   "no_announcements__1": "Trenutno nema",
-  "no_announcements__2": "obaveštenja"
+  "no_announcements__2": "obaveštenja",
+
+  "exchange_successful": "Uspešno izvršena zamena.",
+  "exchange_not_successful": "Zamena nije uspela.",
+  "adding_ad_successful": "Uspešno dodat oglas.",
+  "adding_ad_unsuccessful": "Oglas nije dodat.",
+  "exchange": "Zameni se",
+  "no_ads": "Nema oglasa. Možes da ubaciš svoj.",
+  "edit_add": "Izmeni oglas",
+  "no_possibilities": "Nema grupa za zamenu."
 }

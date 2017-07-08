@@ -55,6 +55,11 @@ namespace Server.Services
                 .Select(a => a.UniMembers.Name + " " + a.UniMembers.Surname).First();
         }
 
+        public string GetStudentName(Students a)
+        {
+            return a.UniMembers.Name + " " + a.UniMembers.Surname;
+        }
+
         public IEnumerable GetStudentsOfGroup(int GroupId)
         {
             //ne znam zasto nece kad se select ubaci u prvi upit  a hoce kad se odvojji
@@ -142,8 +147,8 @@ namespace Server.Services
 
             return scheduleService.Convert(returnValue);
         }
-       
-       
+
+
         public IEnumerable GetPersonalSchedule(int StudentId, int weeksFromNow = 0)
         {
             return GetSchedule(StudentId, weeksFromNow, false);
@@ -451,7 +456,7 @@ namespace Server.Services
                 AdId = a.AdId,
                 Time = TimeSpan.ToString(a.Ad.Group.TimeSpan),
                 Classroom = a.Ad.Group.Classroom.Number,
-                StudentName = this.GetStudentName(a.Ad.StudentId)
+                StudentName = a.Ad.Student.UniMembers.Name + " " + a.Ad.Student.UniMembers.Surname
             }).OrderBy(a => a.Time).ToList();
 
         }
