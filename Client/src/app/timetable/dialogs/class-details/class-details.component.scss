@@ -91,12 +91,17 @@
     flex-shrink: 0;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    button {
+      margin-right: 0.5em;
+    }
   }
 }
 
 .additional-info {
   display: flex;
   justify-content: center;
+  padding: 18px;
 
   .no-notifications {
     display: flex;

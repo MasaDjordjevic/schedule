@@ -4,6 +4,8 @@ import {Mode} from '../../mode.enum';
 import {TranslateService} from '@ngx-translate/core';
 import {StudentsService} from '../../../shared/services/students.service';
 import {AddTaskComponent} from '../add-task/add-task.component';
+import {AddActivityComponent} from '../../../assistant-panel/dialogs/add-activity/add-activity.component';
+import {GroupsService} from '../../../shared/services/groups.service';
 
 @Component({
   selector: 'app-class-details',
@@ -17,6 +19,8 @@ export class ClassDetailsComponent implements OnInit {
   public _Mode = Mode;
 
   constructor(public studentsService: StudentsService,
+              public groupsService: GroupsService,
+              private location: Location,
               public dialogRef: MdDialogRef<ClassDetailsComponent>,
               public dialog: MdDialog,
               public snackBar: MdSnackBar,
@@ -107,6 +111,15 @@ export class ClassDetailsComponent implements OnInit {
 
   openAddTaskDialog() {
     this.dialog.open(AddTaskComponent, {data: {groupId: this.class.classId}});
+  }
+
+  openAddAnnouncementDialog() {
+    this.groupsService.getGroup(this.class.classId).then(
+      group => {
+        const dialogRef = this.dialog.open(AddActivityComponent, {data: {group: group}});
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      });
   }
 
 }
