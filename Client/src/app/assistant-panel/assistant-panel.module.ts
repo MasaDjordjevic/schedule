@@ -45,7 +45,7 @@ import { TimetableDialogComponent } from './dialogs/timetable-dialog/timetable-d
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
     DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent,
-    KickStudentComponent, MoveStudentComponent, TimetableDialogComponent],
+    KickStudentComponent, MoveStudentComponent, TimetableDialogComponent, UncancelClassComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,

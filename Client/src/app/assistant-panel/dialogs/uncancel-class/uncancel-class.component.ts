@@ -11,9 +11,9 @@ import {GroupsService} from '../../../shared/services/groups.service';
 export class UncancelClassComponent implements OnInit {
 
   groupId: any;
-  private dateChoices: any[];
-  private errorMessage;
-  private selectedDate: number;
+  times: any[];
+  errorMessage;
+  selectedActivity: number;
 
 
   constructor(private groupsService: GroupsService,
@@ -22,24 +22,55 @@ export class UncancelClassComponent implements OnInit {
               private translate: TranslateService,
               @Inject(MD_DIALOG_DATA) public data: any) {
     this.groupId = data.groupId;
+    this.getCanceledTimes();
   }
 
   ngOnInit() {
   }
 
+  getSelectedDate(activityId: number) {
+    if (!activityId) {
+      return '';
+    }
+    return this.times.find(a => a.activityId === activityId).time;
+  }
+
   getCanceledTimes() {
     this.groupsService.getCanceledTimes(this.groupId)
       .then(
-        dateChoices => this.dateChoices = dateChoices,
+        times => this.times = times,
         error => this.errorMessage = error)
+      .then(() => console.log(this.times))
       .then(
-        () => this.selectedDate = this.dateChoices && this.dateChoices[0]
+        () => this.selectedActivity = this.times && this.times[0].activityId
       );
   }
 
+  close(message: string = null) {
+    this.dialogRef.close(message);
+  }
+
+
+  openSnackBar(message: string, action: string = null) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   uncancelClass() {
-    debugger;
-    this.groupsService.unCancelClass(this.selectedDate)
-      .then(response => console.log(response));
+    this.groupsService.unCancelClass(this.selectedActivity)
+      .then(response => {
+        switch (response['status']) {
+          case 'success':
+            this.openSnackBar(this.translate.instant('class_successfully_uncanceled'));
+            this.close();
+            break;
+          default:
+            this.openSnackBar(this.translate.instant('error') + ' ' +
+              this.translate.instant('class_not_uncanceled'));
+            debugger;
+            break;
+        }
+      });
   }
 }

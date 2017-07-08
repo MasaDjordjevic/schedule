@@ -425,23 +425,25 @@ namespace Server.Controllers
         }
 
         [HttpGet]
+        [Route("UnCancelClass")]
         public IActionResult UnCancelClass(int activityID)
         {
-            if (!HttpContext.Session.IsAssistant()) return Unauthorized();
+            //if (!HttpContext.Session.IsAssistant()) return Unauthorized();
 
             try
             {
                 groupService.DeleteActivity(activityID);
-                return Ok(new { status = "uspelo" });
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }
 
         [HttpGet]
+        [Route("GetCanceledTimes")]
         public IActionResult GetCanceledTimes(int groupID)
         {
             try
@@ -452,7 +454,7 @@ namespace Server.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "neuspelo", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
 
         }

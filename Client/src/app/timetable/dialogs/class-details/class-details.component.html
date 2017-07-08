@@ -91,14 +91,14 @@
         <button *ngIf="mode === _Mode.AssistantOfficial"
                 md-raised-button
                 color="primary"
-                (click)="cancelClassDialog.open()">
+                (click)="openCancelClassDialog()">
           {{'cancel_class' | translate}}
         </button>
 
         <button *ngIf="mode === _Mode.AssistantOfficial"
                 md-raised-button
                 color="primary"
-                (click)="uncancelClassDialog.open()">
+                (click)="openUncancelClassDialog()">
           {{'undo_cancel' | translate}}
         </button>
 

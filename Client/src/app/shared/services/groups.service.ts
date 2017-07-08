@@ -67,10 +67,7 @@ export class GroupsService {
   }
 
   unCancelClass(activityID: number): Promise<any[]> {
-    return this.http.get(this.groupsUrl + `/UnCancelClass/?activityID=${activityID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.groupsUrl + `/UnCancelClass/?activityID=${activityID}`);
   }
 
   getCanceledTimes(groupID: number): Promise<any[]> {

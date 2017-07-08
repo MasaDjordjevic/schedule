@@ -6,6 +6,8 @@ import {StudentsService} from '../../../shared/services/students.service';
 import {AddTaskComponent} from '../add-task/add-task.component';
 import {AddActivityComponent} from '../../../assistant-panel/dialogs/add-activity/add-activity.component';
 import {GroupsService} from '../../../shared/services/groups.service';
+import {CancelClassComponent} from '../../../assistant-panel/dialogs/cancel-class/cancel-class.component';
+import {UncancelClassComponent} from '../../../assistant-panel/dialogs/uncancel-class/uncancel-class.component';
 
 @Component({
   selector: 'app-class-details',
@@ -20,7 +22,6 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(public studentsService: StudentsService,
               public groupsService: GroupsService,
-              private location: Location,
               public dialogRef: MdDialogRef<ClassDetailsComponent>,
               public dialog: MdDialog,
               public snackBar: MdSnackBar,
@@ -55,7 +56,7 @@ export class ClassDetailsComponent implements OnInit {
                   break;
                 default:
                   this.openSnackBar(this.translate.instant('error') + ' ' +
-                  this.translate.instant('class_added_to_personal_unsuccessful'));
+                    this.translate.instant('class_added_to_personal_unsuccessful'));
                   debugger;
                   break;
               }
@@ -122,4 +123,19 @@ export class ClassDetailsComponent implements OnInit {
       });
   }
 
+
+  openCancelClassDialog() {
+    this.groupsService.getGroup(this.class.classId).then(
+      group => {
+        const dialogRef = this.dialog.open(CancelClassComponent, {data: {group: group}});
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      });
+  }
+
+  openUncancelClassDialog() {
+    const dialogRef = this.dialog.open(UncancelClassComponent, {data: {groupId: this.class.classId}});
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 }

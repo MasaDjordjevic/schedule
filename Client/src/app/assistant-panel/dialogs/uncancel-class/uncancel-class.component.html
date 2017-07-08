@@ -1,15 +1,14 @@
-<div *ngIf="dateChoices && dateChoices.length > 1">
+<div *ngIf="times && times.length">
   <md-input-container color="warn" class="full-width">
     <input mdInput
-           [value]="selectedDate"
-           [placeholder]="('undo_cancel_class_for' | translate) + ' ' + dateChoices[0]"
+           [value]="getSelectedDate(selectedActivity)"
+           [placeholder]="('undo_cancel_class_for' | translate) + ' ' + times[0].time"
            [mdAutocomplete]="dateAutocomplete">
   </md-input-container>
   <md-autocomplete #dateAutocomplete="mdAutocomplete">
-    <md-option *ngFor="let dateChoice of dateChoices"
-               (click)="selectedDate = dateChoice"
-               [value]="dateChoice">
-      {{dateChoice}}
+    <md-option *ngFor="let time of times"
+               (click)="selectedActivity = time.activityId">
+      {{time?.time}}
     </md-option>
 
   </md-autocomplete>

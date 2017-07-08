@@ -87,7 +87,7 @@ namespace Server.Services
         public IEnumerable GetCanceledTimes(int groupId)
         {
             var times = _context.Activities.Where(ac =>
-               !IsStudentActivity(ac.ActivityId) && // nece ako se ovde direktno ispita
+               !ac.StudentsActivities.Any() && // nece ako se ovde direktno ispita
                ac.GroupId == groupId && ac.Cancelling == true)
                .Select(a => new
                {
