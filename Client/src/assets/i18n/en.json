@@ -171,5 +171,19 @@
   "class_added_to_personal_unsuccessful": "Class not added to personal timetable.",
   "successfully_deleted_activity": "Successfully deleted activity.",
   "activity_not_deleted": "Activity not deleted.",
-  "class_hidden": "Class hidden."
+  "class_hidden": "Class hidden.",
+
+  "add_task_successful": "Task added successfully.",
+  "add_task_unsuccessful": "Task not added.",
+  "adding_task_for_class": "Adding task for class scheduled for ",
+  "class_successfully_uncanceled": "Class successfully uncanceled",
+  "class_not_uncanceled": "Class not uncanceled",
+  "undo_cancel_class_for": "Undo cancelling class for ",
+  "uncancel_class": "Uncancel class",
+  "mode": "Mode",
+  "student": "Student",
+  "year_of_study": "Year of study",
+  "assistant": "Assistant",
+  "no_announcements__1": "No announcements",
+  "no_announcements__2": "at the moment"
 }

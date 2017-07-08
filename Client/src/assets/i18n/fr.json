@@ -180,5 +180,19 @@
   "class_added_to_personal_unsuccessful": "Classe non ajoutée au calendrier personnel.",
   "successfully_deleted_activity": "Activité supprimée avec succès.",
   "activity_not_deleted": "Activité non supprimée.",
-  "class_hidden": "Classe cachée."
+  "class_hidden": "Classe cachée.",
+
+  "add_task_successful": "Tâche ajoutée avec succès.",
+  "add_task_unsuccessful": "Tâche non ajoutée.",
+  "adding_task_for_class": "Ajout d'une tâche pour la classe prévue pour",
+  "class_successfully_uncanceled": "La classe n'a pas été acquittée avec succès",
+  "class_not_uncanceled": "Classe non annulée",
+  "undo_cancel_class_for": "Annuler la classe d'annulation pour",
+  "uncancel_class": "Uncancel classe",
+  "mode": "Mode",
+  "student": "Étudiant",
+  "year_of_study": "Année d'étude",
+  "assistant": "Assistant",
+  "no_announcements__1": "Aucune annonce",
+  "no_announcements__2": "en ce moment"
 }

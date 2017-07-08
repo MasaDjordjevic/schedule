@@ -181,5 +181,19 @@
   "class_added_to_personal_unsuccessful": "Čas nije dodat u lični raspored.",
   "successfully_deleted_activity": "Uspešno obrisana aktivnost.",
   "activity_not_deleted": "Aktivnost nije obrisana.",
-  "class_hidden": "Sakriven čas."
+  "class_hidden": "Sakriven čas.",
+
+  "add_task_successful": "Uspešno dodat zadatak",
+  "add_task_unsuccessful": "Zadatak nije dodat.",
+  "adding_task_for_class": "Dodavanje zadatka za čas zakazan za ",
+  "class_successfully_uncanceled": "Uspešno opozivanje otkazivanja časa.",
+  "class_not_uncanceled": "Otkazivanje časa nije opozvanao.",
+  "undo_cancel_class_for": "Opozivanje otkazivanja časa za",
+  "uncancel_class":  "Opozovi otkazivanje",
+  "mode": "Režim",
+  "student": "Student",
+  "year_of_study": "Godina studija",
+  "assistant": "Asistent",
+  "no_announcements__1": "Trenutno nema",
+  "no_announcements__2": "obaveštenja"
 }
