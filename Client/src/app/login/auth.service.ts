@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -8,24 +9,26 @@ export class AuthService {
   private tokenKey = 'token';
   private token: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private router: Router) { }
 
   login(username: string, password: string): Promise<any> {
     const body = JSON.stringify({
       'username': username,
       'password': password
     });
-    const headers =  new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({'Content-Type': 'application/json'});
 
     return this.http.post(this.loginUrl, body, {headers: headers}).toPromise()
       .then(response => response.json())
-      .then(res =>  {
+      .then(res => {
         sessionStorage.setItem(this.tokenKey, res.data.accessToken);
         sessionStorage.setItem('role', res.url);
         return res;
       })
       .catch(this.handleError);
   }
+
 
   private getLocalToken(): string {
     if (!this.token) {
@@ -41,10 +44,10 @@ export class AuthService {
   public initAuthHeaders(): Headers {
     const token = this.getLocalToken();
     if (token == null) {
-      throw new Error('No token');
+      this.router.navigate(['/unauthorized']);
     }
 
-    const headers =  new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', 'Bearer ' + token);
 
     return headers;

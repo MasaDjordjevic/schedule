@@ -181,12 +181,12 @@ namespace Server.Controllers
         {
             try
             {
-                HttpContext.Session.SetUser(null);
-                return Ok(new { status = "uspelo" });
+                HttpContext.User = null;
+                return Ok(new { status = "sucess" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "nije uspelo", message = ex.Message });
+                return Ok(new { status = "errror", message = ex.Message });
             }
         }
 

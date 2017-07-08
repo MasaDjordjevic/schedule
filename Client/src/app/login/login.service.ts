@@ -17,7 +17,14 @@ export class LoginService {
   }
 
   loginRedirect() {
-    return this.authService.authGet('http://localhost:55281/api/Login/LoginRedirect');
+    return this.http.get('http://localhost:55281/api/Login/LoginRedirect')
+      .toPromise()
+      .then((res) => res.json());
+  }
+
+  logout() {
+    sessionStorage.clear();
+    return this.authService.authGet('http://localhost:55281/api/Login/Logout');
   }
 
   getUser() {

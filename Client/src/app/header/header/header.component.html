@@ -19,7 +19,7 @@
   <div class="flex-spacer"></div>
 
   <div class="options">
-    <button>
+    <button (click)=" router.navigate(['/'])">
       <md-icon>home</md-icon>
     </button>
     <button md-icon-button [mdMenuTriggerFor]="lang">
@@ -103,6 +103,9 @@
         </div>
       </button>
     </md-menu>
+    <button (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+    </button>
 
 
   </div>

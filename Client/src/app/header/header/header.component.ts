@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeService} from '../../shared/theme.service';
+import {Router} from '@angular/router';
+import {LoginService} from '../../login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,8 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private translate: TranslateService,
+              private router: Router,
+              private loginService: LoginService,
               private theme: ThemeService) {
     translate.addLangs(['en', 'fr', 'sr']);
     translate.setDefaultLang('en');
@@ -37,7 +41,6 @@ export class HeaderComponent implements OnInit {
     document.cookie = `language=${this.currentLanguage}`;
     document.cookie = `theme=${this.currentTheme}`;
   }
-
 
 
   ngOnInit() {
@@ -66,4 +69,8 @@ export class HeaderComponent implements OnInit {
     this.setCookie();
   }
 
+  logout() {
+    this.loginService.logout()
+      .then(() => this.router.navigate(['/login']));
+  }
 }
