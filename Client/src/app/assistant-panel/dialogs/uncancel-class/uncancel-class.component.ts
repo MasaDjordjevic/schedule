@@ -63,7 +63,7 @@ export class UncancelClassComponent implements OnInit {
         switch (response['status']) {
           case 'success':
             this.openSnackBar(this.translate.instant('class_successfully_uncanceled'));
-            this.close();
+            this.close('uncacelled');
             break;
           default:
             this.openSnackBar(this.translate.instant('error') + ' ' +

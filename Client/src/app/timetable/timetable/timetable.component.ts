@@ -8,6 +8,7 @@ import {DepartmentsService} from '../../shared/services/departments.service';
 import {AssistantsService} from '../../shared/services/assistants.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ToTimestampPipe} from '../to-timestamp.pipe';
+import {RefreshTimetableService} from '../../shared/refresh-timetable.service';
 
 @Component({
   selector: 'app-timetable',
@@ -192,9 +193,14 @@ export class TimetableComponent implements OnInit {
               private departmentsService: DepartmentsService,
               private clasroomsService: ClassroomsService,
               private assistantService: AssistantsService,
+              private refreshTimetableService: RefreshTimetableService,
               private translate: TranslateService) {
 
+    this.refreshTimetableService.refresh$.subscribe(() => {
+      this.getSchedule();
+    });
   }
+
 
   getStudentSchedule() {
     this.loading = true;

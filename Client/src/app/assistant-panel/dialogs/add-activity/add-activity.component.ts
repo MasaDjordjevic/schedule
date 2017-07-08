@@ -123,7 +123,7 @@ export class AddActivityComponent implements OnInit {
         switch (response.status) {
           case 'success':
             this.openSnackBar(this.translate.instant('successfully_added_announcement'));
-            this.close();
+            this.close('added');
             break;
           default:
             this.openSnackBar(this.translate.instant('error') + ' ' +

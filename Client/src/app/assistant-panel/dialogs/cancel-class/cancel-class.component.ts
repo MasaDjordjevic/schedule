@@ -94,6 +94,7 @@ export class CancelClassComponent implements OnInit {
         switch (response.status) {
           case 'success':
             this.openSnackBar(this.translate.instant('class_successfully_canceled'));
+            this.close('cancelled');
             break;
           case 'error':
             switch (response.message) {

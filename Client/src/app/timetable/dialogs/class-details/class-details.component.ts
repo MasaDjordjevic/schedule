@@ -8,6 +8,7 @@ import {AddActivityComponent} from '../../../assistant-panel/dialogs/add-activit
 import {GroupsService} from '../../../shared/services/groups.service';
 import {CancelClassComponent} from '../../../assistant-panel/dialogs/cancel-class/cancel-class.component';
 import {UncancelClassComponent} from '../../../assistant-panel/dialogs/uncancel-class/uncancel-class.component';
+import {RefreshTimetableService} from '../../../shared/refresh-timetable.service';
 
 @Component({
   selector: 'app-class-details',
@@ -22,6 +23,7 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(public studentsService: StudentsService,
               public groupsService: GroupsService,
+              public refreshTimetableService: RefreshTimetableService,
               public dialogRef: MdDialogRef<ClassDetailsComponent>,
               public dialog: MdDialog,
               public snackBar: MdSnackBar,
@@ -101,6 +103,8 @@ export class ClassDetailsComponent implements OnInit {
         switch (response['status']) {
           case 'success':
             this.openSnackBar(this.translate.instant('class_hidden'));
+            this.refreshTimetableService.refresh();
+            this.close();
             break;
           default:
             this.openSnackBar(this.translate.instant('error'));
@@ -119,16 +123,25 @@ export class ClassDetailsComponent implements OnInit {
       group => {
         const dialogRef = this.dialog.open(AddActivityComponent, {data: {group: group}});
         dialogRef.afterClosed().subscribe(result => {
+          if (result === 'added') {
+            this.refreshTimetableService.refresh();
+            this.close();
+          }
         });
       });
   }
 
+  close(message: string = null) {
+    this.dialogRef.close(message);
+  }
 
   openCancelClassDialog() {
     this.groupsService.getGroup(this.class.classId).then(
       group => {
         const dialogRef = this.dialog.open(CancelClassComponent, {data: {group: group}});
         dialogRef.afterClosed().subscribe(result => {
+          this.refreshTimetableService.refresh();
+          this.close();
         });
       });
   }
@@ -136,6 +149,10 @@ export class ClassDetailsComponent implements OnInit {
   openUncancelClassDialog() {
     const dialogRef = this.dialog.open(UncancelClassComponent, {data: {groupId: this.class.classId}});
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'uncacelled') {
+        this.refreshTimetableService.refresh();
+        this.close();
+      }
     });
   }
 }
