@@ -194,5 +194,8 @@
   "exchange": "Exchange",
   "no_ads": "No ads. You can write your own.",
   "edit_add": "Edit ad",
-  "no_possibilities": "No groups for exchange."
+  "no_possibilities": "No groups for exchange.",
+
+  "unauthorized_access": "Unauthorized access",
+  "back_to_login_page": "Go back to login page"
 }

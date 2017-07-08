@@ -204,5 +204,8 @@
   "exchange": "Zameni se",
   "no_ads": "Nema oglasa. Možes da ubaciš svoj.",
   "edit_add": "Izmeni oglas",
-  "no_possibilities": "Nema grupa za zamenu."
+  "no_possibilities": "Nema grupa za zamenu.",
+
+  "unauthorized_access": "Neovlašćen pristup",
+  "back_to_login_page": "Nazad na stranicu za prijavu"
 }

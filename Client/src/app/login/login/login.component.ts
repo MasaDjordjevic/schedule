@@ -14,7 +14,14 @@ export class LoginComponent implements OnInit {
   public password = 'plavusha';
 
   constructor(private loginService: LoginService,
-              private router: Router) { }
+              private router: Router) {
+    this.loginService.loginRedirect()
+      .then(res => {
+        if (res.status === 'redirect') {
+          this.router.navigate(['/' + res.url]);
+        }
+      });
+  }
 
   ngOnInit() {
   }

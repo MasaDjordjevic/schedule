@@ -14,6 +14,9 @@ import {TestModule} from './test/test.module';
 import {LoginModule} from './login/login.module';
 import {AuthService} from './login/auth.service';
 import {StudentPanelModule} from './student-panel/student-panel.module';
+import { UnauthorizedAccessComponent } from './errors/unauthorized-access/unauthorized-access.component';
+import {AuthGuardService} from './login/auth-guard.service';
+import {SharedModule} from './shared/shared.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -23,11 +26,13 @@ export function HttpLoaderFactory(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
+    UnauthorizedAccessComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    SharedModule,
     TestModule,
     LoginModule,
     StudentPanelModule,
@@ -41,7 +46,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

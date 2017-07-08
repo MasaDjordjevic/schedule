@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
+
   ngOnInit() {
     if (document.cookie) {
       this.cookies = document.cookie.split('; ').map(el => el.split('='));

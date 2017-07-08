@@ -21,6 +21,7 @@ export class AuthService {
       .then(response => response.json())
       .then(res =>  {
         sessionStorage.setItem(this.tokenKey, res.data.accessToken);
+        sessionStorage.setItem('role', res.url);
         return res;
       })
       .catch(this.handleError);
@@ -31,6 +32,10 @@ export class AuthService {
       this.token = sessionStorage.getItem(this.tokenKey);
     }
     return this.token;
+  }
+
+  public getRole(): string {
+    return sessionStorage.getItem('role');
   }
 
   public initAuthHeaders(): Headers {
@@ -60,6 +65,7 @@ export class AuthService {
   }
 
   private handleError(error: any): Promise<any> {
+    debugger;
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }

@@ -42,11 +42,15 @@ namespace Server.Controllers
         [Route("LoginRedirect")]
         public IActionResult LoginRedirect()
         {
-            UniMembers usr = HttpContext.Session.GetUser();
-            if (usr == null)
-                return Ok(new { status = "nista" });
-
-            return Redirect(usr);
+            try
+            {
+                string role = HttpContext.User.GetRole();
+                return Ok(new { status = "redirect", url = "/" + role });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { status = "error"});
+            }
         }
 
         [HttpPost]
@@ -59,7 +63,7 @@ namespace Server.Controllers
                 return Ok(new { status = "success", url = "/assistant" });
             }
             else //student
-            {               
+            {
                 return Ok(new { status = "success", url = "/student" });
             }
         }
@@ -70,9 +74,12 @@ namespace Server.Controllers
         {
             var claimsIdentity = User.Identity as ClaimsIdentity;
 
-            return Ok(new { id = HttpContext.User.GetId(),
+            return Ok(new
+            {
+                id = HttpContext.User.GetId(),
                 role = User.GetRole(),
-                user = claimsIdentity });
+                user = claimsIdentity
+            });
 
         }
 
@@ -123,7 +130,8 @@ namespace Server.Controllers
                 var token = GenerateToken(usr, expiresIn);
 
 
-                var data = new {
+                var data = new
+                {
                     requertAt = requestAt,
                     expiresIn = TokenAuthOption.ExpiresSpan.TotalSeconds,
                     tokeyType = TokenAuthOption.TokenType,
@@ -131,7 +139,7 @@ namespace Server.Controllers
                 };
                 return Ok(new { status = "success", data = data, url = usr.StudentId == null ? "assistant" : "student" });
 
-                }
+            }
             catch (Exception ex)
             {
                 return Ok(new { exception = ex.Message });

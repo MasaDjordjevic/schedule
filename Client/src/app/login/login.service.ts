@@ -16,6 +16,10 @@ export class LoginService {
      return this.authService.login(username, password);
   }
 
+  loginRedirect() {
+    return this.authService.authGet('http://localhost:55281/api/Login/LoginRedirect');
+  }
+
   getUser() {
     return this.authService.authGet('http://localhost:55281/api/Login/GetUser');
   }

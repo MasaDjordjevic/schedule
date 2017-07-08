@@ -14,11 +14,13 @@ import {AssistantsService} from './services/assistants.service';
 import {CoursesService} from './services/courses.service';
 import {StudentsService} from './services/students.service';
 import {RefreshTimetableService} from './refresh-timetable.service';
+import {CookieService} from './services/cookie.service';
 
 
 @NgModule({
   providers: [ThemeService, DepartmentsService, DivisionsService, GroupsService,
-    StudentsService, CoursesService, AssistantsService, ClassroomsService, RefreshTimetableService],
+    StudentsService, CoursesService, AssistantsService,
+    ClassroomsService, RefreshTimetableService, CookieService],
   exports: [
     TranslateModule,
     MdButtonModule,
