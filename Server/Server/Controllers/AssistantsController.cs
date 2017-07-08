@@ -74,6 +74,7 @@ namespace Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetSchedule")]
         public IActionResult GetSchedule(int assistantID, int weeksFromNow)
         {
             //if (!HttpContext.Session.IsAssistant()) return HttpUnauthorized();

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ThemeService} from '../../shared/theme.service';
+import {LoginService} from '../../login/login.service';
 
 @Component({
   selector: 'app-assistant-panel',
@@ -13,9 +14,15 @@ export class AssistantPanelComponent implements OnInit {
   selectedGroupId: number;
   selectedStudentId: number;
 
+  assistant: any;
+  error: any;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private themeService: ThemeService) { }
+              private themeService: ThemeService,
+              private loginService: LoginService) {
+    this.getAssistant();
+  }
 
   get isSomethingSelected() {
     return this.selectedDivisionId || this.selectedStudentId || this.selectedGroupId || this.selectedDepartmentId;
@@ -50,6 +57,13 @@ export class AssistantPanelComponent implements OnInit {
         // console.log(this.selectedGroupId);
         // console.log(this.selectedStudentId);
       });
+  }
+
+  getAssistant() {
+    this.loginService.getUser()
+      .then(
+        asst => this.assistant = asst,
+        error => this.error = error).then(() => console.log(this.assistant));
   }
 
 }

@@ -1,3 +1,98 @@
-<p>
-  panel-options works!
-</p>
+<div class="container">
+  <div class="options">
+    <md-input-container class="mode">
+      <input mdInput
+             [value]="mode"
+             [placeholder]="'mode' | translate"
+             [mdAutocomplete]="modeAutocomplete">
+    </md-input-container>
+    <md-autocomplete #modeAutocomplete="mdAutocomplete">
+      <md-option
+        (click)="mode = 'student'"
+        [value]="'student' | translate">
+        {{'student' | translate}}
+      </md-option>
+      <md-option
+        (click)="mode = 'global'"
+        [value]="'global' | translate">
+        {{'global' | translate}}
+      </md-option>
+      <md-option
+        (click)="mode = 'classroom'"
+        [value]="'classroom' | translate">
+        {{'classroom' | translate}}
+      </md-option>
+    </md-autocomplete>
+
+    <ng-container *ngIf="mode === 'student' || mode === 'global'">
+      <md-input-container>
+        <input mdInput
+               [value]="selectedYear || ''"
+               [placeholder]="'year_of_study' | translate"
+               [mdAutocomplete]="yearAutocomplete">
+      </md-input-container>
+      <md-autocomplete #yearAutocomplete="mdAutocomplete">
+        <md-option *ngFor="let yd of yearDepartments"
+                   (click)="selectedYear = yd.year">
+          {{yd.year}}
+        </md-option>
+      </md-autocomplete>
+
+
+      <ng-container *ngIf="depsOfSelected">
+        <md-input-container>
+          <input mdInput
+                 [value]="getDepartmentName(departmentId) || ''"
+                 [placeholder]="'departments' | translate"
+                 [mdAutocomplete]="depsAutocomplete">
+        </md-input-container>
+        <md-autocomplete #depsAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let dep of depsOfSelected"
+                     (click)="departmentId = dep.departmentId">
+            {{dep.departmentName}}
+          </md-option>
+        </md-autocomplete>
+      </ng-container>
+
+      <ng-container *ngIf="mode === 'student' && departmentId && students">
+        <md-input-container>
+          <input mdInput
+                 [value]="getStudentName(studentId) || ''"
+                 [placeholder]="'student' | translate"
+                 [mdAutocomplete]="studAutocomplete">
+        </md-input-container>
+        <md-autocomplete #studAutocomplete="mdAutocomplete">
+          <md-option *ngFor="let stud of students"
+                     (click)="studentId = stud.StudentId">
+            {{stud.UniMembers.Surname}} {{stud.UniMembers.Name}} ({{stud.IndexNumber}})
+          </md-option>
+        </md-autocomplete>
+      </ng-container>
+
+    </ng-container>
+    <ng-container *ngIf="mode === 'classroom' && classrooms">
+      <md-input-container>
+        <input mdInput
+               [value]="getClassroomNumber(classroomId) || ''"
+               [placeholder]="'classroom' | translate"
+               [mdAutocomplete]="classroomAutocomplete">
+      </md-input-container>
+      <md-autocomplete #classroomAutocomplete="mdAutocomplete">
+        <md-option *ngFor="let classroom of classrooms"
+                   (click)="classroomId = classroom.classroomId">
+          {{classroom.number}}
+        </md-option>
+      </md-autocomplete>
+    </ng-container>
+  </div>
+
+  <div id="timetable">
+    <app-timetable [studentId]="studentId"
+                   [classroomId]="classroomId"
+                   [departmentId]="departmentId"
+                   [groupId]="groupId"
+                   [assistantId]="assistantId">
+    </app-timetable>
+  </div>
+
+</div>

@@ -29,6 +29,7 @@ import {AddActivityComponent} from './dialogs/add-activity/add-activity.componen
 import {KickStudentComponent} from './dialogs/kick-student/kick-student.component';
 import {MoveStudentComponent} from './dialogs/move-student/move-student.component';
 import { UncancelClassComponent } from './dialogs/uncancel-class/uncancel-class.component';
+import {TimetableModule} from '../timetable/timetable.module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { UncancelClassComponent } from './dialogs/uncancel-class/uncancel-class.
     HeaderModule,
     UiModule,
     FormsModule,
+    TimetableModule,
     AssistantPanelRoutingModule
   ],
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,

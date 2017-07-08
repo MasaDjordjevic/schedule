@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Department} from '../../models/Department';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {YearDepartments} from '../../models/YearDepartments';
-
+import {AuthService} from '../../login/auth.service';
 
 
 @Injectable()
@@ -10,7 +10,8 @@ export class DepartmentsService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private departmentsUrl = 'http://localhost:55281/api/Departments';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private authService: AuthService) { }
 
 
   getDepartment(id: number): Promise<Department> {
@@ -36,7 +37,7 @@ export class DepartmentsService {
 
   addDepartment(departmentName: string, year: number): Promise<Department> {
     const body = JSON.stringify({departmentName, year});
-    const options = new RequestOptions({ headers: this.headers });
+    const options = new RequestOptions({headers: this.headers});
     return this.http.post(this.departmentsUrl + '/PostDepartments', body, options)
       .toPromise()
       .then(res => res.json())
@@ -50,10 +51,7 @@ export class DepartmentsService {
   }
 
   getSchedule(departmentID: number, weeksFromNow: number): Promise<any[]> {
-    return this.http.get(this.departmentsUrl + `/GetSchedule/?departmentID=${departmentID}&weeksFromNow=${weeksFromNow}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.departmentsUrl + `/GetSchedule/?departmentID=${departmentID}&weeksFromNow=${weeksFromNow}`);
   }
 
   private handleError(error: any): Promise<any> {

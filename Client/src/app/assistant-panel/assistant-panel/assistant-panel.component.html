@@ -1,7 +1,8 @@
-<app-header [name]="'Masa'"
-            [surname]="'Djordjevic'"
-            [address]="'445'"
-            [email]="'masadjordjevic@gmail.com'"
+<app-header *ngIf="assistant"
+            [name]="assistant.Name"
+            [surname]="assistant.Surname"
+            [address]="assistant.Address"
+            [email]="assistant.Email"
 ></app-header>
 
 <main ngClass="{{theme}}">
@@ -11,7 +12,7 @@
   <app-students-list *ngIf="selectedGroupId" [primaryColor]="getThemeClass('student')"></app-students-list>
 
 
-  <app-panel-options *ngIf="!isSomethingSelected"></app-panel-options>
+  <app-panel-options *ngIf="!isSomethingSelected" [assistantId]="assistant?.UniMemberId"></app-panel-options>
   <app-department-options *ngIf="selectedDepartmentId && !selectedDivisionId"></app-department-options>
   <app-division-options *ngIf="selectedDivisionId && !selectedGroupId"></app-division-options>
   <app-group-options *ngIf="selectedGroupId && !selectedStudentId"></app-group-options>

@@ -5,7 +5,7 @@ export class ThemeService {
   private currentTheme: string;
 
   constructor() {
-    this.currentTheme = 'ice';
+     this.currentTheme = 'material';
   }
 
   getTheme() {

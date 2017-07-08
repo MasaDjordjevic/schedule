@@ -71,20 +71,21 @@ namespace Server.Services
             List<ScheduleDTO> groupsSchedule = _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
-                        Day = a.TimeSpan.StartDate.DayOfWeek,
-                        StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                        DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                        Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                        StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                        DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                         ClassName = a.Division.Course.Name,
                         Abbr = a.Division.Course.Alias,
                         Classroom = a.Classroom.Number,
-                        Assistant = groupService.GetAssistant(a.GroupId),
+                        Assistant = groupService.GetAssistant(a.Assistant),
                         Type = a.Division.DivisionType.Type,
-                        Active = groupService.IsActive(a.GroupId, tsNow),
                         Color = groupService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                         GroupId = a.GroupId,
-                        Notifications = groupService.GetNotifications(a.GroupId, tsNow)
                     }).ToList();
+
+            groupsSchedule.ForEach(a => a.Active = groupService.IsActive(a.GroupId, tsNow));
+            groupsSchedule.ForEach(a => a.Notifications = groupService.GetNotifications(a.GroupId, tsNow));
 
             List<ScheduleDTO> activitiesSchedule =
                 _context.Activities.Where(a => ((a.AssistantId == assistantID ||
@@ -93,9 +94,9 @@ namespace Server.Services
                                                 && TimeSpan.Overlap(a.TimeSpan, tsNow)))
                                                 .Select(a => new ScheduleDTO
                                                 {
-                                                    Day = a.TimeSpan.StartDate.DayOfWeek,
-                                                    StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                                                    DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                                                    Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                                                    StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                                                    DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                                                     Active = true,
                                                     Color = groupService.GetNextColor(a.Title),
                                                     ActivityTitle = a.Title,

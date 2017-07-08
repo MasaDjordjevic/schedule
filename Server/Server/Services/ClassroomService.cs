@@ -48,18 +48,20 @@ namespace Server.Services
                 _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
-                        Day = a.TimeSpan.StartDate.DayOfWeek,
-                        StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                        DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                        Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                        StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                        DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                         ClassName = a.Division.Course.Name + " " + a.Name,
                         Abbr = a.Name + " " + a.Division.Course.Alias,
                         Classroom = a.Classroom.Number,
-                        Assistant = groupsService.GetAssistant(a.GroupId),
+                        Assistant = groupsService.GetAssistant(a.Assistant),
                         Type = a.Division.DivisionType.Type,
-                        Active = groupsService.IsActive(a.GroupId, tsNow),
                         Color = groupsService.GetNextColor(a.Division.Course.Name),
                         IsClass = true,
                     }).ToList();
+
+            groupsSchedule.ForEach(a => a.Active = groupsService.IsActive(a.GroupId, tsNow));
+
 
             List<ScheduleDTO> activitiesSchedule =
                 _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
@@ -67,9 +69,9 @@ namespace Server.Services
                     TimeSpan.Overlap(a.TimeSpan, tsNow))
                     .Select(a => new ScheduleDTO
                     {
-                        Day = a.TimeSpan.StartDate.DayOfWeek,
-                        StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                        DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                        Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                        StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                        DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                         Active = true,
                         Color = groupsService.GetNextColor(a.Title),
                         ActivityTitle = a.Title,
