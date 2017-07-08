@@ -9,6 +9,7 @@ import {AddAnnouncementComponent} from '../../dialogs/add-announcement/add-annou
 import {EditGroupComponent} from '../../dialogs/edit-group/edit-group.component';
 import {CancelClassComponent} from '../../dialogs/cancel-class/cancel-class.component';
 import {AddActivityComponent} from '../../dialogs/add-activity/add-activity.component';
+import {TimetableDialogComponent} from '../../dialogs/timetable-dialog/timetable-dialog.component';
 
 @Component({
   selector: 'app-group-options',
@@ -124,6 +125,10 @@ export class GroupOptionsComponent implements OnInit {
 
   openCancelClassDialog() {
     const dialogRef = this.dialog.open(CancelClassComponent, {data: {group: this.group}});
+  }
+
+  openTimetableDialog() {
+    this.dialog.open(TimetableDialogComponent, {data: {groupId: this.groupId}});
   }
 
 }

@@ -416,7 +416,7 @@ namespace Server.Services
         public bool IsActive(int GroupId, TimeSpans tsNow)
         {
             bool canceled = _context.Activities.Any(ac =>
-               !IsStudentActivity(ac.ActivityId) && // nece ako se ovde direktno ispita
+               !ac.StudentsActivities.Any() && // nece ako se ovde direktno ispita
                ac.GroupId == GroupId && ac.Cancelling == true &&
                TimeSpan.TimeSpanOverlap(ac.TimeSpan, tsNow));
             return !canceled;
@@ -463,27 +463,29 @@ namespace Server.Services
             List<ScheduleDTO> groupsSchedule = _context.Groups.Where(a => groups.Contains(a.GroupId) && TimeSpan.Overlap(a.TimeSpan, tsNow))
                 .Select(a => new ScheduleDTO
                 {
-                    Day = a.TimeSpan.StartDate.DayOfWeek,
-                    StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                    DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                    Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                    StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                    DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                     ClassName = a.Division.Course.Name,
                     Abbr = a.Division.Course.Alias,
                     Classroom = a.Classroom.Number,
-                    Assistant = GetAssistant(a.GroupId),
+                    Assistant = GetAssistant(a.Assistant),
                     Type = a.Division.DivisionType.Type,
-                    Active = IsActive(a.GroupId, tsNow),
                     Color = this.GetNextColor(a.Division.Course.Name),
                     IsClass = true,
                 }).ToList();
 
+            groupsSchedule.ForEach(a => a.Active = IsActive(a.GroupId, tsNow));
+
+
             List<ScheduleDTO> activitiesSchedule =
-                _context.Activities.Where(a => a.Cancelling != true && a.GroupId != null && groups.Contains(a.GroupId.Value) && !IsStudentActivity(a.ActivityId)
+                _context.Activities.Where(a => a.Cancelling != true && a.GroupId != null && groups.Contains(a.GroupId.Value) && !a.StudentsActivities.Any()
                                                 && TimeSpan.Overlap(a.TimeSpan, tsNow))
                 .Select(a => new ScheduleDTO
                 {
-                    Day = a.TimeSpan.StartDate.DayOfWeek,
-                    StartMinutes = (int)a.TimeSpan.StartDate.TimeOfDay.TotalMinutes,
-                    DurationMinutes = (int)(a.TimeSpan.EndDate.Subtract(a.TimeSpan.StartDate)).TotalMinutes,
+                    Day = ((DateTime)a.TimeSpan.StartDate).DayOfWeek,
+                    StartMinutes = (int)((DateTime)a.TimeSpan.StartDate).TimeOfDay.TotalMinutes,
+                    DurationMinutes = (int)(((DateTime)a.TimeSpan.EndDate).Subtract(((DateTime)a.TimeSpan.StartDate))).TotalMinutes,
                     Active = true,
                     Color = this.GetNextColor(a.Title),
                     ActivityTitle = a.Title,

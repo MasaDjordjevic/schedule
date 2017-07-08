@@ -458,6 +458,7 @@ namespace Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetSchedule")]
         public IActionResult GetSchedule(int groupID, int weeksFromNow)
         {
             if (!ModelState.IsValid)

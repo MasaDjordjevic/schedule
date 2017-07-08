@@ -30,6 +30,7 @@ import {KickStudentComponent} from './dialogs/kick-student/kick-student.componen
 import {MoveStudentComponent} from './dialogs/move-student/move-student.component';
 import { UncancelClassComponent } from './dialogs/uncancel-class/uncancel-class.component';
 import {TimetableModule} from '../timetable/timetable.module';
+import { TimetableDialogComponent } from './dialogs/timetable-dialog/timetable-dialog.component';
 
 @NgModule({
   imports: [
@@ -44,14 +45,14 @@ import {TimetableModule} from '../timetable/timetable.module';
   entryComponents: [StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent, EditGroupComponent,
     DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent, AddActivityComponent,
-    KickStudentComponent, MoveStudentComponent],
+    KickStudentComponent, MoveStudentComponent, TimetableDialogComponent],
   declarations: [AssistantPanelComponent, DepartmentsListComponent,
     DivisionsListComponent, GroupsListComponent, StudentsListComponent,
     PanelOptionsComponent, DepartmentOptionsComponent, DivisionOptionsComponent,
     GroupOptionsComponent, StudentOptionsComponent, StudentFinderComponent, DivisionCreatorComponent, DeleteDivisionComponent,
     MassGroupEditComponent, ExportDivisionComponent, EditDivisionComponent,
     EditGroupComponent, DeleteGroupComponent, AddAnnouncementComponent, CancelClassComponent,
-    AddActivityComponent, KickStudentComponent, MoveStudentComponent, UncancelClassComponent],
+    AddActivityComponent, KickStudentComponent, MoveStudentComponent, UncancelClassComponent, TimetableDialogComponent],
 
 })
 export class AssistantPanelModule {

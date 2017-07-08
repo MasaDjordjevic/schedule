@@ -7,6 +7,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MdDialog} from '@angular/material';
 import {StudentFinderComponent} from '../../dialogs/student-finder/student-finder.component';
 import {DivisionCreatorComponent} from '../../dialogs/division-creator/division-creator.component';
+import {TimetableDialogComponent} from '../../dialogs/timetable-dialog/timetable-dialog.component';
 
 @Component({
   selector: 'app-department-options',
@@ -75,6 +76,10 @@ export class DepartmentOptionsComponent implements OnInit {
         this.getDepartment();
         this.getStudents();
       });
+  }
+
+  openTimetableDialog() {
+    this.dialog.open(TimetableDialogComponent, {data: {departmentId: this.departmentId}});
   }
 
 }

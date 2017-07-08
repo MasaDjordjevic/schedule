@@ -29,7 +29,7 @@ export class TimetableColumnComponent implements OnInit {
   }
 
   public sortAndOverlap() {
-    if (this.classes.length === 0) {
+    if (!this.classes || this.classes.length === 0) {
       return;
     }
 
