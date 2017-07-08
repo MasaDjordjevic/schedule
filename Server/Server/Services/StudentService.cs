@@ -44,9 +44,9 @@ namespace Server.Services
 
         }
 
-        public Object GetStudent(int StudentId)
+        public Object GetStudent(int uniMemberId)
         {
-            return _context.Students.Include(a => a.UniMembers).First(a => a.StudentId == StudentId);
+            return _context.Students.Include(a => a.UniMembers).First(a => a.UniMembers.UniMemberId == uniMemberId);
         }
 
         public string GetStudentName(int StudentId)

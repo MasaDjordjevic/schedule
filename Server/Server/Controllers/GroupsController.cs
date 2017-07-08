@@ -128,12 +128,12 @@ namespace Server.Controllers
             try
             {
                 var BulletinBoardChoices = groupService.GetAllBulletinBoardChoices(id,
-                    HttpContext.Session.GetUser().StudentId); // ne zove getStudentID jer ovako moze da bude i null
+                    HttpContext.User.GetId()); // ne zove getStudentID jer ovako moze da bude i null
                 return Ok(BulletinBoardChoices);
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "greska", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 
@@ -154,7 +154,7 @@ namespace Server.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "greska", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 
@@ -162,20 +162,16 @@ namespace Server.Controllers
         [HttpGet]
         [Route("ExcangeStudents/{id}")]
         public IActionResult ExchangeStudents(int groupID, int adID)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        {        
 
             try
             {
-                studentService.ExchangeStudents(HttpContext.Session.GetStudentId(), groupID, adID);
-                return Ok(new { status = "uspelo" });
+                studentService.ExchangeStudents(HttpContext.User.GetId(), groupID, adID);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "greska", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 
@@ -195,12 +191,12 @@ namespace Server.Controllers
             }
             try
             {
-                groupService.AddEditAd(HttpContext.Session.GetStudentId(), obj.groupID.Value, obj.groupIDs);
-                return Ok(new { status = "uspelo" });
+                groupService.AddEditAd(HttpContext.User.GetId(), obj.groupID.Value, obj.groupIDs);
+                return Ok(new { status = "success" });
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "greska", message = ex.Message });
+                return Ok(new { status = "error", message = ex.Message });
             }
         }
 

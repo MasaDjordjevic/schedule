@@ -10,6 +10,7 @@ import {TimetableClassComponent} from './timetable-class/timetable-class.compone
 import {ClassDetailsComponent} from './dialogs/class-details/class-details.component';
 import {AddTaskComponent} from './dialogs/add-task/add-task.component';
 import {FormsModule} from '@angular/forms';
+import {BulletinBoardComponent} from './dialogs/bulletin-board/bulletin-board.component';
 
 @NgModule({
   imports: [
@@ -18,9 +19,9 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     TimetableRoutingModule
   ],
-  entryComponents: [ClassDetailsComponent, AddTaskComponent],
+  entryComponents: [ClassDetailsComponent, AddTaskComponent, BulletinBoardComponent],
   declarations: [TimetableComponent, ToTimestampPipe, TimetableColumnComponent,
-    TimetableClassComponent, ClassDetailsComponent, AddTaskComponent],
+    TimetableClassComponent, ClassDetailsComponent, AddTaskComponent, BulletinBoardComponent],
   exports: [TimetableComponent]
 })
 export class TimetableModule {

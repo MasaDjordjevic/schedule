@@ -3,7 +3,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {
   MdButtonModule, MdCheckboxModule, MdInputModule, MdSelectModule, MdMenuModule, MdIconModule,
   MdDialogModule, MdAutocompleteModule, MdDatepickerModule, MdNativeDateModule, MdTooltipModule, MdSnackBar,
-  MdSnackBarModule, MdTabsModule, MdProgressSpinnerModule
+  MdSnackBarModule, MdTabsModule, MdProgressSpinnerModule, MdRadioModule
 } from '@angular/material';
 import {ThemeService} from './theme.service';
 import {DepartmentsService} from './services/departments.service';
@@ -35,6 +35,7 @@ import {RefreshTimetableService} from './refresh-timetable.service';
     MdSnackBarModule,
     MdTabsModule,
     MdProgressSpinnerModule,
+    MdRadioModule,
   ]
 })
 export class SharedModule {

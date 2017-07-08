@@ -9,6 +9,7 @@ import {GroupsService} from '../../../shared/services/groups.service';
 import {CancelClassComponent} from '../../../assistant-panel/dialogs/cancel-class/cancel-class.component';
 import {UncancelClassComponent} from '../../../assistant-panel/dialogs/uncancel-class/uncancel-class.component';
 import {RefreshTimetableService} from '../../../shared/refresh-timetable.service';
+import {BulletinBoardComponent} from '../bulletin-board/bulletin-board.component';
 
 @Component({
   selector: 'app-class-details',
@@ -150,6 +151,16 @@ export class ClassDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(UncancelClassComponent, {data: {groupId: this.class.classId}});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'uncacelled') {
+        this.refreshTimetableService.refresh();
+        this.close();
+      }
+    });
+  }
+
+  openBulletinBoardComponent() {
+    const dialogRef = this.dialog.open(BulletinBoardComponent, {data: {groupId: this.class.classId}});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'refresh') {
         this.refreshTimetableService.refresh();
         this.close();
       }

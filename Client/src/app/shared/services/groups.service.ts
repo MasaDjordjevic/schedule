@@ -111,24 +111,15 @@ export class GroupsService {
   //////// BulletinBoard ///////////
 
   getAllBulletinBoardChoices(groupId: number): Promise<Group> {
-    return this.http.get(this.groupsUrl + '/GetAllBulletinBoardChoices/' + groupId)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.groupsUrl + '/GetAllBulletinBoardChoices/' + groupId);
   }
 
   getPossibleBulletinBoardChoices(groupId: number): Promise<Group> {
-    return this.http.get(this.groupsUrl + '/GetPossibleBulletinBoardChoices/' + groupId)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.groupsUrl + '/GetPossibleBulletinBoardChoices/' + groupId);
   }
 
   exchangeStudents(groupId: number, adID: number): Promise<Group> {
-    return this.http.get(this.groupsUrl + `/ExchangeStudents/?groupID=${groupId}&adID=${adID}`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authGet(this.groupsUrl + `/ExchangeStudents/?groupID=${groupId}&adID=${adID}`);
   }
 
   addAd(groupID: number, groupIDs: any) {
@@ -138,11 +129,7 @@ export class GroupsService {
     });
     console.log(body);
 
-    const options = new RequestOptions({headers: this.headers});
-    return this.http.post(this.groupsUrl + '/AddEditAd', body, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+    return this.authService.authPost(this.groupsUrl + '/AddEditAd', body);
   }
 
   private handleError(error: any): Promise<any> {

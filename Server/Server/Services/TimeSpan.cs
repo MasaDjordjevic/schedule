@@ -110,6 +110,10 @@ namespace Server.Services
         public static string ToString(TimeSpans ts)
         {
             var ret = "";
+            if(ts == null)
+            {
+                return "";
+            }
             if (ts.Period != 1)
             {
                 ret += ts.StartDate.ToStr();

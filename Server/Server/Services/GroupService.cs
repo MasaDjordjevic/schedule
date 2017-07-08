@@ -333,13 +333,14 @@ namespace Server.Services
         public List<BulletinBoardChoiceDTO> GetAllBulletinBoardChoices(int groupId, int? studentId = null)
         {
             return _context.Groups.Where(a => a.GroupId != groupId &&
-                                            a.DivisionId == _context.Groups.First(g => g.GroupId == groupId).DivisionId)
+                                            a.DivisionId == _context.Groups.First(g => g.GroupId == groupId).DivisionId &&
+                                            a.TimeSpan != null)
                                             .Select(a => new BulletinBoardChoiceDTO
                                             {
                                                 GroupId = a.GroupId,
                                                 Time = TimeSpan.ToString(a.TimeSpan),
                                                 Classroom = a.Classroom.Number,
-                                                Chosen = studentId != null && IsChosen(a.GroupId, studentId)
+                                                Chosen = studentId != null && a.Periods.Any(p => p.GroupId == a.GroupId && p.Ad.StudentId == studentId)
                                             }).OrderBy(a => a.Time).ToList();
         }
 
@@ -398,6 +399,7 @@ namespace Server.Services
                     GroupId = GroupId
                 };
                 _context.Ads.Add(Ad);
+                _context.SaveChanges();
             }
 
             foreach (int g in GroupIds)
