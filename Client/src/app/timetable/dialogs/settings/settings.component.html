@@ -1,0 +1,43 @@
+<section>
+  <md-checkbox *ngFor="let day of dayNames; let i = index"
+               [checked]="displayDay[i]"
+               (change)="displayDay[i] = !displayDay[i]">
+    {{day}}
+  </md-checkbox>
+</section>
+
+<md-input-container class="full-width">
+  <input mdInput
+         [placeholder]="'weeks_from_now' | translate"
+         type="number" min="-100" max="100" step="1"
+         [(ngModel)]="weeksFromNow">
+</md-input-container>
+
+<md-input-container class="full-width">
+  <input mdInput
+         [placeholder]="('beginning_minutes' | translate) + ' ' + (beginningMinutes | toTimestamp)"
+         type="number" min="0" max="1440" step="5"
+         [(ngModel)]="beginningMinutes">
+</md-input-container>
+
+<md-input-container class="full-width">
+  <input mdInput
+         [placeholder]="('ending_minutes' | translate)  + ' ' + (endingMinutes | toTimestamp)"
+         type="number" min="0" max="1440" step="5"
+         [(ngModel)]="endingMinutes">
+</md-input-container>
+
+<md-input-container class="full-width">
+  <input mdInput
+         [placeholder]="('show_every' | translate) + ' '  + (showEvery | toTimestamp)"
+         type="number" min="1" max="60" step="1"
+         [(ngModel)]="showEvery">
+</md-input-container>
+
+<md-input-container class="full-width">
+  <input mdInput
+         [placeholder]="'scale' | translate"
+         type="number" min="1" max="10" step=".1"
+         [(ngModel)]="scale">
+</md-input-container>
+

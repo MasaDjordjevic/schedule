@@ -49,7 +49,7 @@ namespace Server.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { status = "error"});
+                return Ok(new { status = "error" });
             }
         }
 
@@ -150,29 +150,37 @@ namespace Server.Controllers
         [Route("GetUser")]
         public IActionResult GetUser()
         {
-            //mora ovako ruzno jer se tako ocekuje na frontu
-            if (HttpContext.User.IsStudent())
+            try
             {
-                var student = studentService.GetStudent(HttpContext.User.GetId());
-                return Ok(JsonConvert.SerializeObject(student, Formatting.Indented,
-                    new JsonSerializerSettings
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                    }));
-            }
+                //mora ovako ruzno jer se tako ocekuje na frontu
+                if (HttpContext.User.IsStudent())
+                {
+                    var student = studentService.GetStudent(HttpContext.User.GetId());
+                    return Ok(JsonConvert.SerializeObject(student, Formatting.Indented,
+                        new JsonSerializerSettings
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }));
+                }
 
-            if (HttpContext.User.IsAssistant())
+                if (HttpContext.User.IsAssistant())
+                {
+                    var assistnat = assistantService.GetAssistant(HttpContext.User.GetId());
+
+                    return Ok(JsonConvert.SerializeObject(assistnat, Formatting.Indented,
+                        new JsonSerializerSettings
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }));
+                }
+
+                return Unauthorized();
+            }
+            catch(Exception ex)
             {
-                var assistnat = assistantService.GetAssistant(HttpContext.User.GetId());
-
-                return Ok(JsonConvert.SerializeObject(assistnat, Formatting.Indented,
-                    new JsonSerializerSettings
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                    }));
+                return Unauthorized();
             }
-
-            return Unauthorized();
+           
         }
 
         [HttpGet]

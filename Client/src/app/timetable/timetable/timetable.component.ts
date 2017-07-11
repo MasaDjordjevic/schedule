@@ -9,6 +9,8 @@ import {AssistantsService} from '../../shared/services/assistants.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ToTimestampPipe} from '../to-timestamp.pipe';
 import {RefreshTimetableService} from '../../shared/refresh-timetable.service';
+import {SettingsComponent} from '../dialogs/settings/settings.component';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'app-timetable',
@@ -17,10 +19,11 @@ import {RefreshTimetableService} from '../../shared/refresh-timetable.service';
 })
 export class TimetableComponent implements OnInit {
 
-  beginningMinutes = 480; // npr. 07:00 je 420
-  endingMinutes = 1200; // npr. 20:00 je 1200
-  showEvery = 15; // npr. prikǎzi liniju na svakih 15 minuta
-  scale = 2.2; // koliko piksela je jedan minut
+ @Input() beginningMinutes = 480; // npr. 07:00 je 420
+ @Input() endingMinutes = 1200; // npr. 20:00 je 1200
+ @Input() showEvery = 15; // npr. prikǎzi liniju na svakih 15 minuta
+ @Input() scale = 2.2; // koliko piksela je jedan minut
+ @Input() displayDay: Array<boolean> = [true, true, true, true, true, true, false];
 
   errorMessage: string;
   classes: any[];
@@ -33,6 +36,8 @@ export class TimetableComponent implements OnInit {
   _classroomId: number;
   _assistantId: number;
 
+  @Input() type: TimetableType;
+
   loading = false;
 
   public _dayNames: string[] = [
@@ -44,9 +49,11 @@ export class TimetableComponent implements OnInit {
     this.translate.instant('saturday'),
     this.translate.instant('sunday'),
   ];
-  displayDay: Array<boolean> = [true, true, true, true, true, true, false];
 
-  @Input() type: TimetableType;
+  get displayDays() {
+    return [0, 1, 2, 3, 4, 5, 6].filter((_, i) => this.displayDay[i]);
+  }
+
 
   clearAll() {
     this._groupId = this._studentId = this._officialStudentId =
@@ -194,10 +201,20 @@ export class TimetableComponent implements OnInit {
               private clasroomsService: ClassroomsService,
               private assistantService: AssistantsService,
               private refreshTimetableService: RefreshTimetableService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              public dialog: MdDialog) {
 
     this.refreshTimetableService.refresh$.subscribe(() => {
       this.getSchedule();
+    });
+
+    this.refreshTimetableService.settings$.debounceTime(100).subscribe((data: any) => {
+      this.beginningMinutes = data.beginningMinutes;
+      this.endingMinutes = data.endingMinutes;
+      this.showEvery = data.showEvery;
+      this.scale = data.scale;
+      this.displayDay = data.displayDay;
+      this.dayNames = data.dayNames;
     });
   }
 
@@ -277,5 +294,17 @@ export class TimetableComponent implements OnInit {
     return this.dayNames.map(dayName => dayName.substr(0, length));
   }
 
+  openSettingsDialog() {
+    const dialogRef = this.dialog.open(SettingsComponent, {
+      data: {
+        beginningMinutes: this.beginningMinutes,
+        endingMinutes: this.endingMinutes,
+        showEvery: this.showEvery,
+        scale: this.scale,
+        displayDay: this.displayDay,
+        dayNames: this.dayNames
+      }
+    });
+  }
 
 }

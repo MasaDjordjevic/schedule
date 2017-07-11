@@ -13,9 +13,9 @@
 
   <div class="gutter"></div>
 
-  <button id="options-button"><i class="fa fa-cog"></i></button>
+  <button id="options-button" (click)="openSettingsDialog()"><i class="fa fa-cog"></i></button>
 
-  <app-timetable-column *ngFor="let i of [0, 1, 2, 3, 4, 5, 6]"
+  <app-timetable-column *ngFor="let i of displayDays"
                         [title]="dayNames[i]"
                         [titleAbbr]="dayNamesAbbr[i]"
                         [classes]="classes[i]"
