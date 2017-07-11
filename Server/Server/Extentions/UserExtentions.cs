@@ -15,7 +15,7 @@ namespace Server.Extentions
                 throw new Exception("nije ulogovan");
             int id = Convert.ToInt32(idStr);            
             return id;
-        }
+        }      
 
         public static string GetRole(this ClaimsPrincipal user)
         {

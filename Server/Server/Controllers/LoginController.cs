@@ -89,7 +89,7 @@ namespace Server.Controllers
             var handler = new JwtSecurityTokenHandler();
 
             ClaimsIdentity identity = new ClaimsIdentity(
-                new GenericIdentity(user.UniMemberId.ToString(), "TokenAuth"),
+                new GenericIdentity(user.StudentId == null ? user.UniMemberId.ToString() : user.StudentId.ToString(), "TokenAuth"),
                 new[] {
                     new Claim("role", user.StudentId == null ? "assistant" : "student", "role")
                 }
