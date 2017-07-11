@@ -206,5 +206,11 @@
   "no_possibilities": "Aucun groupe pour l'échange.",
 
   "unauthorized_access": "L'accès non autorisé",
-  "back_to_login_page": "Revenir à la page de connexion"
+  "back_to_login_page": "Revenir à la page de connexion",
+
+  "weeks_from_now": "À partir de maintenant",
+  "beginning_minutes": "Minutes du début",
+  "ending_minutes": "Minutes à partir de la fin",
+  "show_every": "Montrez tous les",
+  "scale": "Échelle"
 }

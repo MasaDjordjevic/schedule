@@ -207,5 +207,11 @@
   "no_possibilities": "Nema grupa za zamenu.",
 
   "unauthorized_access": "Neovlašćen pristup",
-  "back_to_login_page": "Nazad na stranicu za prijavu"
+  "back_to_login_page": "Nazad na stranicu za prijavu",
+
+  "weeks_from_now": "Broj nedelja od tekuće",
+  "beginning_minutes": "Minuti od početka",
+  "ending_minutes": "Minuti od kraja",
+  "show_every": "Prikazati svakih",
+  "scale": "Proporcija"
 }

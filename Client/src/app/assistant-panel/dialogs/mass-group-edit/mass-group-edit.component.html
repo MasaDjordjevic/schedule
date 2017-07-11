@@ -57,8 +57,8 @@
         <md-autocomplete #dayAutocomplete="mdAutocomplete">
           <md-option *ngFor="let day of daysOfWeek; let d = index"
                      (onSelectionChange)="editedDivision[i].dayOfWeek = d == 6 ? 0 : d+1"
-                     [value]=" day | translate">
-            {{day | translate}}
+                     [value]="day">
+            {{day}}
           </md-option>
         </md-autocomplete>
       </div>

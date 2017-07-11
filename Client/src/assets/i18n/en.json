@@ -197,5 +197,11 @@
   "no_possibilities": "No groups for exchange.",
 
   "unauthorized_access": "Unauthorized access",
-  "back_to_login_page": "Go back to login page"
+  "back_to_login_page": "Go back to login page",
+
+  "weeks_from_now": "Weeks from now",
+  "beginning_minutes": "Minutes from beginning",
+  "ending_minutes": "Minutes from ending",
+  "show_every": "Show every",
+  "scale": "Scale"
 }

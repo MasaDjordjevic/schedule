@@ -19,7 +19,7 @@ export class MassGroupEditComponent implements OnInit {
   private errorMessage: string;
 
   private editedDivision = [];
-  private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  private daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
   @HostBinding('class') themeClass = this.theme;
 
@@ -74,6 +74,8 @@ export class MassGroupEditComponent implements OnInit {
     this.getClassrooms();
     this.division = data.division;
     console.log(this.division);
+
+    this.daysOfWeek = this.daysOfWeek.map(d => this.translate.instant(d));
   }
 
   get theme() {
