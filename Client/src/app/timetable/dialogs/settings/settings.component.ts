@@ -1,6 +1,7 @@
 import {Component, DoCheck, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
 import {RefreshTimetableService} from '../../../shared/refresh-timetable.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-settings',
@@ -17,6 +18,7 @@ export class SettingsComponent implements DoCheck {
   @Input() dayNames: string[];
 
   constructor(public refreshTimetableService: RefreshTimetableService,
+              public translate: TranslateService,
               public dialogRef: MdDialogRef<SettingsComponent>,
               @Inject(MD_DIALOG_DATA) public data: any) {
     this.beginningMinutes = data.beginningMinutes;
@@ -24,7 +26,8 @@ export class SettingsComponent implements DoCheck {
     this.showEvery = data.showEvery;
     this.scale = data.scale;
     this.displayDay = data.displayDay;
-    this.dayNames = data.dayNames;
+    this.dayNames = data.dayNames.map(d => translate.instant(d));
+
 
   }
 
