@@ -44,7 +44,7 @@ export class AuthService {
   public initAuthHeaders(): Headers {
     const token = this.getLocalToken();
     if (token == null) {
-      this.router.navigate(['/unauthorized']);
+      this.router.navigate(['/login']);
     }
 
     const headers = new Headers({'Content-Type': 'application/json'});
