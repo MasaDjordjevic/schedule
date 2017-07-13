@@ -1,10 +1,16 @@
 <div class="logo"></div>
 <form (submit)="login()">
   <md-input-container>
-    <input mdInput [(ngModel)]="username" name="username" autofocus/>
+    <input mdInput [(ngModel)]="username"
+           name="username"
+           (keyup)="loginMessage = ''"
+           autofocus/>
   </md-input-container>
   <md-input-container>
-    <input mdInput [(ngModel)]="password" name="password"/>
+    <input mdInput [(ngModel)]="password"
+           name="password"
+           (change)="loginMessage = ''"
+           type="password"/>
   </md-input-container>
   <div class="flex-spacer"></div>
   <div class="controls">

@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginMessage = '';
+  loginMessage = '';
 
   public username = 'plavusha';
   public password = 'plavusha';
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
       .then(res => {
         if (res.status === 'success') {
           this.router.navigate(['/' + res.url]);
+        } else if (res.exception === 'Wrong credentials') {
+          this.loginMessage = res.exception;
         }
       });
   }
@@ -40,6 +42,10 @@ export class LoginComponent implements OnInit {
     this.loginService.getUserInfo();
     this.loginService.getUserInfo2();
     this.loginService.probaPost();
+  }
+
+  removeLoginMessage() {
+    this.loginMessage = '';
   }
 
 }

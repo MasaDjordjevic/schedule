@@ -22,6 +22,9 @@ export class AuthService {
     return this.http.post(this.loginUrl, body, {headers: headers}).toPromise()
       .then(response => response.json())
       .then(res => {
+        if (res.exception) {
+          return res;
+        }
         sessionStorage.setItem(this.tokenKey, res.data.accessToken);
         sessionStorage.setItem('role', res.url);
         return res;
