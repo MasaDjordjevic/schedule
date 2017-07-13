@@ -621,7 +621,7 @@ namespace Server.Services
 
             List<TimeSpans> activitiesSchedule =
                 _context.Activities.Where(a => a.ClassroomId == ClassroomId &&
-                    !this.IsStudentActivity(a.ActivityId))
+                    !a.StudentsActivities.Any())
                     .Select(a => a.TimeSpan).ToList();
 
             List<TimeSpans> schedule = groupsSchedule.Concat(activitiesSchedule).ToList();

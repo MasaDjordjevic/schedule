@@ -27,19 +27,25 @@ export class SettingsComponent implements DoCheck {
     this.scale = data.scale;
     this.displayDay = data.displayDay;
     this.dayNames = data.dayNames.map(d => translate.instant(d));
+  }
 
-
+  resetAll() {
+    this.beginningMinutes = 480; // npr. 07:00 je 420
+    this.endingMinutes = 1200; // npr. 20:00 je 1200
+    this.showEvery = 15; // npr. prikǎzi liniju na svakih 15 minuta
+    this.scale = 2.2; // koliko piksela je jedan minut
+    this.displayDay = [true, true, true, true, true, true, false];
   }
 
   ngDoCheck(): void {
-      this.refreshTimetableService.settings({
-        beginningMinutes: this.beginningMinutes,
-        endingMinutes: this.endingMinutes,
-        showEvery: this.showEvery,
-        scale: this.scale,
-        displayDay: this.displayDay,
-        dayNames: this.dayNames
-      });
+    this.refreshTimetableService.settings({
+      beginningMinutes: this.beginningMinutes,
+      endingMinutes: this.endingMinutes,
+      showEvery: this.showEvery,
+      scale: this.scale,
+      displayDay: this.displayDay,
+      dayNames: this.dayNames
+    });
   }
 
 

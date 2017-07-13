@@ -114,7 +114,7 @@
   <md-tab [label]="'announcements' | translate">
     <div class="additional-info">
 
-      <div class="no-notifications" *ngIf="class.notifications && !class.notifications.length">
+      <div class="no-notifications" *ngIf="!class.notifications || (class.notifications && !class.notifications.length)">
         <div>
           <i class="fa fa-bell-slash-o"></i>
           <span>{{'no_announcements__1' | translate}}<br>{{'no_announcements__2' | translate}}</span>
