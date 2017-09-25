@@ -114,7 +114,7 @@ namespace Server
             });
             #endregion
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "https://masadjordjevic.github.io")
                 .AllowAnyHeader()
                  .AllowAnyHeader()
                  .AllowAnyMethod()
