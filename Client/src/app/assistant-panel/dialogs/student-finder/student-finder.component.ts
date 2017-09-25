@@ -13,7 +13,7 @@ export class StudentFinderComponent implements OnInit {
 
 
   query: string;
-  private filteredStudents: any[];
+  filteredStudents: any[];
 
   get columnClassName() {
     switch (this.columns) {

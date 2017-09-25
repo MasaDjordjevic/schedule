@@ -11,7 +11,7 @@ export class StudentsListComponent implements OnInit {
   @Input() primaryColor = 'MaterialBlue';
   @Input() secondaryColor = 'MaterialOrange';
 
-  private students: any[];
+  students: any[];
   private errorMessage: string;
 
   // departmentId and divisionId are there for setting route parameters later

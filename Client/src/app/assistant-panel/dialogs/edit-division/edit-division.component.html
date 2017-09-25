@@ -45,7 +45,7 @@
              [placeholder]="'start_date' | translate"
              [mdDatepicker]="startPicker"
              [(ngModel)]="editedDivision.beginning">
-      <button mdSuffix [mdDatepickerToggle]="startPicker"></button>
+      <md-datepicker-toggle mdSuffix [for]="startPicker"></md-datepicker-toggle>
     </md-input-container>
     <md-datepicker #startPicker></md-datepicker>
 
@@ -54,7 +54,7 @@
              [placeholder]="'end_date' | translate"
              [mdDatepicker]="endPicker"
              [(ngModel)]="editedDivision.ending">
-      <button mdSuffix [mdDatepickerToggle]="endPicker"></button>
+      <md-datepicker-toggle mdSuffix [for]="endPicker"></md-datepicker-toggle>
     </md-input-container>
     <md-datepicker #endPicker></md-datepicker>
   </div>

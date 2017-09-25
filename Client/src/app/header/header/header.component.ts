@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private translate: TranslateService,
-              private router: Router,
+              public router: Router,
               private loginService: LoginService,
               private theme: ThemeService) {
     translate.addLangs(['en', 'fr', 'sr']);

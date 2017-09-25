@@ -16,7 +16,7 @@ export class AddAnnouncementComponent implements OnInit {
   @Input() group: any;
   @HostBinding('class') themeClass = this.theme;
 
-  private classrooms;
+  classrooms;
   courses: any[];
   private errorMessage;
 

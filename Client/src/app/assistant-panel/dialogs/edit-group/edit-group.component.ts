@@ -23,7 +23,7 @@ export class EditGroupComponent implements OnInit {
 
   private classrooms;
   private assistants;
-  private students;
+  students;
   private errorMessage;
 
   query = '';

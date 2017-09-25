@@ -13,7 +13,7 @@ export class DivisionsListComponent implements OnInit {
   @Input() primaryColor = 'MaterialBlue';
   @Input() secondaryColor = 'MaterialOrange';
 
-  private typeDivisions: TypeDivisions[];
+  typeDivisions: TypeDivisions[];
   private errorMessage: string;
 
   // ID trenutno selektirane raspodele (division) iz liste.

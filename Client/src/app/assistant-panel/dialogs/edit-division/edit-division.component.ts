@@ -18,7 +18,7 @@ export class EditDivisionComponent implements OnInit {
   divisionTypes: any[];
   studentsOfCourse: any[];
   division: any;
-  private editedDivision: any = {};
+  editedDivision: any = {};
   errorMessage: string;
 
   @HostBinding('class') themeClass = this.theme;
@@ -54,7 +54,7 @@ export class EditDivisionComponent implements OnInit {
     this.editedDivision.courseId = division.CourseId;
   }
 
-  private reset = () => this.cloneToEdit(this.division);
+  reset = () => this.cloneToEdit(this.division);
 
 
   getCoursesOfDepartment() {

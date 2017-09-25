@@ -10,6 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class SettingsComponent implements DoCheck {
 
+  @Input() weeksFromNow = 0; // prikazi raspoed za nedelju koja je toliko udaljena od trenutne
   @Input() beginningMinutes = 480; // npr. 07:00 je 420
   @Input() endingMinutes = 1200; // npr. 20:00 je 1200
   @Input() showEvery = 15; // npr. prikǎzi liniju na svakih 15 minuta

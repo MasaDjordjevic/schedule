@@ -11,6 +11,7 @@ import {ToTimestampPipe} from '../to-timestamp.pipe';
 import {RefreshTimetableService} from '../../shared/refresh-timetable.service';
 import {SettingsComponent} from '../dialogs/settings/settings.component';
 import {MdDialog} from '@angular/material';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-timetable',

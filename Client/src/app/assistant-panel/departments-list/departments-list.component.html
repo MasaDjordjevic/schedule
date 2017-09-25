@@ -1,6 +1,5 @@
 <app-nested-list [title]="'departments' | translate"
-                 [primaryColor]="primaryColor"
-                 [secondaryColor]="secondaryColor">
+                 [primaryColor]="primaryColor">
   <app-nested-list-inner *ngFor="let yearDepartment of yearDepartments"
                          [title]="('year' | translate) + ' ' + (yearDepartment.year | roman)">
     <app-nested-list-inner-item *ngFor="let department of yearDepartment.departments"

@@ -11,7 +11,7 @@ export class GroupsListComponent implements OnInit {
   @Input() primaryColor = 'MaterialBlue';
   @Input() secondaryColor = 'MaterialOrange';
 
-  private groups: any[];
+  groups: any[];
   private errorMessage: string;
 
   // departmentId is there for setting route parameters later

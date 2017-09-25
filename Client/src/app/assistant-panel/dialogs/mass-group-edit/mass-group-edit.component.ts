@@ -18,7 +18,7 @@ export class MassGroupEditComponent implements OnInit {
   private classrooms: any;
   private errorMessage: string;
 
-  private editedDivision = [];
+  editedDivision = [];
   private daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
   @HostBinding('class') themeClass = this.theme;
