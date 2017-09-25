@@ -3,12 +3,13 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {Division} from '../../models/Division';
 import {TypeDivisions} from '../../models/TypeDivisions';
 import {AuthService} from '../../login/auth.service';
+import {AppSettings} from '../AppSettings';
 
 
 @Injectable()
 export class DivisionsService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private divisionsUrl = 'http://localhost:55281/api/Divisions';  // URL to web api
+  private divisionsUrl = AppSettings.API_ENDPOINT + '/api/Divisions';  // URL to web api
 
   constructor(private http: Http,
               private authService: AuthService) { }

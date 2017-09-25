@@ -3,12 +3,13 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {TimeSpan} from '../../models/TimeSpan';
 import {Student} from '../../models/Student';
 import {AuthService} from '../../login/auth.service';
+import {AppSettings} from '../AppSettings';
 
 
 @Injectable()
 export class StudentsService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private studentsUrl = 'http://localhost:55281/api/Students';  // URL to web api
+  private studentsUrl = AppSettings.API_ENDPOINT + '/api/Students';  // URL to web api
 
   constructor(private http: Http,
               private authService: AuthService) { }

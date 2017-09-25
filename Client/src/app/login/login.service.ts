@@ -2,11 +2,14 @@ import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {AuthService} from './auth.service';
+import {AppSettings} from '../shared/AppSettings';
 
 @Injectable()
 export class LoginService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private classroomsUrl = 'http://localhost:55281/api/Classrooms';  // URL to web api
+  private classroomsUrl = 'http://schedule-server.azurewebsites.net/api/Classrooms';  // URL to web api
+
+  private serverUrl = AppSettings.API_ENDPOINT;
 
   constructor(private http: Http,
   private authService: AuthService) { }
@@ -17,27 +20,27 @@ export class LoginService {
   }
 
   loginRedirect() {
-    return this.http.get('http://localhost:55281/api/Login/LoginRedirect')
+    return this.http.get(this.serverUrl + '/api/Login/LoginRedirect')
       .toPromise()
       .then((res) => res.json());
   }
 
   logout() {
     sessionStorage.clear();
-    return this.authService.authGet('http://localhost:55281/api/Login/Logout');
+    return this.authService.authGet(this.serverUrl + '/api/Login/Logout');
   }
 
   getUser() {
-    return this.authService.authGet('http://localhost:55281/api/Login/GetUser');
+    return this.authService.authGet(this.serverUrl + '/api/Login/GetUser');
   }
 
   getUserInfo(): Promise<any> {
-    return this.authService.authGet('http://localhost:55281/api/Login/proba')
+    return this.authService.authGet(this.serverUrl + '/api/Login/proba')
       .then(res => console.log(res));
   }
 
   getUserInfo2(): Promise<any> {
-    return this.authService.authGet('http://localhost:55281/api/Divisions/proba')
+    return this.authService.authGet(this.serverUrl + '/api/Divisions/proba')
       .then(res => console.log(res));
   }
 
@@ -50,7 +53,7 @@ export class LoginService {
       'divisionTypeID': 1,
       'courseID': 10,
     });
-    return this.authService.authPost('http://localhost:55281/api/Divisions/probaPost', body)
+    return this.authService.authPost(this.serverUrl + '/api/Divisions/probaPost', body)
       .then(res => console.log(res));
 
   }

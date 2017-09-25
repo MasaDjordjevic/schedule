@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Router} from '@angular/router';
+import {AppSettings} from '../shared/AppSettings';
 
 @Injectable()
 export class AuthService {
-  private loginUrl = 'http://localhost:55281/api/Login/Login';
+  private loginUrl = AppSettings.API_ENDPOINT + '/api/Login/Login';
   private tokenKey = 'token';
   private token: string;
 

@@ -3,11 +3,12 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {Group} from '../../models/Group';
 import {TimeSpan} from '../../models/TimeSpan';
 import {AuthService} from '../../login/auth.service';
+import {AppSettings} from '../AppSettings';
 
 @Injectable()
 export class GroupsService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private groupsUrl = 'http://localhost:55281/api/Groups';  // URL to web api
+  private groupsUrl = AppSettings.API_ENDPOINT + '/api/Groups';  // URL to web api
 
   constructor(private http: Http,
               private authService: AuthService) { }

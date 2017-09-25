@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {AuthService} from '../../login/auth.service';
 import {Http} from '@angular/http';
+import {AppSettings} from '../AppSettings';
+
 
 @Injectable()
 export class ClassroomsService {
-  private classroomsUrl = 'http://localhost:55281/api/Classrooms';  // URL to web api
+  private classroomsUrl = AppSettings.API_ENDPOINT + '/api/Classrooms';  // URL to web api
 
   constructor(private http: Http,
               private authService: AuthService) { }

@@ -3,11 +3,12 @@ import {Department} from '../../models/Department';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {YearDepartments} from '../../models/YearDepartments';
 import {Course} from '../../models/Course';
+import {AppSettings} from '../AppSettings';
 
 @Injectable()
 export class CoursesService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private coursesUrl = 'http://localhost:55281/api/Courses';  // URL to web api
+  private coursesUrl = AppSettings.API_ENDPOINT + '/api/Courses';  // URL to web api
 
   constructor(private http: Http) { }
 
