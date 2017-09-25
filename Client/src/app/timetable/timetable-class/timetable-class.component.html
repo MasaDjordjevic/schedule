@@ -13,22 +13,15 @@
      [class.teal]="color === 'MaterialTeal'"
      [class.brown]="color === 'MaterialBrown'"
      [class.active]="active"
-     [class.expanded]="expanded"
-     [style.left]="expanded ? expandedLeft : ''"
-     [style.top]="expanded ? expandedTop : ''"
-     [style.width]="expanded ? expandedWidth : ''"
-     [style.height]="expanded ? expandedHeight : ''"
-     [style.boxShadow]="expanded ? '0 0 0 0.7em ' + color + ' inset' : ''"
-     [style.color]="expanded ? 'black' : textColor"
-     (click)="openDetailsDialog($event)"
+     (click)="openDetailsDialog()"
      [class.activity]="!isClass"
 >
 
     <span class="times">
         <span class="start">{{startMinutes | toTimestamp}}</span>
         —
-        <span class="end">{{endMinutes | toTimestamp}}</span>
-    </span>
+            <span class="end">{{endMinutes | toTimestamp}}</span>
+        </span>
 
   <!-- ako je čas (nije aktivnost) -->
   <div *ngIf="abbr && classroom">
