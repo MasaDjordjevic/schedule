@@ -4,7 +4,7 @@
             [address]="student.UniMembers.Address"
             [email]="student.UniMembers.Email"
 ></app-header>
-<div id="timetable-wrapper">
+<div id="timetable-wrapper" *ngIf="student">
   <app-timetable
     [studentId]="studentId"
     [officialStudentId]="studentOfficialId"
