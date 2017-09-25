@@ -20,7 +20,7 @@ export class LoginService {
   }
 
   loginRedirect() {
-    return this.http.get(this.serverUrl + '/api/Login/LoginRedirect')
+    return this.http.get(this.serverUrl + '/api/Login/LoginRedirect/')
       .toPromise()
       .then((res) => res.json());
   }

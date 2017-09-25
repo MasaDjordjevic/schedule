@@ -27,6 +27,9 @@ export class StudentPanelComponent implements OnInit {
   }
 
   public set timetableType(ttt) {
+    if (!this.student) {
+      return;
+    }
     this._timetableType = ttt;
     this.clearAll();
     switch (ttt) {

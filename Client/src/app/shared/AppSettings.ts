@@ -1,3 +1,3 @@
 export class AppSettings {
-  public static API_ENDPOINT= 'http://schedule-server.azurewebsites.net';
+  public static API_ENDPOINT= 'https://schedule-server.azurewebsites.net';
 }

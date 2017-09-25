@@ -6,7 +6,7 @@ import {AppSettings} from '../shared/AppSettings';
 
 @Injectable()
 export class AuthService {
-  private loginUrl = AppSettings.API_ENDPOINT + '/api/Login/Login';
+  private loginUrl = AppSettings.API_ENDPOINT + '/api/Login/Login/';
   private tokenKey = 'token';
   private token: string;
 
